@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Pregunta1"
   DTS:PackageType="5"
-  DTS:VersionBuild="38"
-  DTS:VersionGUID="{442D9012-66E8-4DB4-A2FE-8B215DD85F06}">
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{3CEC85C7-BE46-4382-BDB0-30A943019C22}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -26,6 +26,18 @@
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=.;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Pregunta1-{215AC24F-06A2-4D2D-99FD-0CE64E090B68}LocalHost.AdventureWorks2022;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.Cubo_HEFESTO_1]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{C52819CE-10B9-4E4A-ACB4-DD8D25E4AE7A}"
+      DTS:ObjectName="localhost.Cubo_HEFESTO_1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Cubo_HEFESTO_1;Provider=MSOLAP.8;Impersonation Level=Impersonate;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -43,6 +55,22 @@
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Procesar Cubo"
+      DTS:CreationName="Microsoft.DTSProcessingTask"
+      DTS:Description="Tarea de procesamiento de Analysis Services"
+      DTS:DTSID="{EA950075-5793-4E80-8A2B-F3C10B4F6AB2}"
+      DTS:ExecutableType="Microsoft.DTSProcessingTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Procesar Cubo"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ASProcessingData
+          ConnectionName="localhost.Cubo_HEFESTO_1"
+          ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;Cubo_HEFESTO_1&lt;/DatabaseID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessFull&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Tarea Borrar Tablas"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
@@ -2465,6 +2493,14 @@ WHERE sod.SalesOrderID = do.IDOrder AND
       DTS:ObjectName="Restricción 1"
       DTS:To="Package\Tarea Poblar DimProductos" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{D2E11304-7127-4D7B-B04C-2DCB91A313E9}"
+      DTS:From="Package\Tarea Poblar FactOrdenesDetails"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 10"
+      DTS:To="Package\Procesar Cubo" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
       DTS:CreationName=""
       DTS:DTSID="{F6D38060-887E-4163-A09F-4418B545234E}"
@@ -2546,17 +2582,37 @@ WHERE sod.SalesOrderID = do.IDOrder AND
           Id="Package\Tarea Borrar Tablas"
           TopLeft="260.714286269278,82.6235293400431" />
         <NodeLayout
+          Size="168,41.6"
+          Id="Package\Tarea Crear Tablas"
+          TopLeft="260.000000553472,16.1294117519703" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Tarea Poblar DimCiudad"
+          TopLeft="511.428572517269,325.035293833442" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Tarea Poblar DimEstado"
+          TopLeft="510.000001085656,260.035293890418" />
+        <NodeLayout
           Size="199.2,41.6"
           Id="Package\Tarea Poblar DimOrdenes"
           TopLeft="31.4285714954745,190.447058657297" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Tarea Poblar DimPais"
+          TopLeft="512.857143948881,191.211764538979" />
         <NodeLayout
           Size="206.4,41.6"
           Id="Package\Tarea Poblar DimProductos"
           TopLeft="265.714286279922,188.917646893931" />
         <NodeLayout
-          Size="178.4,41.6"
-          Id="Package\Tarea Poblar DimPais"
-          TopLeft="512.857143948881,191.211764538979" />
+          Size="215.2,41.6"
+          Id="Package\Tarea Poblar DimVendedores"
+          TopLeft="492.857143906306,393.352940875508" />
+        <NodeLayout
+          Size="232,41.6"
+          Id="Package\Tarea Poblar FactOrdenesDetails"
+          TopLeft="245.00000052154,494.211764368054" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
           TopLeft="305.714286269278,124.223529340043">
@@ -2659,18 +2715,6 @@ WHERE sod.SalesOrderID = do.IDOrder AND
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="192,41.6"
-          Id="Package\Tarea Poblar DimEstado"
-          TopLeft="510.000001085656,260.035293890418" />
-        <NodeLayout
-          Size="192,41.6"
-          Id="Package\Tarea Poblar DimCiudad"
-          TopLeft="511.428572517269,325.035293833442" />
-        <NodeLayout
-          Size="215.2,41.6"
-          Id="Package\Tarea Poblar DimVendedores"
-          TopLeft="492.857143906306,393.352940875508" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 3]"
           TopLeft="604.028572517269,232.811764538979">
@@ -2737,36 +2781,32 @@ WHERE sod.SalesOrderID = do.IDOrder AND
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="232,41.6"
-          Id="Package\Tarea Poblar FactOrdenesDetails"
-          TopLeft="256.42857197444,478.152940852718" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 6]"
           TopLeft="600.457143906306,434.952940875508">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-228.028571931866,43.19999997721"
+              EndConnector="-183.457143384766,59.2588234925456"
               Start="0,0"
-              End="-228.028571931866,35.69999997721">
+              End="-183.457143384766,51.7588234925456">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.599999988605" />
+                    End="0,35.0569518473596" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.599999988605"
-                    Point2="0,21.599999988605"
-                    Point3="-4,21.599999988605" />
+                    Point1="0,35.0569518473596"
+                    Point2="0,39.0569518473596"
+                    Point3="-4,39.0569518473596" />
                   <mssgle:LineSegment
-                    End="-224.028571931866,21.599999988605" />
+                    End="-179.457143384766,39.0569518473596" />
                   <mssgle:CubicBezierSegment
-                    Point1="-224.028571931866,21.599999988605"
-                    Point2="-228.028571931866,21.599999988605"
-                    Point3="-228.028571931866,25.599999988605" />
+                    Point1="-179.457143384766,39.0569518473596"
+                    Point2="-183.457143384766,39.0569518473596"
+                    Point3="-183.457143384766,43.0569518473596" />
                   <mssgle:LineSegment
-                    End="-228.028571931866,35.69999997721" />
+                    End="-183.457143384766,51.7588234925456" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2777,30 +2817,18 @@ WHERE sod.SalesOrderID = do.IDOrder AND
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 7]"
-          TopLeft="368.914286279922,230.517646893931">
+          TopLeft="364.957143400731,230.517646893931">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-33.8190476388146,247.635293958787"
+              EndConnector="0,263.694117474123"
               Start="0,0"
-              End="-33.8190476388146,240.135293958787">
+              End="0,256.194117474123">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,143.563497085031" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,143.563497085031"
-                    Point2="0,147.563497085031"
-                    Point3="-4,147.563497085031" />
-                  <mssgle:LineSegment
-                    End="-29.8190476388146,147.563497085031" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-29.8190476388146,147.563497085031"
-                    Point2="-33.8190476388146,147.563497085031"
-                    Point3="-33.8190476388146,151.563497085031" />
-                  <mssgle:LineSegment
-                    End="-33.8190476388146,240.135293958787" />
+                    End="0,256.194117474123" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2811,30 +2839,30 @@ WHERE sod.SalesOrderID = do.IDOrder AND
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 8]"
-          TopLeft="131.028571495475,232.047058657297">
+          TopLeft="131.028571495474,232.047058657297">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="185.400000478966,246.105882195422"
+              EndConnector="173.971429026066,262.164705710757"
               Start="0,0"
-              End="185.400000478966,238.605882195422">
+              End="173.971429026066,254.664705710757">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,158.206149628801" />
+                    End="0,168.790374218453" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,158.206149628801"
-                    Point2="0,162.206149628801"
-                    Point3="4,162.206149628801" />
+                    Point1="0,168.790374218453"
+                    Point2="0,172.790374218453"
+                    Point3="4,172.790374218453" />
                   <mssgle:LineSegment
-                    End="181.400000478966,162.206149628801" />
+                    End="169.971429026066,172.790374218453" />
                   <mssgle:CubicBezierSegment
-                    Point1="181.400000478966,162.206149628801"
-                    Point2="185.400000478966,162.206149628801"
-                    Point3="185.400000478966,166.206149628801" />
+                    Point1="169.971429026066,172.790374218453"
+                    Point2="173.971429026066,172.790374218453"
+                    Point3="173.971429026066,176.790374218453" />
                   <mssgle:LineSegment
-                    End="185.400000478966,238.605882195422" />
+                    End="173.971429026066,254.664705710757" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2843,10 +2871,6 @@ WHERE sod.SalesOrderID = do.IDOrder AND
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="168,41.6"
-          Id="Package\Tarea Crear Tablas"
-          TopLeft="260.000000553472,16.1294117519703" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 9]"
           TopLeft="345.357143411375,57.7294117519703">
@@ -2869,161 +2893,35 @@ WHERE sod.SalesOrderID = do.IDOrder AND
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="146.4,41.6"
+          Id="Package\Procesar Cubo"
+          TopLeft="532.14285827565,496.988235039406" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 10]"
+          TopLeft="477.00000052154,516.39999970373">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55.1428577541097,0"
+              Start="0,0"
+              End="47.6428577541097,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.6428577541097,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
-  <TaskHost
-    design-time-name="Package\Tarea Poblar DimOrdenes">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="145.6,41.6"
-          Id="Package\Tarea Poblar DimOrdenes\OLE DB Origin"
-          TopLeft="243.571429089928,19.8823529237488" />
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Tarea Poblar DimOrdenes\OLE DB Destination"
-          TopLeft="236.428571931866,109.352941080618" />
-        <EdgeLayout
-          Id="Package\Tarea Poblar DimOrdenes.Paths[OLE DB Source Output]"
-          TopLeft="319.000000510897,61.4823529237488">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47.8705881568696"
-              Start="0,0"
-              End="0,40.3705881568696">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.3705881568696" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\Tarea Poblar DimProductos">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Tarea Poblar DimProductos\OLE DB Source"
-          TopLeft="400.999994024634,32.9999995082617" />
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Tarea Poblar DimProductos\OLE DB Destination"
-          TopLeft="391.499994248152,122.499998256564" />
-        <EdgeLayout
-          Id="Package\Tarea Poblar DimProductos.Paths[OLE DB Source Output]"
-          TopLeft="476.249994136393,74.5999995082617">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47.8999987483025"
-              Start="0,0"
-              End="0,40.3999987483025">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.3999987483025" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\Tarea Poblar DimPais">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Tarea Poblar DimPais\OLE DB Destination"
-          TopLeft="418.999993756414,147.999997794628" />
-        <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Tarea Poblar DimPais\OLE DB Source"
-          TopLeft="428.999993607402,27.9999995827675" />
-        <EdgeLayout
-          Id="Package\Tarea Poblar DimPais.Paths[OLE DB Source Output]"
-          TopLeft="503.999993681908,69.5999995827675">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,78.3999982118607"
-              Start="0,0"
-              End="0,70.8999982118607">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,70.8999982118607" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\Tarea Poblar DimEstado">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Tarea Poblar DimEstado\OLE DB Source"
-          TopLeft="393.999994128943,31.9999995231629" />
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Tarea Poblar DimEstado\OLE DB Destination"
-          TopLeft="384.999994263053,111.99999833107" />
-        <EdgeLayout
-          Id="Package\Tarea Poblar DimEstado.Paths[OLE DB Source Output]"
-          TopLeft="469.499994195998,73.5999995231629">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,38.3999988079071"
-              Start="0,0"
-              End="0,30.8999988079071">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.8999988079071" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
   <TaskHost
     design-time-name="Package\Tarea Poblar DimCiudad">
     <LayoutInfo>
@@ -3074,6 +2972,263 @@ WHERE sod.SalesOrderID = do.IDOrder AND
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimCiudad\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimCiudad\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimEstado">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Tarea Poblar DimEstado\OLE DB Source"
+          TopLeft="393.999994128943,31.9999995231629" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimEstado\OLE DB Destination"
+          TopLeft="384.999994263053,111.99999833107" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimEstado.Paths[OLE DB Source Output]"
+          TopLeft="469.499994195998,73.5999995231629">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.3999988079071"
+              Start="0,0"
+              End="0,30.8999988079071">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.8999988079071" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimEstado\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimEstado\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimOrdenes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145.6,41.6"
+          Id="Package\Tarea Poblar DimOrdenes\OLE DB Origin"
+          TopLeft="243.571429089928,19.8823529237488" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimOrdenes\OLE DB Destination"
+          TopLeft="236.428571931866,109.352941080618" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimOrdenes.Paths[OLE DB Source Output]"
+          TopLeft="319.000000510897,61.4823529237488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.8705881568696"
+              Start="0,0"
+              End="0,40.3705881568696">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3705881568696" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimOrdenes\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimOrdenes\OLE DB Origin">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimPais">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimPais\OLE DB Destination"
+          TopLeft="418.999993756414,147.999997794628" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Tarea Poblar DimPais\OLE DB Source"
+          TopLeft="428.999993607402,27.9999995827675" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimPais.Paths[OLE DB Source Output]"
+          TopLeft="503.999993681908,69.5999995827675">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,78.3999982118607"
+              Start="0,0"
+              End="0,70.8999982118607">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.8999982118607" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimPais\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimPais\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimProductos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Tarea Poblar DimProductos\OLE DB Source"
+          TopLeft="400.999994024634,32.9999995082617" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimProductos\OLE DB Destination"
+          TopLeft="391.499994248152,122.499998256564" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimProductos.Paths[OLE DB Source Output]"
+          TopLeft="476.249994136393,74.5999995082617">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.8999987483025"
+              Start="0,0"
+              End="0,40.3999987483025">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3999987483025" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimProductos\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimProductos\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Tarea Poblar DimVendedores">
     <LayoutInfo>
@@ -3112,6 +3267,27 @@ WHERE sod.SalesOrderID = do.IDOrder AND
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimVendedores\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimVendedores\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Tarea Poblar FactOrdenesDetails">
     <LayoutInfo>
@@ -3151,99 +3327,7 @@ WHERE sod.SalesOrderID = do.IDOrder AND
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimOrdenes\OLE DB Origin">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimOrdenes\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimProductos\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimProductos\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimPais\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimPais\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimEstado\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimEstado\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimCiudad\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimCiudad\OLE DB Destination">
+    design-time-name="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3263,39 +3347,9 @@ WHERE sod.SalesOrderID = do.IDOrder AND
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimVendedores\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarea Poblar DimVendedores\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[localhost.Cubo_HEFESTO_1]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
