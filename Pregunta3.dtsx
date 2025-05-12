@@ -1,56 +1,731 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="5/11/2025 7:08:31 PM"
+  DTS:CreationDate="5/11/2025 11:18:21 PM"
   DTS:CreationName="Microsoft.Package"
-  DTS:CreatorComputerName="DESKTOP-44482N5"
-  DTS:CreatorName="DESKTOP-44482N5\Usuario"
-  DTS:DTSID="{5F11F4BC-689B-4154-8078-E1418310EF01}"
+  DTS:CreatorComputerName="LAPTOP_DAYLE_JR"
+  DTS:CreatorName="LAPTOP_DAYLE_JR\garci"
+  DTS:DTSID="{5C128C05-6C1B-4C91-A00F-561560ED7382}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="12298"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{063DB624-2716-40AA-987A-5618953513BE}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{0FEC3DDE-F40F-46CC-8812-BA20617A98C4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4B305757-D582-4CC6-B119-1A7DF84706D3}"
+      DTS:ObjectName="Laptop_Dayle_Jr\SSD_MULTI">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=Laptop_Dayle_Jr\SSD_MULTI;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{4B305757-D582-4CC6-B119-1A7DF84706D3}Laptop_Dayle_Jr\SSD_MULTI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.AdventureWorks2022]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{791AB357-98E4-4BEF-B495-10121ACD4E9A}"
+      DTS:ObjectName="Laptop_Dayle_Jr\SSD_MULTI.AdventureWorks2022">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=Laptop_Dayle_Jr\SSD_MULTI;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{262B8D92-4F29-4324-8338-1064CD62C662}"
+      DTS:ObjectName="Laptop_Dayle_Jr\SSD_MULTI.Hefesto">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=Laptop_Dayle_Jr\SSD_MULTI;Initial Catalog=Hefesto;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{262B8D92-4F29-4324-8338-1064CD62C662}Laptop_Dayle_Jr\SSD_MULTI.Hefesto;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task"
+      DTS:refId="Package\Borrar Tablas"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5C7A1EBA-8419-488F-82BA-F1A5824BA47A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Borrar Tablas"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{262B8D92-4F29-4324-8338-1064CD62C662}"
+          SQLTask:SqlStatementSource="DELETE FROM FactÓrdenes;&#xA;DELETE FROM DimTiempo;&#xA;DELETE FROM DimEmpleados;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Crear Tablas"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AAB29648-9C27-4695-8D2E-FC50287A9D08}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Crear Tablas"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{262B8D92-4F29-4324-8338-1064CD62C662}"
+          SQLTask:SqlStatementSource="DROP TABLE IF EXISTS FactÓrdenes;&#xA;DROP TABLE IF EXISTS DimTiempo;&#xA;DROP TABLE IF EXISTS DimEmpleados;&#xA;&#xA;&#xA;&#xA;CREATE TABLE DimEmpleados (&#xA;    IDEmpleado INT PRIMARY KEY,            &#xA;    Puesto NVARCHAR(50),                   &#xA;    EsAsalariado BIT                       &#xA;);&#xA;CREATE TABLE DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,            &#xA;    FechaCompleta DATE,                   &#xA;    Día INT,                               &#xA;    Mes NVARCHAR(20),                      &#xA;    NúmeroMes INT,                         &#xA;    Trimestre INT                          &#xA;);&#xA;&#xA;CREATE TABLE FactÓrdenes (&#xA;    IDOrdenVenta INT PRIMARY KEY,                                    &#xA;    TotalPagado MONEY,                     &#xA;    IDEmpleado INT,                        &#xA;    ClaveFechaEnvío INT,                   &#xA;    CantidadOrdenesCanceladasRechazadas INT,  &#xA;    SumaTotalCanceladasRechazadas MONEY,   &#xA;    PorcentajeCanceladasRechazadas FLOAT,  &#xA;    CONSTRAINT FK_FechaEnvio FOREIGN KEY (ClaveFechaEnvío) REFERENCES DimTiempo(ClaveFecha),&#xA;    CONSTRAINT FK_Empleado FOREIGN KEY (IDEmpleado) REFERENCES DimEmpleados(IDEmpleado)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Poblar dimEmpleados"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{32FFB1BE-99F1-4B31-9F9B-361AE0254664}"
+      DTS:DTSID="{4BCA78B8-2B20-4425-BE94-CDB75DFFC537}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task"
+      DTS:ObjectName="Poblar dimEmpleados"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <pipeline
-          version="1" />
+          version="1">
+          <components>
+            <component
+              refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Guardar datos DimEmpleados"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimEmpleados]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input].Columns[BusinessEntityID]"
+                      cachedDataType="i4"
+                      cachedName="BusinessEntityID"
+                      externalMetadataColumnId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input].ExternalColumns[IDEmpleado]"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].Columns[BusinessEntityID]" />
+                    <inputColumn
+                      refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input].Columns[JobTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="JobTitle"
+                      externalMetadataColumnId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input].ExternalColumns[Puesto]"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].Columns[JobTitle]" />
+                    <inputColumn
+                      refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input].Columns[SalariedFlag]"
+                      cachedDataType="bool"
+                      cachedName="SalariedFlag"
+                      externalMetadataColumnId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].Columns[SalariedFlag]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input].ExternalColumns[IDEmpleado]"
+                      dataType="i4"
+                      name="IDEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input].ExternalColumns[Puesto]"
+                      dataType="wstr"
+                      length="50"
+                      name="Puesto" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
+                      dataType="bool"
+                      name="EsAsalariado" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Traer datos HumanResources_Employee"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    BusinessEntityID,
+    JobTitle,
+    SalariedFlag
+FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.AdventureWorks2022]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].Columns[BusinessEntityID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].ExternalColumns[BusinessEntityID]"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].Columns[BusinessEntityID]"
+                      name="BusinessEntityID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].Columns[JobTitle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].ExternalColumns[JobTitle]"
+                      length="50"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].Columns[JobTitle]"
+                      name="JobTitle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].Columns[SalariedFlag]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].ExternalColumns[SalariedFlag]"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].Columns[SalariedFlag]"
+                      name="SalariedFlag"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].ExternalColumns[BusinessEntityID]"
+                      dataType="i4"
+                      name="BusinessEntityID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].ExternalColumns[JobTitle]"
+                      dataType="wstr"
+                      length="50"
+                      name="JobTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output].ExternalColumns[SalariedFlag]"
+                      dataType="bool"
+                      name="SalariedFlag" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[BusinessEntityID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[BusinessEntityID]"
+                      name="BusinessEntityID" />
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[JobTitle]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[JobTitle]"
+                      name="JobTitle" />
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[SalariedFlag]"
+                      dataType="bool"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[SalariedFlag]"
+                      name="SalariedFlag" />
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Poblar dimEmpleados.Paths[OLE DB Source Output]"
+              endId="Package\Poblar dimEmpleados\Guardar datos DimEmpleados.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Poblar dimTiempo"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7019238B-58FC-4C44-86B8-F231FB1A3C9C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Poblar dimTiempo"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{262B8D92-4F29-4324-8338-1064CD62C662}"
+          SQLTask:SqlStatementSource="DECLARE @Fecha DATE = '2011-01-01';&#xA;DECLARE @ClaveFecha INT;&#xA;DECLARE @Dia INT;&#xA;DECLARE @Mes NVARCHAR(20);&#xA;DECLARE @NumeroMes INT;&#xA;DECLARE @Trimestre INT;&#xA;&#xA;WHILE @Fecha &lt;= '2014-12-31'&#xA;BEGIN&#xA;    SET @ClaveFecha = CONVERT(INT, FORMAT(@Fecha, 'yyyyMMdd'));&#xA;    SET @Dia = DAY(@Fecha);&#xA;    SET @NumeroMes = MONTH(@Fecha);&#xA;&#xA;    SET @Mes = CASE @NumeroMes&#xA;                WHEN 1 THEN 'Enero'&#xA;                WHEN 2 THEN 'Febrero'&#xA;                WHEN 3 THEN 'Marzo'&#xA;                WHEN 4 THEN 'Abril'&#xA;                WHEN 5 THEN 'Mayo'&#xA;                WHEN 6 THEN 'Junio'&#xA;                WHEN 7 THEN 'Julio'&#xA;                WHEN 8 THEN 'Agosto'&#xA;                WHEN 9 THEN 'Septiembre'&#xA;                WHEN 10 THEN 'Octubre'&#xA;                WHEN 11 THEN 'Noviembre'&#xA;                WHEN 12 THEN 'Diciembre'&#xA;              END;&#xA;&#xA;    SET @Trimestre = DATEPART(QUARTER, @Fecha);&#xA;&#xA;    INSERT INTO Hefesto.dbo.DimTiempo (ClaveFecha, FechaCompleta, Día, Mes, NúmeroMes, Trimestre)&#xA;    VALUES (@ClaveFecha, @Fecha, @Dia, @Mes, @NumeroMes, @Trimestre);&#xA;&#xA;    SET @Fecha = DATEADD(DAY, 1, @Fecha);&#xA;END;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Poblar FactOrdenes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0D565C79-D31B-420B-BAED-27CDAFE22B8A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Poblar FactOrdenes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4B305757-D582-4CC6-B119-1A7DF84706D3}"
+          SQLTask:SqlStatementSource="-- Paso 1: calcular valores agregados globales&#xA;DECLARE @TotalCanceladasRechazadas INT;&#xA;DECLARE @SumaCanceladasRechazadas MONEY;&#xA;DECLARE @TotalEnviadas INT;&#xA;&#xA;SELECT &#xA;    @TotalCanceladasRechazadas = COUNT(*)&#xA;FROM AdventureWorks2022.Sales.SalesOrderHeader&#xA;WHERE Status IN (4, 6);  -- Rechazadas y canceladas&#xA;&#xA;SELECT &#xA;    @SumaCanceladasRechazadas = SUM(TotalDue)&#xA;FROM AdventureWorks2022.Sales.SalesOrderHeader&#xA;WHERE Status IN (4, 6);&#xA;&#xA;SELECT &#xA;    @TotalEnviadas = COUNT(*)&#xA;FROM AdventureWorks2022.Sales.SalesOrderHeader&#xA;WHERE Status = 5;&#xA;&#xA;-- Paso 2: insertar en FactÓrdenes&#xA;INSERT INTO Hefesto.dbo.FactÓrdenes (&#xA;    IDOrdenVenta,&#xA;    TotalPagado,&#xA;    IDEmpleado,&#xA;    ClaveFechaEnvío,&#xA;    CantidadOrdenesCanceladasRechazadas,&#xA;    SumaTotalCanceladasRechazadas,&#xA;    PorcentajeCanceladasRechazadas&#xA;)&#xA;SELECT&#xA;    SOH.SalesOrderID,&#xA;    SOH.TotalDue,&#xA;    SOH.SalesPersonID,&#xA;    CONVERT(INT, FORMAT(SOH.ShipDate, 'yyyyMMdd')),&#xA;    @TotalCanceladasRechazadas,&#xA;    @SumaCanceladasRechazadas,&#xA;    CAST(@TotalCanceladasRechazadas AS FLOAT) / NULLIF(@TotalEnviadas, 0)&#xA;FROM AdventureWorks2022.Sales.SalesOrderHeader AS SOH&#xA;WHERE SOH.Status = 5&#xA;  AND SOH.ShipDate IS NOT NULL&#xA;  AND SOH.SalesPersonID IS NOT NULL&#xA;  AND EXISTS (&#xA;      SELECT 1 FROM Hefesto.dbo.DimEmpleados e&#xA;      WHERE e.IDEmpleado = SOH.SalesPersonID&#xA;  )&#xA;  AND EXISTS (&#xA;      SELECT 1 FROM Hefesto.dbo.DimTiempo t&#xA;      WHERE t.ClaveFecha = CONVERT(INT, FORMAT(SOH.ShipDate, 'yyyyMMdd'))&#xA;  );&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{15EA3B7A-1C55-4DC8-8245-F2459E013056}"
+      DTS:From="Package\Borrar Tablas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Poblar dimEmpleados" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{99EFF6B7-4857-48F6-B936-531B73759CAC}"
+      DTS:From="Package\Borrar Tablas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Poblar dimTiempo" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BC2460FD-F7E9-42D3-AF61-C5E975C2BF35}"
+      DTS:From="Package\Poblar dimTiempo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Poblar FactOrdenes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{141D3F6F-C078-4A87-8DA9-82E738E3CF8D}"
+      DTS:From="Package\Poblar dimEmpleados"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Poblar FactOrdenes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{A92C3839-DD49-4F36-ADF5-27E1043A3D34}"
+      DTS:From="Package\Crear Tablas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Borrar Tablas" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
-<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
-<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
   Version="8">
-  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Data Flow Task"
-          TopLeft="190.00000040446,116.235294015762" />
+          Size="141.6,41.6"
+          Id="Package\Borrar Tablas"
+          TopLeft="338.571429292158,131.564705767733" />
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\Crear Tablas"
+          TopLeft="336.428572144739,42.0588234925456" />
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Poblar dimEmpleados"
+          TopLeft="210.714286162841,227.917646859746" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Poblar dimTiempo"
+          TopLeft="458.571429547607,224.094117451333" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Poblar FactOrdenes"
+          TopLeft="335.000000713127,320.447058543346" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="387.104762625491,173.164705767733">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-86.7904764626502,54.7529410920135"
+              Start="0,0"
+              End="-86.7904764626502,47.2529410920135">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.2682352597686" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.2682352597686"
+                    Point2="0,22.2682352597686"
+                    Point3="-4,22.2682352597686" />
+                  <mssgle:LineSegment
+                    End="-82.7904764626502,22.2682352597686" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-82.7904764626502,22.2682352597686"
+                    Point2="-86.7904764626502,22.2682352597686"
+                    Point3="-86.7904764626502,26.2682352597686" />
+                  <mssgle:LineSegment
+                    End="-86.7904764626502,47.2529410920135" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="431.638095958824,173.164705767733">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108.533333588782,50.9294116836003"
+              Start="0,0"
+              End="108.533333588782,43.4294116836003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7131908970173" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.7131908970173"
+                    Point2="0,20.7131908970173"
+                    Point3="4,20.7131908970173" />
+                  <mssgle:LineSegment
+                    End="104.533333588782,20.7131908970173" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.533333588782,20.7131908970173"
+                    Point2="108.533333588782,20.7131908970173"
+                    Point3="108.533333588782,24.7131908970173" />
+                  <mssgle:LineSegment
+                    End="108.533333588782,43.4294116836003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="540.171429547607,265.694117451333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-92.9047621678132,54.7529410920135"
+              Start="0,0"
+              End="-92.9047621678132,47.2529410920135">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.546166844462" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.546166844462"
+                    Point2="0,32.546166844462"
+                    Point3="-4,32.546166844462" />
+                  <mssgle:LineSegment
+                    End="-88.9047621678132,32.546166844462" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-88.9047621678132,32.546166844462"
+                    Point2="-92.9047621678132,32.546166844462"
+                    Point3="-92.9047621678132,36.546166844462" />
+                  <mssgle:LineSegment
+                    End="-92.9047621678132,47.2529410920135" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="300.314286162841,269.517646859746">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.8190478836192,50.9294116836003"
+              Start="0,0"
+              End="92.8190478836192,43.4294116836003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.2733898286703" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.2733898286703"
+                    Point2="0,30.2733898286703"
+                    Point3="4,30.2733898286703" />
+                  <mssgle:LineSegment
+                    End="88.8190478836192,30.2733898286703" />
+                  <mssgle:CubicBezierSegment
+                    Point1="88.8190478836192,30.2733898286703"
+                    Point2="92.8190478836192,30.2733898286703"
+                    Point3="92.8190478836192,34.2733898286703" />
+                  <mssgle:LineSegment
+                    End="92.8190478836192,43.4294116836003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="407.300000718449,83.6588234925456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.9058822751869"
+              Start="0,0"
+              End="0,40.4058822751869">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4058822751869" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Poblar dimEmpleados">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="268.8,41.6"
+          Id="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee"
+          TopLeft="138.57142886641,77.9999999316299" />
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\Poblar dimEmpleados\Guardar datos DimEmpleados"
+          TopLeft="170.714286077692,191.941176302345" />
+        <EdgeLayout
+          Id="Package\Poblar dimEmpleados.Paths[OLE DB Source Output]"
+          TopLeft="276.442857472051,119.59999993163">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72.3411763707147"
+              Start="0,0"
+              End="0,64.8411763707147">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.8411763707147" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar dimEmpleados\Guardar datos DimEmpleados">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
