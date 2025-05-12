@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{0FEC3DDE-F40F-46CC-8812-BA20617A98C4}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{461A4F3A-721D-4F4B-B1EF-ADB45A22AC8D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -86,7 +86,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{262B8D92-4F29-4324-8338-1064CD62C662}"
-          SQLTask:SqlStatementSource="DROP TABLE IF EXISTS FactÓrdenes;&#xA;DROP TABLE IF EXISTS DimTiempo;&#xA;DROP TABLE IF EXISTS DimEmpleados;&#xA;&#xA;&#xA;&#xA;CREATE TABLE DimEmpleados (&#xA;    IDEmpleado INT PRIMARY KEY,            &#xA;    Puesto NVARCHAR(50),                   &#xA;    EsAsalariado BIT                       &#xA;);&#xA;CREATE TABLE DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,            &#xA;    FechaCompleta DATE,                   &#xA;    Día INT,                               &#xA;    Mes NVARCHAR(20),                      &#xA;    NúmeroMes INT,                         &#xA;    Trimestre INT                          &#xA;);&#xA;&#xA;CREATE TABLE FactÓrdenes (&#xA;    IDOrdenVenta INT PRIMARY KEY,                                    &#xA;    TotalPagado MONEY,                     &#xA;    IDEmpleado INT,                        &#xA;    ClaveFechaEnvío INT,                   &#xA;    CantidadOrdenesCanceladasRechazadas INT,  &#xA;    SumaTotalCanceladasRechazadas MONEY,   &#xA;    PorcentajeCanceladasRechazadas FLOAT,  &#xA;    CONSTRAINT FK_FechaEnvio FOREIGN KEY (ClaveFechaEnvío) REFERENCES DimTiempo(ClaveFecha),&#xA;    CONSTRAINT FK_Empleado FOREIGN KEY (IDEmpleado) REFERENCES DimEmpleados(IDEmpleado)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DROP TABLE IF EXISTS FactÓrdenes;&#xA;DROP TABLE IF EXISTS DimTiempo;&#xA;DROP TABLE IF EXISTS DimEmpleados;&#xA;&#xA;CREATE TABLE DimEmpleados (&#xA;    IDEmpleado INT PRIMARY KEY,            &#xA;    Puesto NVARCHAR(50),                   &#xA;    EsAsalariado BIT                       &#xA;);&#xA;CREATE TABLE DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,        &#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                      &#xA;    Trimestre NVARCHAR(10),            &#xA;    NumeroMes INT,                      &#xA;    NombreMes NVARCHAR(20),            &#xA;    Día INT                             &#xA;);&#xA;&#xA;CREATE TABLE FactÓrdenes (&#xA;    IDOrdenVenta INT PRIMARY KEY,                                    &#xA;    TotalPagado MONEY,                     &#xA;    IDEmpleado INT,                        &#xA;    ClaveFechaEnvío INT,                   &#xA;    CantidadOrdenesCanceladasRechazadas INT,  &#xA;    SumaTotalCanceladasRechazadas MONEY,   &#xA;    PorcentajeCanceladasRechazadas FLOAT,  &#xA;    CONSTRAINT FK_FechaEnvio FOREIGN KEY (ClaveFechaEnvío) REFERENCES DimTiempo(ClaveFecha),&#xA;    CONSTRAINT FK_Empleado FOREIGN KEY (IDEmpleado) REFERENCES DimEmpleados(IDEmpleado)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -412,7 +412,7 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{262B8D92-4F29-4324-8338-1064CD62C662}"
-          SQLTask:SqlStatementSource="DECLARE @Fecha DATE = '2011-01-01';&#xA;DECLARE @ClaveFecha INT;&#xA;DECLARE @Dia INT;&#xA;DECLARE @Mes NVARCHAR(20);&#xA;DECLARE @NumeroMes INT;&#xA;DECLARE @Trimestre INT;&#xA;&#xA;WHILE @Fecha &lt;= '2014-12-31'&#xA;BEGIN&#xA;    SET @ClaveFecha = CONVERT(INT, FORMAT(@Fecha, 'yyyyMMdd'));&#xA;    SET @Dia = DAY(@Fecha);&#xA;    SET @NumeroMes = MONTH(@Fecha);&#xA;&#xA;    SET @Mes = CASE @NumeroMes&#xA;                WHEN 1 THEN 'Enero'&#xA;                WHEN 2 THEN 'Febrero'&#xA;                WHEN 3 THEN 'Marzo'&#xA;                WHEN 4 THEN 'Abril'&#xA;                WHEN 5 THEN 'Mayo'&#xA;                WHEN 6 THEN 'Junio'&#xA;                WHEN 7 THEN 'Julio'&#xA;                WHEN 8 THEN 'Agosto'&#xA;                WHEN 9 THEN 'Septiembre'&#xA;                WHEN 10 THEN 'Octubre'&#xA;                WHEN 11 THEN 'Noviembre'&#xA;                WHEN 12 THEN 'Diciembre'&#xA;              END;&#xA;&#xA;    SET @Trimestre = DATEPART(QUARTER, @Fecha);&#xA;&#xA;    INSERT INTO Hefesto.dbo.DimTiempo (ClaveFecha, FechaCompleta, Día, Mes, NúmeroMes, Trimestre)&#xA;    VALUES (@ClaveFecha, @Fecha, @Dia, @Mes, @NumeroMes, @Trimestre);&#xA;&#xA;    SET @Fecha = DATEADD(DAY, 1, @Fecha);&#xA;END;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DECLARE @f DATE = '2011-01-01';&#xA;DECLARE @idfecha INT;&#xA;DECLARE @anio INT;&#xA;DECLARE @trimestre NVARCHAR(10);&#xA;DECLARE @mes NVARCHAR(20);&#xA;DECLARE @semestre INT;&#xA;DECLARE @dia INT;&#xA;DECLARE @nummes INT;&#xA;&#xA;SET DATEFORMAT ymd;&#xA;&#xA;WHILE (@f &lt;= '2014-12-31')&#xA;BEGIN&#xA;    SET @idfecha = YEAR(@f) * 10000 + MONTH(@f) * 100 + DAY(@f);&#xA;    SET @anio = YEAR(@f);&#xA;    SET @nummes = MONTH(@f);&#xA;    SET @dia = DAY(@f);&#xA;&#xA;    SET @mes = CASE @nummes&#xA;                    WHEN 1 THEN 'Enero'&#xA;                    WHEN 2 THEN 'Febrero'&#xA;                    WHEN 3 THEN 'Marzo'&#xA;                    WHEN 4 THEN 'Abril'&#xA;                    WHEN 5 THEN 'Mayo'&#xA;                    WHEN 6 THEN 'Junio'&#xA;                    WHEN 7 THEN 'Julio'&#xA;                    WHEN 8 THEN 'Agosto'&#xA;                    WHEN 9 THEN 'Septiembre'&#xA;                    WHEN 10 THEN 'Octubre'&#xA;                    WHEN 11 THEN 'Noviembre'&#xA;                    WHEN 12 THEN 'Diciembre'&#xA;               END;&#xA;&#xA;    SET @trimestre = CASE DATEPART(QUARTER, @f)&#xA;                        WHEN 1 THEN '1ro'&#xA;                        WHEN 2 THEN '2do'&#xA;                        WHEN 3 THEN '3ro'&#xA;                        WHEN 4 THEN '4to'&#xA;                     END;&#xA;&#xA;    SET @semestre = CASE &#xA;                      WHEN @nummes BETWEEN 1 AND 6 THEN 1&#xA;                      ELSE 2&#xA;                    END;&#xA;&#xA;    INSERT INTO DimTiempo (&#xA;        ClaveFecha, FechaCompleta, Año, Semestre,&#xA;        Trimestre, NumeroMes, NombreMes, Día&#xA;    )&#xA;    VALUES (&#xA;        @idfecha, @f, @anio, @semestre,&#xA;        @trimestre, @nummes, @mes, @dia&#xA;    );&#xA;&#xA;    SET @f = DATEADD(DAY, 1, @f);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -494,7 +494,7 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
         <NodeLayout
           Size="137.6,41.6"
           Id="Package\Crear Tablas"
-          TopLeft="336.428572144739,42.0588234925456" />
+          TopLeft="343.571429302801,42.0588234925456" />
         <NodeLayout
           Size="179.2,41.6"
           Id="Package\Poblar dimEmpleados"
@@ -645,18 +645,18 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="407.300000718449,83.6588234925456">
+          TopLeft="410.87142929748,83.6588234925456">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47.9058822751869"
+              EndConnector="0,47.9058822751874"
               Start="0,0"
-              End="0,40.4058822751869">
+              End="0,40.4058822751874">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.4058822751869" />
+                    End="0,40.4058822751874" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
