@@ -1,0 +1,3301 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/11/2025 7:07:41 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-44482N5"
+  DTS:CreatorName="DESKTOP-44482N5\Usuario"
+  DTS:DTSID="{D9A250F2-3276-4FF0-BD98-7DEE9B2C405E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="12298"
+  DTS:ObjectName="Pregunta1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{442D9012-66E8-4DB4-A2FE-8B215DD85F06}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{215AC24F-06A2-4D2D-99FD-0CE64E090B68}"
+      DTS:ObjectName="LocalHost.AdventureWorks2022">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Pregunta1-{215AC24F-06A2-4D2D-99FD-0CE64E090B68}LocalHost.AdventureWorks2022;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.HEFESTO]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{667B7E52-C526-4018-AB55-54B22F58B1E0}"
+      DTS:ObjectName="LocalHost.HEFESTO">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=HEFESTO;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Pregunta1-{667B7E52-C526-4018-AB55-54B22F58B1E0}LocalHost.HEFESTO;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Borrar Tablas"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{0738AC12-60CE-455B-B085-E9D5E1F502B0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Borrar Tablas"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{667B7E52-C526-4018-AB55-54B22F58B1E0}"
+          SQLTask:SqlStatementSource="DELETE FROM FactOrdenesDetails;&#xA;DELETE FROM DimOrdenes;&#xA;DELETE FROM DimProductos;&#xA;DELETE FROM DimVendedor;&#xA;DELETE FROM DimCiudad;&#xA;DELETE FROM DimEstado;&#xA;DELETE FROM DimPais;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Crear Tablas"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{92D7A74A-383B-434E-BADD-FA40CA1B9403}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Crear Tablas"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{667B7E52-C526-4018-AB55-54B22F58B1E0}"
+          SQLTask:SqlStatementSource="-- Elimina FactOrdenesDetails si existe&#xA;IF OBJECT_ID('FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE FactOrdenesDetails;&#xA;&#xA;-- Elimina DimVendedor si existe&#xA;IF OBJECT_ID('DimVendedor', 'U') IS NOT NULL&#xA;    DROP TABLE DimVendedor;&#xA;&#xA;-- Elimina DimCiudad si existe&#xA;IF OBJECT_ID('DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE DimCiudad;&#xA;&#xA;-- Elimina DimEstado si existe&#xA;IF OBJECT_ID('DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE DimEstado;&#xA;&#xA;-- Elimina DimPais si existe&#xA;IF OBJECT_ID('DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE DimPais;&#xA;&#xA;-- Elimina DimProductos si existe&#xA;IF OBJECT_ID('DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE DimProductos;&#xA;&#xA;-- Elimina DimOrdenes si existe&#xA;IF OBJECT_ID('DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE DimOrdenes;&#xA;&#xA;-- Crear tabla DimOrdenes&#xA;CREATE TABLE DimOrdenes (&#xA;&#x9;IDOrder INT PRIMARY KEY,&#xA;&#x9;Estado TINYINT NOT NULL&#xA;);&#xA;&#xA;-- Crear tabla DimProductos&#xA;CREATE TABLE DimProductos (&#xA;&#x9;IDProducto INT PRIMARY KEY,&#xA;&#x9;Nombre NVARCHAR(50) NOT NULL,&#xA;&#x9;CompradoFlag BIT NOT NULL,&#xA;&#x9;PrecioLista MONEY NOT NULL&#xA;);&#xA;&#xA;-- Crear tabla DimPais&#xA;CREATE TABLE DimPais (&#xA;&#x9;IDPais NVARCHAR(3) PRIMARY KEY,&#xA;&#x9;Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;-- Crear tabla DimEstado&#xA;CREATE TABLE DimEstado (&#xA;&#x9;IDEstado INT PRIMARY KEY,&#xA;&#x9;EstadoCode NCHAR(3) NOT NULL,&#xA;&#x9;Nombre NVARCHAR(50) NOT NULL,&#xA;&#x9;PaisID NVARCHAR(3) FOREIGN KEY REFERENCES DimPais(IDPais)&#xA;);&#xA;&#xA;-- Crear tabla DimCiudad&#xA;CREATE TABLE DimCiudad (&#xA;&#x9;IDCiudad INT PRIMARY KEY,&#xA;&#x9;Nombre NVARCHAR(30) NOT NULL,&#xA;&#x9;CodigoPostal NVARCHAR(15) NOT NULL,&#xA;&#x9;EstadoID INT FOREIGN KEY REFERENCES DimEstado(IDEstado)&#xA;);&#xA;&#xA;-- Crear tabla DimVendedor&#xA;CREATE TABLE DimVendedor (&#xA;&#x9;IDVendedor INT PRIMARY KEY,&#xA;&#x9;Nombre NVARCHAR(50) NOT NULL,&#xA;&#x9;Apellido NVARCHAR(50) NOT NULL,&#xA;&#x9;CiudadID INT FOREIGN KEY REFERENCES DimCiudad(IDCiudad)&#xA;);&#xA;&#xA;-- Crear tabla FactOrdenesDetails&#xA;CREATE TABLE FactOrdenesDetails (&#xA;&#x9;IDVenta INT PRIMARY KEY,&#xA;&#x9;PrecioLista MONEY NOT NULL,&#xA;&#x9;PrecioUnitario MONEY NOT NULL,&#xA;&#x9;DiferenciaPrecios MONEY NOT NULL,&#xA;&#x9;VendedorID INT FOREIGN KEY REFERENCES DimVendedor(IDVendedor),&#xA;&#x9;ProductoID INT FOREIGN KEY REFERENCES DimProductos(IDProducto),&#xA;&#x9;OrdenID INT FOREIGN KEY REFERENCES DimOrdenes(IDOrder)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Poblar DimCiudad"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3029E9E2-9286-4A08-9F23-770C8615A29B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Poblar DimCiudad"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Poblar DimCiudad\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimCiudad]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDCiudad]"
+                      cachedDataType="i4"
+                      cachedName="IDCiudad"
+                      externalMetadataColumnId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDCiudad]"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDCiudad]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CodigoPostal]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CodigoPostal"
+                      externalMetadataColumnId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodigoPostal]"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoPostal]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EstadoID]"
+                      cachedDataType="i4"
+                      cachedName="EstadoID"
+                      externalMetadataColumnId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoID]"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDCiudad]"
+                      dataType="i4"
+                      name="IDCiudad" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="30"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodigoPostal]"
+                      dataType="wstr"
+                      length="15"
+                      name="CodigoPostal" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoID]"
+                      dataType="i4"
+                      name="EstadoID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Poblar DimCiudad\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	pa.AddressID AS IDCiudad,
+	pa.PostalCode AS CodigoPostal,
+	pa.StateProvinceID AS EstadoID,
+	pa.City AS Nombre
+FROM AdventureWorks2022.Person.Address pa,
+	AdventureWorks2022.Person.BusinessEntity pbe,
+	AdventureWorks2022.Person.BusinessEntityAddress pbea,
+	AdventureWorks2022.HumanResources.Employee hre
+WHERE pa.AddressID = pbea.AddressID AND 
+	pbe.BusinessEntityID = pbea.BusinessEntityID AND
+	pbe.BusinessEntityID = hre.BusinessEntityID</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDCiudad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDCiudad]"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDCiudad]"
+                      name="IDCiudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoPostal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoPostal]"
+                      length="15"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoPostal]"
+                      name="CodigoPostal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstadoID]"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoID]"
+                      name="EstadoID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="30"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDCiudad]"
+                      dataType="i4"
+                      name="IDCiudad" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoPostal]"
+                      dataType="wstr"
+                      length="15"
+                      name="CodigoPostal" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstadoID]"
+                      dataType="i4"
+                      name="EstadoID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDCiudad]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDCiudad]"
+                      name="IDCiudad" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoPostal]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoPostal]"
+                      name="CodigoPostal" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstadoID]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstadoID]"
+                      name="EstadoID" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Poblar DimCiudad.Paths[OLE DB Source Output]"
+              endId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Tarea Poblar DimCiudad\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Poblar DimEstado"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5104B67A-F907-456E-B8E6-6FCA5245565E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Poblar DimEstado"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Poblar DimEstado\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimEstado]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDEstado]"
+                      cachedDataType="i4"
+                      cachedName="IDEstado"
+                      externalMetadataColumnId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDEstado]"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDEstado]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EstadoCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="EstadoCode"
+                      externalMetadataColumnId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoCode]"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoCode]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PaisID]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="PaisID"
+                      externalMetadataColumnId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaisID]"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaisID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDEstado]"
+                      dataType="i4"
+                      name="IDEstado" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="EstadoCode" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PaisID]"
+                      dataType="wstr"
+                      length="3"
+                      name="PaisID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Poblar DimEstado\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT StateProvinceID AS IDEstado, StateProvinceCode AS EstadoCode, Name AS Nombre, CountryRegionCode AS PaisID
+FROM     Person.StateProvince</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimEstado\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDEstado]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDEstado]"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDEstado]"
+                      name="IDEstado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstadoCode]"
+                      length="3"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoCode]"
+                      name="EstadoCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaisID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaisID]"
+                      length="3"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].Columns[PaisID]"
+                      name="PaisID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDEstado]"
+                      dataType="i4"
+                      name="IDEstado" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstadoCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="EstadoCode" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PaisID]"
+                      dataType="wstr"
+                      length="3"
+                      name="PaisID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDEstado]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDEstado]"
+                      name="IDEstado" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstadoCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstadoCode]"
+                      name="EstadoCode" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaisID]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PaisID]"
+                      name="PaisID" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Poblar DimEstado.Paths[OLE DB Source Output]"
+              endId="Package\Tarea Poblar DimEstado\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Tarea Poblar DimEstado\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Poblar DimOrdenes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F7F6DDED-BB9B-47A6-B798-F867EAC34049}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Poblar DimOrdenes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimOrdenes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDOrder]"
+                      cachedDataType="i4"
+                      cachedName="IDOrder"
+                      externalMetadataColumnId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDOrder]"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].Columns[IDOrder]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Estado]"
+                      cachedDataType="ui1"
+                      cachedName="Estado"
+                      externalMetadataColumnId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].Columns[Estado]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDOrder]"
+                      dataType="i4"
+                      name="IDOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      dataType="ui1"
+                      name="Estado" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Origin"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+	DISTINCT soh.SalesOrderID AS IDOrder,
+	soh.Status AS Estado
+FROM AdventureWorks2022.Sales.SalesOrderHeader soh,
+	AdventureWorks2022.Sales.SalesOrderDetail sod
+WHERE soh.SalesOrderID = sod.SalesOrderID</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].Columns[IDOrder]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].ExternalColumns[IDOrder]"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].Columns[IDOrder]"
+                      name="IDOrder"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].Columns[Estado]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].Columns[Estado]"
+                      name="Estado"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].ExternalColumns[IDOrder]"
+                      dataType="i4"
+                      name="IDOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
+                      dataType="ui1"
+                      name="Estado" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Error Output].Columns[IDOrder]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Error Output].Columns[IDOrder]"
+                      name="IDOrder" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Error Output].Columns[Estado]"
+                      dataType="ui1"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Error Output].Columns[Estado]"
+                      name="Estado" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Poblar DimOrdenes.Paths[OLE DB Source Output]"
+              endId="Package\Tarea Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Tarea Poblar DimOrdenes\OLE DB Origin.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Poblar DimPais"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B1DDFAC8-5803-4A95-99D8-3CE4A734A8E9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Poblar DimPais"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Poblar DimPais\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimPais]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimPais\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Poblar DimPais\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDPais]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="IDPais"
+                      externalMetadataColumnId="Package\Tarea Poblar DimPais\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDPais]"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDPais]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\Tarea Poblar DimPais\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDPais]"
+                      dataType="wstr"
+                      length="3"
+                      name="IDPais" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nombre" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimPais\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Tarea Poblar DimPais\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Poblar DimPais\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	CountryRegionCode AS IDPais,
+	Name AS Nombre
+FROM AdventureWorks2022.Person.CountryRegion</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimPais\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDPais]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDPais]"
+                      length="3"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDPais]"
+                      name="IDPais"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDPais]"
+                      dataType="wstr"
+                      length="3"
+                      name="IDPais" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nombre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDPais]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDPais]"
+                      name="IDPais" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Poblar DimPais.Paths[OLE DB Source Output]"
+              endId="Package\Tarea Poblar DimPais\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Tarea Poblar DimPais\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Poblar DimProductos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6D52709C-2D38-4290-A513-2353B21DF842}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Poblar DimProductos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Poblar DimProductos\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimProductos]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDProducto]"
+                      cachedDataType="i4"
+                      cachedName="IDProducto"
+                      externalMetadataColumnId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDProducto]"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDProducto]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CompradoFlag]"
+                      cachedDataType="bool"
+                      cachedName="CompradoFlag"
+                      externalMetadataColumnId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompradoFlag]"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompradoFlag]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PrecioLista]"
+                      cachedDataType="cy"
+                      cachedName="PrecioLista"
+                      externalMetadataColumnId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PrecioLista]"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioLista]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDProducto]"
+                      dataType="i4"
+                      name="IDProducto" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="25"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompradoFlag]"
+                      dataType="bool"
+                      name="CompradoFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PrecioLista]"
+                      dataType="cy"
+                      name="PrecioLista" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Poblar DimProductos\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT pp.ProductID AS IDProducto, pp.MakeFlag AS CompradoFlag, pp.ListPrice AS PrecioLista, pp.Name AS Nombre
+FROM     AdventureWorks2022.Production.Product pp, AdventureWorks2022.Sales.SalesOrderDetail sod
+WHERE  pp.ProductID = sod.ProductID</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimProductos\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDProducto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDProducto]"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDProducto]"
+                      name="IDProducto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompradoFlag]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompradoFlag]"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[CompradoFlag]"
+                      name="CompradoFlag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioLista]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioLista]"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioLista]"
+                      name="PrecioLista"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDProducto]"
+                      dataType="i4"
+                      name="IDProducto" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CompradoFlag]"
+                      dataType="bool"
+                      name="CompradoFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioLista]"
+                      dataType="cy"
+                      name="PrecioLista" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nombre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDProducto]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDProducto]"
+                      name="IDProducto" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompradoFlag]"
+                      dataType="bool"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CompradoFlag]"
+                      name="CompradoFlag" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioLista]"
+                      dataType="cy"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioLista]"
+                      name="PrecioLista" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Poblar DimProductos.Paths[OLE DB Source Output]"
+              endId="Package\Tarea Poblar DimProductos\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Tarea Poblar DimProductos\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Poblar DimVendedores"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{81CB96A4-84E1-41F5-8BCD-2A908A318129}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Poblar DimVendedores"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Poblar DimVendedores\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimVendedor]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDVendedor]"
+                      cachedDataType="i4"
+                      cachedName="IDVendedor"
+                      externalMetadataColumnId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDVendedor]"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVendedor]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Apellido"
+                      externalMetadataColumnId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Apellido]"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[Apellido]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CiudadID]"
+                      cachedDataType="i4"
+                      cachedName="CiudadID"
+                      externalMetadataColumnId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CiudadID]"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[CiudadID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDVendedor]"
+                      dataType="i4"
+                      name="IDVendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      name="Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CiudadID]"
+                      dataType="i4"
+                      name="CiudadID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Poblar DimVendedores\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	DISTINCT hre.BusinessEntityID AS IDVendedor,
+	pp.FirstName AS Nombre,
+	pp.LastName AS Apellido,
+	pbea.AddressID AS CiudadID
+FROM AdventureWorks2022.Person.BusinessEntity pbe,
+	AdventureWorks2022.HumanResources.Employee hre,
+	AdventureWorks2022.Person.BusinessEntityAddress pbea,
+	AdventureWorks2022.Person.Person pp,
+	AdventureWorks2022.Sales.SalesOrderHeader soh
+WHERE hre.BusinessEntityID = pbe.BusinessEntityID
+	AND pbe.BusinessEntityID = pbea.BusinessEntityID
+	AND pbe.BusinessEntityID = pp.BusinessEntityID
+	AND hre.BusinessEntityID = soh.SalesPersonID</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVendedor]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDVendedor]"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVendedor]"
+                      name="IDVendedor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[Apellido]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Apellido]"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[Apellido]"
+                      name="Apellido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[CiudadID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CiudadID]"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].Columns[CiudadID]"
+                      name="CiudadID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDVendedor]"
+                      dataType="i4"
+                      name="IDVendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      name="Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CiudadID]"
+                      dataType="i4"
+                      name="CiudadID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDVendedor]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDVendedor]"
+                      name="IDVendedor" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Apellido]"
+                      name="Apellido" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CiudadID]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CiudadID]"
+                      name="CiudadID" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Poblar DimVendedores.Paths[OLE DB Source Output]"
+              endId="Package\Tarea Poblar DimVendedores\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Tarea Poblar DimVendedores\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Poblar FactOrdenesDetails"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D0130AD3-FB39-46FD-B966-7CB40BCEAA76}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Poblar FactOrdenesDetails"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactOrdenesDetails]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.HEFESTO]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDVenta]"
+                      cachedDataType="i4"
+                      cachedName="IDVenta"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDVenta]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVenta]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PrecioUnitario]"
+                      cachedDataType="cy"
+                      cachedName="PrecioUnitario"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PrecioUnitario]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioUnitario]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PrecioLista]"
+                      cachedDataType="cy"
+                      cachedName="PrecioLista"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PrecioLista]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioLista]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DiferenciaPrecios]"
+                      cachedDataType="cy"
+                      cachedName="DiferenciaPrecios"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DiferenciaPrecios]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[DiferenciaPrecios]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductoID]"
+                      cachedDataType="i4"
+                      cachedName="ProductoID"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductoID]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoID]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OrdenID]"
+                      cachedDataType="i4"
+                      cachedName="OrdenID"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrdenID]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrdenID]" />
+                    <inputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VendedorID]"
+                      cachedDataType="i4"
+                      cachedName="VendedorID"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendedorID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDVenta]"
+                      dataType="i4"
+                      name="IDVenta" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PrecioLista]"
+                      dataType="cy"
+                      name="PrecioLista" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PrecioUnitario]"
+                      dataType="cy"
+                      name="PrecioUnitario" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DiferenciaPrecios]"
+                      dataType="cy"
+                      name="DiferenciaPrecios" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductoID]"
+                      dataType="i4"
+                      name="ProductoID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrdenID]"
+                      dataType="i4"
+                      name="OrdenID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+	sod.SalesOrderDetailID AS IDVenta,
+	sod.UnitPrice AS PrecioUnitario,
+	dp.PrecioLista AS PrecioLista,
+	dp.PrecioLista - sod.UnitPrice AS DiferenciaPrecios,
+	dp.IDProducto AS ProductoID,
+	do.IDOrder AS OrdenID,
+	dv.IDVendedor AS VendedorID
+FROM AdventureWorks2022.Sales.SalesOrderDetail sod,
+	AdventureWorks2022.Sales.SalesOrderHeader soh,
+	HEFESTO.dbo.DimProductos dp,
+	HEFESTO.dbo.DimVendedor dv,
+	HEFESTO.dbo.DimOrdenes do
+WHERE sod.SalesOrderID = do.IDOrder AND
+	soh.SalesPersonID = dv.IDVendedor AND 
+	sod.ProductID = dp.IDProducto AND
+	sod.SalesOrderID = soh.SalesOrderID</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVenta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDVenta]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVenta]"
+                      name="IDVenta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioUnitario]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioUnitario]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioLista]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioLista]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioLista]"
+                      name="PrecioLista"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[DiferenciaPrecios]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DiferenciaPrecios]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[DiferenciaPrecios]"
+                      name="DiferenciaPrecios"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductoID]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoID]"
+                      name="ProductoID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrdenID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrdenID]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrdenID]"
+                      name="OrdenID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      name="VendedorID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDVenta]"
+                      dataType="i4"
+                      name="IDVenta" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioUnitario]"
+                      dataType="cy"
+                      name="PrecioUnitario" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioLista]"
+                      dataType="cy"
+                      name="PrecioLista" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DiferenciaPrecios]"
+                      dataType="cy"
+                      name="DiferenciaPrecios" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductoID]"
+                      dataType="i4"
+                      name="ProductoID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrdenID]"
+                      dataType="i4"
+                      name="OrdenID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDVenta]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDVenta]"
+                      name="IDVenta" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
+                      dataType="cy"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioLista]"
+                      dataType="cy"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioLista]"
+                      name="PrecioLista" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DiferenciaPrecios]"
+                      dataType="cy"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DiferenciaPrecios]"
+                      name="DiferenciaPrecios" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductoID]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductoID]"
+                      name="ProductoID" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrdenID]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrdenID]"
+                      name="OrdenID" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      name="VendedorID" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Poblar FactOrdenesDetails.Paths[OLE DB Source Output]"
+              endId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{3747E390-56D1-4A8A-9CF7-0C20709AA03C}"
+      DTS:From="Package\Tarea Borrar Tablas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Tarea Poblar DimOrdenes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{04C72DA2-A8BF-4C47-9994-4E9C4258ABAF}"
+      DTS:From="Package\Tarea Borrar Tablas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Tarea Poblar DimProductos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F6D38060-887E-4163-A09F-4418B545234E}"
+      DTS:From="Package\Tarea Borrar Tablas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\Tarea Poblar DimPais" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{16E0E997-2E2C-4F93-8658-29B2D5666619}"
+      DTS:From="Package\Tarea Poblar DimPais"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Tarea Poblar DimEstado" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{B52CA25E-A151-4F44-A5E5-1BE10F1B72CC}"
+      DTS:From="Package\Tarea Poblar DimEstado"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\Tarea Poblar DimCiudad" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{78EE7420-1E89-4D8E-9C01-BA39C0B6794C}"
+      DTS:From="Package\Tarea Poblar DimCiudad"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 5"
+      DTS:To="Package\Tarea Poblar DimVendedores" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{13ACF19A-245E-4EF3-BB11-A3AC5A9C52C7}"
+      DTS:From="Package\Tarea Poblar DimVendedores"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 6"
+      DTS:To="Package\Tarea Poblar FactOrdenesDetails" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{9DA78C10-300E-4F3B-B73D-2812C2074177}"
+      DTS:From="Package\Tarea Poblar DimProductos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 7"
+      DTS:To="Package\Tarea Poblar FactOrdenesDetails" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{E389284E-F218-42B7-BB1E-CF00C0B67F0E}"
+      DTS:From="Package\Tarea Poblar DimOrdenes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 8"
+      DTS:To="Package\Tarea Poblar FactOrdenesDetails" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{FB25B814-B2D9-42E9-9F1D-BE6E420C1933}"
+      DTS:From="Package\Tarea Crear Tablas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 9"
+      DTS:To="Package\Tarea Borrar Tablas" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Tarea Borrar Tablas"
+          TopLeft="260.714286269278,82.6235293400431" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\Tarea Poblar DimOrdenes"
+          TopLeft="31.4285714954745,190.447058657297" />
+        <NodeLayout
+          Size="206.4,41.6"
+          Id="Package\Tarea Poblar DimProductos"
+          TopLeft="265.714286279922,188.917646893931" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Tarea Poblar DimPais"
+          TopLeft="512.857143948881,191.211764538979" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="305.714286269278,124.223529340043">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-174.685714773803,66.2235293172535"
+              Start="0,0"
+              End="-174.685714773803,58.7235293172535">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.7485406051634" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.7485406051634"
+                    Point2="0,22.7485406051634"
+                    Point3="-4,22.7485406051634" />
+                  <mssgle:LineSegment
+                    End="-170.685714773803,22.7485406051634" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-170.685714773803,22.7485406051634"
+                    Point2="-174.685714773803,22.7485406051634"
+                    Point3="-174.685714773803,26.7485406051634" />
+                  <mssgle:LineSegment
+                    End="-174.685714773803,58.7235293172535" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="346.714286269278,124.223529340043">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.2000000106437,64.6941175538882"
+              Start="0,0"
+              End="22.2000000106437,57.1941175538882">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.3470587769441" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.3470587769441"
+                    Point2="0,32.3470587769441"
+                    Point3="4,32.3470587769441" />
+                  <mssgle:LineSegment
+                    End="18.2000000106437,32.3470587769441" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.2000000106437,32.3470587769441"
+                    Point2="22.2000000106437,32.3470587769441"
+                    Point3="22.2000000106437,36.3470587769441" />
+                  <mssgle:LineSegment
+                    End="22.2000000106437,57.1941175538882" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="387.714286269278,124.223529340043">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="214.342857679603,66.9882351989363"
+              Start="0,0"
+              End="214.342857679603,59.4882351989363">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.0112258316957" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.0112258316957"
+                    Point2="0,23.0112258316957"
+                    Point3="4,23.0112258316957" />
+                  <mssgle:LineSegment
+                    End="210.342857679603,23.0112258316957" />
+                  <mssgle:CubicBezierSegment
+                    Point1="210.342857679603,23.0112258316957"
+                    Point2="214.342857679603,23.0112258316957"
+                    Point3="214.342857679603,27.0112258316957" />
+                  <mssgle:LineSegment
+                    End="214.342857679603,59.4882351989363" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Tarea Poblar DimEstado"
+          TopLeft="510.000001085656,260.035293890418" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Tarea Poblar DimCiudad"
+          TopLeft="511.428572517269,325.035293833442" />
+        <NodeLayout
+          Size="215.2,41.6"
+          Id="Package\Tarea Poblar DimVendedores"
+          TopLeft="492.857143906306,393.352940875508" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="604.028572517269,232.811764538979">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.2235293514382"
+              Start="0,0"
+              End="0,19.7235293514382">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.7235293514382" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="606.714286801462,301.635293890417">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.3999999430249"
+              Start="0,0"
+              End="0,15.8999999430249">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.8999999430249" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 5]"
+          TopLeft="603.942858211787,366.635293833442">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.7176470420661"
+              Start="0,0"
+              End="0,19.2176470420661">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.2176470420661" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="232,41.6"
+          Id="Package\Tarea Poblar FactOrdenesDetails"
+          TopLeft="256.42857197444,478.152940852718" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 6]"
+          TopLeft="600.457143906306,434.952940875508">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-228.028571931866,43.19999997721"
+              Start="0,0"
+              End="-228.028571931866,35.69999997721">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.599999988605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.599999988605"
+                    Point2="0,21.599999988605"
+                    Point3="-4,21.599999988605" />
+                  <mssgle:LineSegment
+                    End="-224.028571931866,21.599999988605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-224.028571931866,21.599999988605"
+                    Point2="-228.028571931866,21.599999988605"
+                    Point3="-228.028571931866,25.599999988605" />
+                  <mssgle:LineSegment
+                    End="-228.028571931866,35.69999997721" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 7]"
+          TopLeft="368.914286279922,230.517646893931">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-33.8190476388146,247.635293958787"
+              Start="0,0"
+              End="-33.8190476388146,240.135293958787">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,143.563497085031" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,143.563497085031"
+                    Point2="0,147.563497085031"
+                    Point3="-4,147.563497085031" />
+                  <mssgle:LineSegment
+                    End="-29.8190476388146,147.563497085031" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.8190476388146,147.563497085031"
+                    Point2="-33.8190476388146,147.563497085031"
+                    Point3="-33.8190476388146,151.563497085031" />
+                  <mssgle:LineSegment
+                    End="-33.8190476388146,240.135293958787" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 8]"
+          TopLeft="131.028571495475,232.047058657297">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="185.400000478966,246.105882195422"
+              Start="0,0"
+              End="185.400000478966,238.605882195422">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,158.206149628801" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,158.206149628801"
+                    Point2="0,162.206149628801"
+                    Point3="4,162.206149628801" />
+                  <mssgle:LineSegment
+                    End="181.400000478966,162.206149628801" />
+                  <mssgle:CubicBezierSegment
+                    Point1="181.400000478966,162.206149628801"
+                    Point2="185.400000478966,162.206149628801"
+                    Point3="185.400000478966,166.206149628801" />
+                  <mssgle:LineSegment
+                    End="185.400000478966,238.605882195422" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Tarea Crear Tablas"
+          TopLeft="260.000000553472,16.1294117519703" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 9]"
+          TopLeft="345.357143411375,57.7294117519703">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.8941175880728"
+              Start="0,0"
+              End="0,17.3941175880728">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3941175880728" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimOrdenes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145.6,41.6"
+          Id="Package\Tarea Poblar DimOrdenes\OLE DB Origin"
+          TopLeft="243.571429089928,19.8823529237488" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimOrdenes\OLE DB Destination"
+          TopLeft="236.428571931866,109.352941080618" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimOrdenes.Paths[OLE DB Source Output]"
+          TopLeft="319.000000510897,61.4823529237488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.8705881568696"
+              Start="0,0"
+              End="0,40.3705881568696">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3705881568696" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimProductos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Tarea Poblar DimProductos\OLE DB Source"
+          TopLeft="400.999994024634,32.9999995082617" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimProductos\OLE DB Destination"
+          TopLeft="391.499994248152,122.499998256564" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimProductos.Paths[OLE DB Source Output]"
+          TopLeft="476.249994136393,74.5999995082617">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.8999987483025"
+              Start="0,0"
+              End="0,40.3999987483025">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3999987483025" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimPais">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimPais\OLE DB Destination"
+          TopLeft="418.999993756414,147.999997794628" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Tarea Poblar DimPais\OLE DB Source"
+          TopLeft="428.999993607402,27.9999995827675" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimPais.Paths[OLE DB Source Output]"
+          TopLeft="503.999993681908,69.5999995827675">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,78.3999982118607"
+              Start="0,0"
+              End="0,70.8999982118607">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.8999982118607" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimEstado">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Tarea Poblar DimEstado\OLE DB Source"
+          TopLeft="393.999994128943,31.9999995231629" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimEstado\OLE DB Destination"
+          TopLeft="384.999994263053,111.99999833107" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimEstado.Paths[OLE DB Source Output]"
+          TopLeft="469.499994195998,73.5999995231629">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.3999988079071"
+              Start="0,0"
+              End="0,30.8999988079071">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.8999988079071" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimCiudad">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Tarea Poblar DimCiudad\OLE DB Source"
+          TopLeft="381.999994307757,33.9999994933605" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimCiudad\OLE DB Destination"
+          TopLeft="360.999994620681,112.999998316169" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimCiudad.Paths[OLE DB Source Output]"
+          TopLeft="456.799994307757,75.5999994933605">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.5999996870756,37.3999988228083"
+              Start="0,0"
+              End="-10.5999996870756,29.8999988228083">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.6999994114041" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.6999994114041"
+                    Point2="0,18.6999994114041"
+                    Point3="-4,18.6999994114041" />
+                  <mssgle:LineSegment
+                    End="-6.59999968707564,18.6999994114041" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.59999968707564,18.6999994114041"
+                    Point2="-10.5999996870756,18.6999994114041"
+                    Point3="-10.5999996870756,22.6999994114041" />
+                  <mssgle:LineSegment
+                    End="-10.5999996870756,29.8999988228083" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar DimVendedores">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar DimVendedores\OLE DB Destination"
+          TopLeft="389.999994188547,119.999998211861" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Tarea Poblar DimVendedores\OLE DB Source"
+          TopLeft="394.499994203448,32.4999995976686" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar DimVendedores.Paths[OLE DB Source Output]"
+          TopLeft="472.249994195998,74.0999995976686">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.8999986141921"
+              Start="0,0"
+              End="0,38.3999986141921">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.3999986141921" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Tarea Poblar FactOrdenesDetails">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source"
+          TopLeft="401.999994009733,34.9999994784594" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination"
+          TopLeft="388.999994203448,123.999998152256" />
+        <EdgeLayout
+          Id="Package\Tarea Poblar FactOrdenesDetails.Paths[OLE DB Source Output]"
+          TopLeft="475.499994106591,76.5999994784594">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.3999986737967"
+              Start="0,0"
+              End="0,39.8999986737967">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.8999986737967" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimOrdenes\OLE DB Origin">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimOrdenes\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimProductos\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimProductos\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimPais\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimPais\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimEstado\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimEstado\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimCiudad\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimCiudad\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar FactOrdenesDetails\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar FactOrdenesDetails\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimVendedores\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Poblar DimVendedores\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
