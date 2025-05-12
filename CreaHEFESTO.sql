@@ -1,3 +1,5 @@
+
+
 CREATE TABLE DimOrdenes (
 	IDOrder INT PRIMARY KEY,
 	Estado TINYINT NOT NULL
@@ -54,22 +56,7 @@ DELETE FROM DimCiudad;
 DELETE FROM DimEstado;
 DELETE FROM DimPais;
 
-SELECT
-	soh.SalesOrderID AS IDOrder,
-	soh.Status AS Estado
-FROM AdventureWorks2022.Sales.SalesOrderHeader soh,
-	AdventureWorks2022.Sales.SalesOrderDetail sod
-WHERE soh.SalesOrderID = sod.SalesOrderID
-;
-
-SELECT
-	DISTINCT soh.SalesOrderID AS IDOrder,
-	soh.Status AS Estado
-FROM AdventureWorks2022.Sales.SalesOrderHeader soh,
-	AdventureWorks2022.Sales.SalesOrderDetail sod
-WHERE soh.SalesOrderID = sod.SalesOrderID
-;
-
+--DimProductos
 SELECT 
 	DISTINCT pp.ProductID AS IDProducto,
 	pp.MakeFlag AS CompradoFlag,
@@ -80,11 +67,13 @@ FROM AdventureWorks2022.Production.Product pp,
 WHERE pp.ProductID = sod.ProductID
 ;
 
+--DimPais
 SELECT 
 	CountryRegionCode AS IDPais,
 	Name AS Nombre
 FROM AdventureWorks2022.Person.CountryRegion;
 
+--DimEstado
 SELECT
 	StateProvinceID AS IDEstado,
 	StateProvinceCode AS EstadoCode,
@@ -93,6 +82,18 @@ SELECT
 FROM AdventureWorks2022.Person.StateProvince
 ;
 
+--DimMoneda
+SELECT
+    ROW_NUMBER() OVER (ORDER BY c.CurrencyCode) AS IdMoneda,
+    c.Name AS Moneda,
+    c.CurrencyCode AS CodigoMoneda,
+    cr.AverageRate AS TasaPromedio
+FROM AdventureWorks2022.Sales.Currency c
+LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
+    ON c.CurrencyCode = cr.ToCurrencyCode
+;
+
+--DimCiudad
 SELECT 
 	pa.AddressID AS IDCiudad,
 	pa.PostalCode AS CodigoPostal,
@@ -107,37 +108,68 @@ WHERE pa.AddressID = pbea.AddressID AND
 	pbe.BusinessEntityID = hre.BusinessEntityID
 ;
 
+--DimTerritorio
+SELECT
+    TerritoryID AS IdTerritorio,
+    [Name] AS TerritorioNombre,
+    [Group] AS GrupoTerritorio
+FROM AdventureWorks2022.Sales.SalesTerritory;
+
+--DimEmpleado -DimVendedor
 SELECT 
 	DISTINCT hre.BusinessEntityID AS IDVendedor,
 	pp.FirstName AS Nombre,
 	pp.LastName AS Apellido,
-	pbea.AddressID AS CiudadID
-FROM AdventureWorks2022.Person.BusinessEntity pbe,
+	pbea.AddressID AS CiudadID,
+	hre.SalariedFlag AS EsAsalariado,
+	hre.JobTitle AS Puesto,
+	sst.TerritoryID AS TerritorioVenta	
+FROM 
 	AdventureWorks2022.HumanResources.Employee hre,
 	AdventureWorks2022.Person.BusinessEntityAddress pbea,
 	AdventureWorks2022.Person.Person pp,
+	AdventureWorks2022.Sales.SalesTerritory sst,
+	AdventureWorks2022.Sales.SalesPerson ssp,
 	AdventureWorks2022.Sales.SalesOrderHeader soh
-WHERE hre.BusinessEntityID = pbe.BusinessEntityID
-	AND pbe.BusinessEntityID = pbea.BusinessEntityID
-	AND pbe.BusinessEntityID = pp.BusinessEntityID
+WHERE hre.BusinessEntityID = pbea.BusinessEntityID
+	AND hre.BusinessEntityID = pp.BusinessEntityID
+	AND hre.BusinessEntityID = ssp.BusinessEntityID
 	AND hre.BusinessEntityID = soh.SalesPersonID
+	AND sst.TerritoryID = ssp.TerritoryID
+	AND ssp.BusinessEntityID = hre.BusinessEntityID
 ;
 
+--DimOrdenes (Sales.SalesOrderHeader)
+SELECT
+	soh.SalesOrderID AS IDOrder,
+	soh.TotalDue AS TotalPagado,
+	soh.SalesPersonID AS IDVendedor,
+	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
+	soh.CurrencyRateID AS MonedaID,
+	soh.Status AS Estado
+FROM AdventureWorks2022.Sales.SalesOrderHeader soh
+;
+
+--Tabla de hechos
 SELECT
 	sod.SalesOrderDetailID AS IDVenta,
 	sod.UnitPrice AS PrecioUnitario,
 	dp.PrecioLista AS PrecioLista,
 	dp.PrecioLista - sod.UnitPrice AS DiferenciaPrecios,
+	sod.UnitPrice * sod.OrderQty * scr.AverageRate AS TotalVentaMoneda,
 	dp.IDProducto AS ProductoID,
 	do.IDOrder AS OrdenID,
-	dv.IDVendedor AS VendedorID
+	dv.IDVendedor AS VendedorID,
+	sod.OrderQty AS Cantidad
 FROM AdventureWorks2022.Sales.SalesOrderDetail sod,
 	AdventureWorks2022.Sales.SalesOrderHeader soh,
+	AdventureWorks2022.Sales.CurrencyRate scr,
 	HEFESTO.dbo.DimProductos dp,
 	HEFESTO.dbo.DimVendedor dv,
 	HEFESTO.dbo.DimOrdenes do
 WHERE sod.SalesOrderID = do.IDOrder AND
 	soh.SalesPersonID = dv.IDVendedor AND 
 	sod.ProductID = dp.IDProducto AND
-	sod.SalesOrderID = soh.SalesOrderID
+	sod.SalesOrderID = soh.SalesOrderID AND
+	soh.CurrencyRateID = scr.CurrencyRateID
 ;
