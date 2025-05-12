@@ -1,60 +1,93 @@
+--Crea base de datos
+CREATE DATABASE HEFESTO;
 
+CREATE TABLE HEFESTO.dbo.DimTerritorio (
+	IdTerritorio INT PRIMARY KEY,
+	TerritorioNombre NVARCHAR(50) NOT NULL,
+	GrupoTerritorio NVARCHAR(50) NOT NULL
+);
 
-CREATE TABLE DimOrdenes (
+CREATE TABLE HEFESTO.dbo.DimPais (
+	IDPais NVARCHAR(3) PRIMARY KEY,
+	Nombre NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE HEFESTO.dbo.DimEstado (
+	IDEstado INT PRIMARY KEY,
+	EstadoCode NCHAR(3) NOT NULL,
+	Nombre NVARCHAR(50) NOT NULL,
+	PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)
+);
+
+CREATE TABLE HEFESTO.dbo.DimCiudad (
+	IDCiudad INT PRIMARY KEY,
+	Nombre NVARCHAR(30) NOT NULL,
+	CodigoPostal NVARCHAR(15) NOT NULL,
+	EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)
+);
+
+CREATE TABLE HEFESTO.dbo.DimEmpleados (
+	IDVendedor INT PRIMARY KEY,
+	Nombre NVARCHAR(50) NOT NULL,
+	Apellido NVARCHAR(50) NOT NULL,
+	CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),
+	EsAsalariado BIT NOT NULL,
+	Puesto NVARCHAR(50) NOT NULL,
+	TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)
+);
+
+CREATE TABLE HEFESTO.dbo.DimTiempo (
+    ClaveFecha INT PRIMARY KEY,         -- YYYYMMDD
+    FechaCompleta DATE,
+    Año INT,
+    Semestre INT,                       -- 1 o 2
+    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.
+    NumeroMes INT,                      -- 1 a 12
+    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.
+    Día INT                             -- Día del mes
+);
+
+CREATE TABLE HEFESTO.dbo.DimMoneda (
+	IdMoneda INT PRIMARY KEY,
+	Moneda NVARCHAR(50) NOT NULL,
+	TasaPromedio MONEY NOT NULL
+);
+
+CREATE TABLE HEFESTO.dbo.DimOrdenes (
 	IDOrder INT PRIMARY KEY,
+	TotalPagado MONEY NOT NULL,
+	IDVendedor INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),
+	ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),
+	MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda),
 	Estado TINYINT NOT NULL
 );
 
-CREATE TABLE DimProductos (
+CREATE TABLE HEFESTO.dbo.DimProductos (
 	IDProducto INT PRIMARY KEY,
 	Nombre NVARCHAR(50) NOT NULL,
 	CompradoFlag BIT NOT NULL,
 	PrecioLista MONEY NOT NULL
 );
 
-CREATE TABLE DimPais (
-	IDPais NVARCHAR(3) PRIMARY KEY,
-	Nombre NVARCHAR(50) NOT NULL
-);
-
-CREATE TABLE DimEstado (
-	IDEstado INT PRIMARY KEY,
-	EstadoCode NCHAR(3) NOT NULL,
-	Nombre NVARCHAR(50) NOT NULL,
-	PaisID NVARCHAR(3) FOREIGN KEY REFERENCES DimPais(IDPais)
-);
-
-CREATE TABLE DimCiudad (
-	IDCiudad INT PRIMARY KEY,
-	Nombre NVARCHAR(30) NOT NULL,
-	CodigoPostal NVARCHAR(15) NOT NULL,
-	EstadoID INT FOREIGN KEY REFERENCES DimEstado(IDEstado)
-);
-
-CREATE TABLE DimVendedor (
-	IDVendedor INT PRIMARY KEY,
-	Nombre NVARCHAR(50) NOT NULL,
-	Apellido NVARCHAR(50) NOT NULL,
-	CiudadID INT FOREIGN KEY REFERENCES DimCiudad(IDCiudad)
-);
-
-CREATE TABLE FactOrdenesDetails (
+CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (
 	IDVenta INT PRIMARY KEY,
 	PrecioLista MONEY NOT NULL,
 	PrecioUnitario MONEY NOT NULL,
 	DiferenciaPrecios MONEY NOT NULL,
-	VendedorID INT FOREIGN KEY REFERENCES DimVendedor(IDVendedor),
-	ProductoID INT FOREIGN KEY REFERENCES DimProductos(IDProducto),
-	OrdenID INT FOREIGN KEY REFERENCES DimOrdenes(IDOrder)
+	TotalVentaMoneda MONEY NOT NULL,
+	Cantidad SMALLINT NOT NULL,
+	VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),
+	ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),
+	OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder)
 );
 
-DELETE FROM FactOrdenesDetails;
-DELETE FROM DimOrdenes;
-DELETE FROM DimProductos;
-DELETE FROM DimVendedor;
-DELETE FROM DimCiudad;
-DELETE FROM DimEstado;
-DELETE FROM DimPais;
+DELETE FROM HEFESTO.dbo.FactOrdenesDetails;
+DELETE FROM HEFESTO.dbo.DimOrdenes;
+DELETE FROM HEFESTO.dbo.DimProductos;
+DELETE FROM HEFESTO.dbo.DimEmpleados;
+DELETE FROM HEFESTO.dbo.DimCiudad;
+DELETE FROM HEFESTO.dbo.DimEstado;
+DELETE FROM HEFESTO.dbo.DimPais;
 
 --DimProductos
 SELECT 
@@ -165,7 +198,7 @@ FROM AdventureWorks2022.Sales.SalesOrderDetail sod,
 	AdventureWorks2022.Sales.SalesOrderHeader soh,
 	AdventureWorks2022.Sales.CurrencyRate scr,
 	HEFESTO.dbo.DimProductos dp,
-	HEFESTO.dbo.DimVendedor dv,
+	HEFESTO.dbo.DimEmpleados dv,
 	HEFESTO.dbo.DimOrdenes do
 WHERE sod.SalesOrderID = do.IDOrder AND
 	soh.SalesPersonID = dv.IDVendedor AND 
