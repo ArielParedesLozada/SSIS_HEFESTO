@@ -11,10 +11,24 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Pregunta1"
   DTS:PackageType="5"
-  DTS:VersionBuild="75"
-  DTS:VersionGUID="{0E2ECEC8-28E3-46BD-87D6-C4C069FA1F08}">
+  DTS:VersionBuild="91"
+  DTS:VersionGUID="{C78F41C8-7D25-4DD2-BE2C-8C1207450566}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{07D5E7CD-DDEE-4CEF-B54C-B9D3F64D6D40}"
+      DTS:ObjectName="localhost">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Data Source=localhost;PROVIDER=MSOLAP;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -450,24 +464,6 @@ LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
                       externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalPagado]"
                       lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalPagado]" />
                     <inputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDVendedor]"
-                      cachedDataType="i4"
-                      cachedName="IDVendedor"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDVendedor]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVendedor]" />
-                    <inputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ClaveFechaEnvio]"
-                      cachedDataType="i4"
-                      cachedName="ClaveFechaEnvio"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvio]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]" />
-                    <inputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MonedaID]"
-                      cachedDataType="i4"
-                      cachedName="MonedaID"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]" />
-                    <inputColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Estado]"
                       cachedDataType="ui1"
                       cachedName="Estado"
@@ -484,18 +480,6 @@ LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
                       refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalPagado]"
                       dataType="cy"
                       name="TotalPagado" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDVendedor]"
-                      dataType="i4"
-                      name="IDVendedor" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvio]"
-                      dataType="i4"
-                      name="ClaveFechaEnvio" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
-                      dataType="i4"
-                      name="MonedaID" />
                     <externalMetadataColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
                       dataType="ui1"
@@ -556,9 +540,6 @@ LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
 	soh.SalesOrderID AS IDOrder,
 	soh.TotalDue AS TotalPagado,
-	soh.SalesPersonID AS IDVendedor,
-	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
-	soh.CurrencyRateID AS MonedaID,
 	soh.Status AS Estado
 FROM AdventureWorks2022.Sales.SalesOrderHeader soh
 ;</property>
@@ -616,33 +597,6 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
                       name="TotalPagado"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVendedor]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDVendedor]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVendedor]"
-                      name="IDVendedor"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClaveFechaEnvio]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]"
-                      name="ClaveFechaEnvio"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]"
-                      name="MonedaID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]"
                       dataType="ui1"
                       errorOrTruncationOperation="Conversion"
@@ -662,18 +616,6 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TotalPagado]"
                       dataType="cy"
                       name="TotalPagado" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDVendedor]"
-                      dataType="i4"
-                      name="IDVendedor" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClaveFechaEnvio]"
-                      dataType="i4"
-                      name="ClaveFechaEnvio" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
-                      dataType="i4"
-                      name="MonedaID" />
                     <externalMetadataColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
                       dataType="ui1"
@@ -695,21 +637,6 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
                       dataType="cy"
                       lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TotalPagado]"
                       name="TotalPagado" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDVendedor]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDVendedor]"
-                      name="IDVendedor" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClaveFechaEnvio]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClaveFechaEnvio]"
-                      name="ClaveFechaEnvio" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
-                      name="MonedaID" />
                     <outputColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Estado]"
                       dataType="ui1"
@@ -1197,12 +1124,6 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
                       externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrdenID]"
                       lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrdenID]" />
                     <inputColumn
-                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VendedorID]"
-                      cachedDataType="i4"
-                      cachedName="VendedorID"
-                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
-                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendedorID]" />
-                    <inputColumn
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductoID]"
                       cachedDataType="i4"
                       cachedName="ProductoID"
@@ -1214,6 +1135,24 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
                       cachedName="Cantidad"
                       externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
                       lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VendedorID]"
+                      cachedDataType="i4"
+                      cachedName="VendedorID"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendedorID]" />
+                    <inputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ClaveFechaEnvio]"
+                      cachedDataType="i4"
+                      cachedName="ClaveFechaEnvio"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvio]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]" />
+                    <inputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MonedaID]"
+                      cachedDataType="i4"
+                      cachedName="MonedaID"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1242,10 +1181,6 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
                       dataType="i2"
                       name="Cantidad" />
                     <externalMetadataColumn
-                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
-                      dataType="i4"
-                      name="VendedorID" />
-                    <externalMetadataColumn
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductoID]"
                       dataType="i4"
                       name="ProductoID" />
@@ -1253,6 +1188,18 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrdenID]"
                       dataType="i4"
                       name="OrdenID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvio]"
+                      dataType="i4"
+                      name="ClaveFechaEnvio" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
+                      dataType="i4"
+                      name="MonedaID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1315,6 +1262,8 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
 	dp.IDProducto AS ProductoID,
 	do.IDOrder AS OrdenID,
 	dv.IDVendedor AS VendedorID,
+	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
+	soh.CurrencyRateID AS MonedaID,
 	sod.OrderQty AS Cantidad
 FROM AdventureWorks2022.Sales.SalesOrderDetail sod,
 	AdventureWorks2022.Sales.SalesOrderHeader soh,
@@ -1326,8 +1275,7 @@ WHERE sod.SalesOrderID = do.IDOrder AND
 	soh.SalesPersonID = dv.IDVendedor AND 
 	sod.ProductID = dp.IDProducto AND
 	sod.SalesOrderID = soh.SalesOrderID AND
-	soh.CurrencyRateID = scr.CurrencyRateID
-;</property>
+	soh.CurrencyRateID = scr.CurrencyRateID</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -1427,6 +1375,15 @@ WHERE sod.SalesOrderID = do.IDOrder AND
                       name="OrdenID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]"
+                      name="Cantidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendedorID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -1436,13 +1393,22 @@ WHERE sod.SalesOrderID = do.IDOrder AND
                       name="VendedorID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]"
-                      dataType="i2"
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
-                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]"
-                      name="Cantidad"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClaveFechaEnvio]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]"
+                      name="ClaveFechaEnvio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]"
+                      name="MonedaID"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -1476,13 +1442,21 @@ WHERE sod.SalesOrderID = do.IDOrder AND
                       dataType="i4"
                       name="OrdenID" />
                     <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
+                      dataType="i2"
+                      name="Cantidad" />
+                    <externalMetadataColumn
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
                       dataType="i4"
                       name="VendedorID" />
                     <externalMetadataColumn
-                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
-                      dataType="i2"
-                      name="Cantidad" />
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClaveFechaEnvio]"
+                      dataType="i4"
+                      name="ClaveFechaEnvio" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
+                      dataType="i4"
+                      name="MonedaID" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1530,6 +1504,16 @@ WHERE sod.SalesOrderID = do.IDOrder AND
                       dataType="i4"
                       lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
                       name="VendedorID" />
+                    <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClaveFechaEnvio]"
+                      dataType="i4"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClaveFechaEnvio]"
+                      name="ClaveFechaEnvio" />
+                    <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
+                      name="MonedaID" />
                     <outputColumn
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
                       dataType="i2"
@@ -1594,7 +1578,7 @@ WHERE sod.SalesOrderID = do.IDOrder AND
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('HEFESTO.dbo.FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.FactOrdenesDetails;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimOrdenes;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimProductos;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEmpleados', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEmpleados;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimCiudad;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEstado;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimPais;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTerritorio', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTerritorio;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTiempo', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTiempo;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimMoneda', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimMoneda;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTerritorio (&#xA;    IdTerritorio INT PRIMARY KEY,&#xA;    TerritorioNombre NVARCHAR(50) NOT NULL,&#xA;    GrupoTerritorio NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimPais (&#xA;    IDPais NVARCHAR(3) PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEstado (&#xA;    IDEstado INT PRIMARY KEY,&#xA;    EstadoCode NCHAR(3) NOT NULL,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimCiudad (&#xA;    IDCiudad INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(100) NOT NULL,&#xA;    CodigoPostal NVARCHAR(15) NOT NULL,&#xA;    EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEmpleados (&#xA;    IDVendedor INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    Apellido NVARCHAR(50) NOT NULL,&#xA;    CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),&#xA;    EsAsalariado BIT NOT NULL,&#xA;    Puesto NVARCHAR(50) NOT NULL,&#xA;    TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,          -- YYYYMMDD&#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                       -- 1 o 2&#xA;    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.&#xA;    NumeroMes INT,                      -- 1 a 12&#xA;    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.&#xA;    Día INT                            -- Día del mes&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimMoneda (&#xA;&#x9;IdMoneda INT PRIMARY KEY,&#xA;&#x9;Moneda NVARCHAR(50) NOT NULL,&#xA;&#x9;TasaPromedio MONEY &#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimOrdenes (&#xA;    IDOrder INT PRIMARY KEY,&#xA;    TotalPagado MONEY NOT NULL,&#xA;    IDVendedor INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA;    ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),&#xA;    MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda),&#xA;    Estado TINYINT NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimProductos (&#xA;    IDProducto INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    CompradoFlag BIT NOT NULL,&#xA;    PrecioLista MONEY NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (&#xA;    IDVenta INT PRIMARY KEY,&#xA;    PrecioLista MONEY NOT NULL,&#xA;    PrecioUnitario MONEY NOT NULL,&#xA;    DiferenciaPrecios MONEY NOT NULL,&#xA;    TotalVentaMoneda MONEY NOT NULL,&#xA;    Cantidad SMALLINT NOT NULL,&#xA;    VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA;    ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),&#xA;    OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID('HEFESTO.dbo.FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.FactOrdenesDetails;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimOrdenes;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimProductos;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEmpleados', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEmpleados;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimCiudad;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEstado;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimPais;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTerritorio', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTerritorio;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTiempo', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTiempo;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimMoneda', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimMoneda;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTerritorio (&#xA;    IdTerritorio INT PRIMARY KEY,&#xA;    TerritorioNombre NVARCHAR(50) NOT NULL,&#xA;    GrupoTerritorio NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimPais (&#xA;    IDPais NVARCHAR(3) PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEstado (&#xA;    IDEstado INT PRIMARY KEY,&#xA;    EstadoCode NCHAR(3) NOT NULL,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimCiudad (&#xA;    IDCiudad INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(100) NOT NULL,&#xA;    CodigoPostal NVARCHAR(15) NOT NULL,&#xA;    EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEmpleados (&#xA;    IDVendedor INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    Apellido NVARCHAR(50) NOT NULL,&#xA;    CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),&#xA;    EsAsalariado BIT NOT NULL,&#xA;    Puesto NVARCHAR(50) NOT NULL,&#xA;    TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,          -- YYYYMMDD&#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                       -- 1 o 2&#xA;    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.&#xA;    NumeroMes INT,                      -- 1 a 12&#xA;    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.&#xA;    Día INT                            -- Día del mes&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimMoneda (&#xA;&#x9;IdMoneda INT PRIMARY KEY,&#xA;&#x9;Moneda NVARCHAR(50) NOT NULL,&#xA;&#x9;TasaPromedio MONEY &#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimOrdenes (&#xA;&#x9;IDOrder INT PRIMARY KEY,&#xA;&#x9;TotalPagado MONEY NOT NULL,&#xA;&#x9;Estado TINYINT NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimProductos (&#xA;    IDProducto INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    CompradoFlag BIT NOT NULL,&#xA;    PrecioLista MONEY NOT NULL&#xA;);&#xA;CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (&#xA;&#x9;IDVenta INT PRIMARY KEY,&#xA;&#x9;PrecioLista MONEY NOT NULL,&#xA;&#x9;PrecioUnitario MONEY NOT NULL,&#xA;&#x9;DiferenciaPrecios MONEY NOT NULL,&#xA;&#x9;TotalVentaMoneda MONEY NOT NULL,&#xA;&#x9;Cantidad SMALLINT NOT NULL,&#xA;&#x9;VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA;&#x9;ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),&#xA;&#x9;OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder),&#xA;&#x9;ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),&#xA;&#x9;MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -3492,91 +3476,91 @@ WHERE pp.ProductID = sod.ProductID
       DTS:To="Package\Tarea Borrar Tablas" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
 <Objects
   Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="167,42"
+          Size="167.2,41.6"
           Id="Package\Poblar DimMoneda"
           TopLeft="1006,189" />
         <NodeLayout
-          Size="170,42"
+          Size="169.6,41.6"
           Id="Package\Poblar DimOrdenes"
           TopLeft="546,514" />
         <NodeLayout
-          Size="174,42"
+          Size="174.4,41.6"
           Id="Package\Poblar DimTerritorio"
           TopLeft="576,188" />
         <NodeLayout
-          Size="164,42"
+          Size="164,41.6"
           Id="Package\Poblar dimTiempo"
           TopLeft="803,192" />
         <NodeLayout
-          Size="198,42"
+          Size="198.4,41.6"
           Id="Package\Poblar FactOrdenesDetail"
           TopLeft="540,629" />
         <NodeLayout
-          Size="172,42"
+          Size="172,41.6"
           Id="Package\Tarea Borrar Tablas"
           TopLeft="260.714286269278,82.6235293400431" />
         <NodeLayout
-          Size="168,42"
+          Size="168,41.6"
           Id="Package\Tarea Crear Tablas"
           TopLeft="260.000000553472,16.1294117519703" />
         <NodeLayout
-          Size="192,42"
+          Size="192,41.6"
           Id="Package\Tarea Poblar DimCiudad"
           TopLeft="330.428572517269,343.035293833442" />
         <NodeLayout
-          Size="212,42"
+          Size="212,41.6"
           Id="Package\Tarea Poblar DimEmpleados"
           TopLeft="430.857143906306,437.352940875508" />
         <NodeLayout
-          Size="192,42"
+          Size="192,41.6"
           Id="Package\Tarea Poblar DimEstado"
           TopLeft="330.000001085656,268.035293890418" />
         <NodeLayout
-          Size="178,42"
+          Size="177.6,41.6"
           Id="Package\Tarea Poblar DimPais"
           TopLeft="333.857143948881,190.211764538979" />
         <NodeLayout
-          Size="206,42"
+          Size="206.4,41.6"
           Id="Package\Tarea Poblar DimProductos"
           TopLeft="66.714286279922,186.917646893931" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="374.047619602611,124.623529340043">
+          TopLeft="374.047619602611,124.223529340043">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="510.952380397389,67.3764706599569"
+              EndConnector="510.952380397389,67.7764706599569"
               Start="0,0"
-              End="510.952380397389,59.8764706599569">
+              End="510.952380397389,60.2764706599569">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.3231770418258" />
+                    End="0,23.4853890233926" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.3231770418258"
-                    Point2="0,17.3231770418258"
-                    Point3="4,17.3231770418258" />
+                    Point1="0,23.4853890233926"
+                    Point2="0,27.4853890233926"
+                    Point3="4,27.4853890233926" />
                   <mssgle:LineSegment
-                    End="506.952380397389,17.3231770418258" />
+                    End="506.952380397389,27.4853890233926" />
                   <mssgle:CubicBezierSegment
-                    Point1="506.952380397389,17.3231770418258"
-                    Point2="510.952380397389,17.3231770418258"
-                    Point3="510.952380397389,21.3231770418258" />
+                    Point1="506.952380397389,27.4853890233926"
+                    Point2="510.952380397389,27.4853890233926"
+                    Point3="510.952380397389,31.4853890233926" />
                   <mssgle:LineSegment
-                    End="510.952380397389,59.8764706599569" />
+                    End="510.952380397389,60.2764706599569" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3689,30 +3673,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="885,234">
+          TopLeft="885,233.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-215,280"
+              EndConnector="-254.2,280.4"
               Start="0,0"
-              End="-215,272.5">
+              End="-254.2,272.9">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,136" />
+                    End="0,136.2" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,136"
-                    Point2="0,140"
-                    Point3="-4,140" />
+                    Point1="0,136.2"
+                    Point2="0,140.2"
+                    Point3="-4,140.2" />
                   <mssgle:LineSegment
-                    End="-211,140" />
+                    End="-250.2,140.2" />
                   <mssgle:CubicBezierSegment
-                    Point1="-211,140"
-                    Point2="-215,140"
-                    Point3="-215,144" />
+                    Point1="-250.2,140.2"
+                    Point2="-254.2,140.2"
+                    Point3="-254.2,144.2" />
                   <mssgle:LineSegment
-                    End="-215,272.5" />
+                    End="-254.2,272.9" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4032,7 +4016,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar DimMoneda">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Poblar DimMoneda\OLE DB Source"
@@ -4060,7 +4044,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4093,11 +4079,11 @@ WHERE pp.ProductID = sod.ProductID
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
+          Size="150.4,41.6"
           Id="Package\Poblar DimOrdenes\OLE DB Source"
           TopLeft="330,106" />
         <NodeLayout
-          Size="171,42"
+          Size="171.2,41.6"
           Id="Package\Poblar DimOrdenes\OLE DB Destination"
           TopLeft="323,212" />
         <EdgeLayout
@@ -4150,7 +4136,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar DimTerritorio">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Poblar DimTerritorio\OLE DB Source"
@@ -4178,7 +4164,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4211,13 +4199,13 @@ WHERE pp.ProductID = sod.ProductID
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
-          Id="Package\Poblar FactOrdenesDetail\OLE DB Source"
-          TopLeft="303,117" />
-        <NodeLayout
-          Size="171,42"
+          Size="171.2,41.6"
           Id="Package\Poblar FactOrdenesDetail\OLE DB Destination"
           TopLeft="300,213" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Poblar FactOrdenesDetail\OLE DB Source"
+          TopLeft="303,117" />
         <EdgeLayout
           Id="Package\Poblar FactOrdenesDetail.Paths[OLE DB Source Output]"
           TopLeft="381.75,159">
@@ -4268,7 +4256,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimCiudad">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimCiudad\OLE DB Source"
@@ -4296,7 +4284,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4327,7 +4317,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimEmpleados">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimEmpleados\OLE DB Source"
@@ -4355,7 +4345,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4386,7 +4378,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimEstado">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimEstado\OLE DB Source"
@@ -4414,7 +4406,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4445,7 +4439,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimPais">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimPais\OLE DB Source"
@@ -4473,7 +4467,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4504,7 +4500,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimProductos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimProductos\OLE DB Source"
@@ -4532,7 +4528,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4559,5 +4557,9 @@ WHERE pp.ProductID = sod.ProductID
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[localhost]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
