@@ -11,6 +11,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=Laptop_Dayle_Jr\SSD_MULTI;Initial Catalog=HEFESTO;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-SSIS_HEFESTO-{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}Laptop_Dayle_Jr\SSD_MULTI.Hefesto;" />
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=HEFESTO;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-SSIS_HEFESTO-{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}Laptop_Dayle_Jr\SSD_MULTI.Hefesto;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
