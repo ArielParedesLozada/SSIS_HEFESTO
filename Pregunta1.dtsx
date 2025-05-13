@@ -11,10 +11,24 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Pregunta1"
   DTS:PackageType="5"
-  DTS:VersionBuild="86"
-  DTS:VersionGUID="{7C0A5FE9-1681-4087-8055-F3EF0E574FF5}">
+  DTS:VersionBuild="91"
+  DTS:VersionGUID="{C78F41C8-7D25-4DD2-BE2C-8C1207450566}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{07D5E7CD-DDEE-4CEF-B54C-B9D3F64D6D40}"
+      DTS:ObjectName="localhost">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Data Source=localhost;PROVIDER=MSOLAP;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -1121,6 +1135,24 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
                       cachedName="Cantidad"
                       externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
                       lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VendedorID]"
+                      cachedDataType="i4"
+                      cachedName="VendedorID"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendedorID]" />
+                    <inputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ClaveFechaEnvio]"
+                      cachedDataType="i4"
+                      cachedName="ClaveFechaEnvio"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvio]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]" />
+                    <inputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MonedaID]"
+                      cachedDataType="i4"
+                      cachedName="MonedaID"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1160,6 +1192,14 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
                       dataType="i4"
                       name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvio]"
+                      dataType="i4"
+                      name="ClaveFechaEnvio" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
+                      dataType="i4"
+                      name="MonedaID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3497,30 +3537,30 @@ WHERE pp.ProductID = sod.ProductID
           TopLeft="66.714286279922,186.917646893931" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="374.047619602611,124.623529340043">
+          TopLeft="374.047619602611,124.223529340043">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="510.952380397389,67.3764706599569"
+              EndConnector="510.952380397389,67.7764706599569"
               Start="0,0"
-              End="510.952380397389,59.8764706599569">
+              End="510.952380397389,60.2764706599569">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.3231770418258" />
+                    End="0,23.4853890233926" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.3231770418258"
-                    Point2="0,17.3231770418258"
-                    Point3="4,17.3231770418258" />
+                    Point1="0,23.4853890233926"
+                    Point2="0,27.4853890233926"
+                    Point3="4,27.4853890233926" />
                   <mssgle:LineSegment
-                    End="506.952380397389,17.3231770418258" />
+                    End="506.952380397389,27.4853890233926" />
                   <mssgle:CubicBezierSegment
-                    Point1="506.952380397389,17.3231770418258"
-                    Point2="510.952380397389,17.3231770418258"
-                    Point3="510.952380397389,21.3231770418258" />
+                    Point1="506.952380397389,27.4853890233926"
+                    Point2="510.952380397389,27.4853890233926"
+                    Point3="510.952380397389,31.4853890233926" />
                   <mssgle:LineSegment
-                    End="510.952380397389,59.8764706599569" />
+                    End="510.952380397389,60.2764706599569" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3633,30 +3673,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="885,234">
+          TopLeft="885,233.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-215,280"
+              EndConnector="-254.2,280.4"
               Start="0,0"
-              End="-215,272.5">
+              End="-254.2,272.9">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,136" />
+                    End="0,136.2" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,136"
-                    Point2="0,140"
-                    Point3="-4,140" />
+                    Point1="0,136.2"
+                    Point2="0,140.2"
+                    Point3="-4,140.2" />
                   <mssgle:LineSegment
-                    End="-211,140" />
+                    End="-250.2,140.2" />
                   <mssgle:CubicBezierSegment
-                    Point1="-211,140"
-                    Point2="-215,140"
-                    Point3="-215,144" />
+                    Point1="-250.2,140.2"
+                    Point2="-254.2,140.2"
+                    Point3="-254.2,144.2" />
                   <mssgle:LineSegment
-                    End="-215,272.5" />
+                    End="-254.2,272.9" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4517,5 +4557,9 @@ WHERE pp.ProductID = sod.ProductID
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[localhost]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
