@@ -56,8 +56,6 @@ CREATE TABLE HEFESTO.dbo.DimMoneda (
 CREATE TABLE HEFESTO.dbo.DimOrdenes (
 	IDOrder INT PRIMARY KEY,
 	TotalPagado MONEY NOT NULL,
-	ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),
-	MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda),
 	Estado TINYINT NOT NULL
 );
 
@@ -77,7 +75,9 @@ CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (
 	Cantidad SMALLINT NOT NULL,
 	VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),
 	ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),
-	OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder)
+	OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder),
+	ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),
+	MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda)
 );
 
 DELETE FROM HEFESTO.dbo.FactOrdenesDetails;
@@ -176,8 +176,6 @@ WHERE
 SELECT
 	soh.SalesOrderID AS IDOrder,
 	soh.TotalDue AS TotalPagado,
-	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
-	soh.CurrencyRateID AS MonedaID,
 	soh.Status AS Estado
 FROM AdventureWorks2022.Sales.SalesOrderHeader soh
 ;
@@ -192,6 +190,8 @@ SELECT
 	dp.IDProducto AS ProductoID,
 	do.IDOrder AS OrdenID,
 	dv.IDVendedor AS VendedorID,
+	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
+	soh.CurrencyRateID AS MonedaID,
 	sod.OrderQty AS Cantidad
 FROM AdventureWorks2022.Sales.SalesOrderDetail sod,
 	AdventureWorks2022.Sales.SalesOrderHeader soh,

@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Pregunta1"
   DTS:PackageType="5"
-  DTS:VersionBuild="79"
-  DTS:VersionGUID="{9FE62F22-17C3-4A0E-A6AB-FB569EC8E317}">
+  DTS:VersionBuild="86"
+  DTS:VersionGUID="{7C0A5FE9-1681-4087-8055-F3EF0E574FF5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -450,24 +450,6 @@ LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
                       externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalPagado]"
                       lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalPagado]" />
                     <inputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDVendedor]"
-                      cachedDataType="i4"
-                      cachedName="IDVendedor"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDVendedor]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVendedor]" />
-                    <inputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ClaveFechaEnvio]"
-                      cachedDataType="i4"
-                      cachedName="ClaveFechaEnvio"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvio]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]" />
-                    <inputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MonedaID]"
-                      cachedDataType="i4"
-                      cachedName="MonedaID"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]" />
-                    <inputColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Estado]"
                       cachedDataType="ui1"
                       cachedName="Estado"
@@ -484,18 +466,6 @@ LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
                       refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalPagado]"
                       dataType="cy"
                       name="TotalPagado" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDVendedor]"
-                      dataType="i4"
-                      name="IDVendedor" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvio]"
-                      dataType="i4"
-                      name="ClaveFechaEnvio" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
-                      dataType="i4"
-                      name="MonedaID" />
                     <externalMetadataColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
                       dataType="ui1"
@@ -556,9 +526,6 @@ LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
 	soh.SalesOrderID AS IDOrder,
 	soh.TotalDue AS TotalPagado,
-	soh.SalesPersonID AS IDVendedor,
-	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
-	soh.CurrencyRateID AS MonedaID,
 	soh.Status AS Estado
 FROM AdventureWorks2022.Sales.SalesOrderHeader soh
 ;</property>
@@ -616,33 +583,6 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
                       name="TotalPagado"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVendedor]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDVendedor]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDVendedor]"
-                      name="IDVendedor"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClaveFechaEnvio]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]"
-                      name="ClaveFechaEnvio"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]"
-                      name="MonedaID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]"
                       dataType="ui1"
                       errorOrTruncationOperation="Conversion"
@@ -662,18 +602,6 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TotalPagado]"
                       dataType="cy"
                       name="TotalPagado" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDVendedor]"
-                      dataType="i4"
-                      name="IDVendedor" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClaveFechaEnvio]"
-                      dataType="i4"
-                      name="ClaveFechaEnvio" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
-                      dataType="i4"
-                      name="MonedaID" />
                     <externalMetadataColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
                       dataType="ui1"
@@ -695,21 +623,6 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
                       dataType="cy"
                       lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TotalPagado]"
                       name="TotalPagado" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDVendedor]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDVendedor]"
-                      name="IDVendedor" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClaveFechaEnvio]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClaveFechaEnvio]"
-                      name="ClaveFechaEnvio" />
-                    <outputColumn
-                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
-                      name="MonedaID" />
                     <outputColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Estado]"
                       dataType="ui1"
@@ -1243,6 +1156,10 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrdenID]"
                       dataType="i4"
                       name="OrdenID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1304,6 +1221,9 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
 	sod.UnitPrice * sod.OrderQty * scr.AverageRate AS TotalVentaMoneda,
 	dp.IDProducto AS ProductoID,
 	do.IDOrder AS OrdenID,
+	dv.IDVendedor AS VendedorID,
+	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
+	soh.CurrencyRateID AS MonedaID,
 	sod.OrderQty AS Cantidad
 FROM AdventureWorks2022.Sales.SalesOrderDetail sod,
 	AdventureWorks2022.Sales.SalesOrderHeader soh,
@@ -1312,11 +1232,10 @@ FROM AdventureWorks2022.Sales.SalesOrderDetail sod,
 	HEFESTO.dbo.DimEmpleados dv,
 	HEFESTO.dbo.DimOrdenes do
 WHERE sod.SalesOrderID = do.IDOrder AND
-soh.SalesPersonID = dv.IDVendedor AND 
+	soh.SalesPersonID = dv.IDVendedor AND 
 	sod.ProductID = dp.IDProducto AND
 	sod.SalesOrderID = soh.SalesOrderID AND
-	soh.CurrencyRateID = scr.CurrencyRateID
-;</property>
+	soh.CurrencyRateID = scr.CurrencyRateID</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -1424,6 +1343,33 @@ soh.SalesPersonID = dv.IDVendedor AND
                       lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cantidad]"
                       name="Cantidad"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      name="VendedorID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClaveFechaEnvio]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClaveFechaEnvio]"
+                      name="ClaveFechaEnvio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonedaID]"
+                      name="MonedaID"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1459,6 +1405,18 @@ soh.SalesPersonID = dv.IDVendedor AND
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
                       dataType="i2"
                       name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClaveFechaEnvio]"
+                      dataType="i4"
+                      name="ClaveFechaEnvio" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
+                      dataType="i4"
+                      name="MonedaID" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1501,6 +1459,21 @@ soh.SalesPersonID = dv.IDVendedor AND
                       dataType="i4"
                       lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrdenID]"
                       name="OrdenID" />
+                    <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      name="VendedorID" />
+                    <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClaveFechaEnvio]"
+                      dataType="i4"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClaveFechaEnvio]"
+                      name="ClaveFechaEnvio" />
+                    <outputColumn
+                      refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
+                      name="MonedaID" />
                     <outputColumn
                       refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
                       dataType="i2"
@@ -1565,7 +1538,7 @@ soh.SalesPersonID = dv.IDVendedor AND
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('HEFESTO.dbo.FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.FactOrdenesDetails;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimOrdenes;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimProductos;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEmpleados', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEmpleados;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimCiudad;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEstado;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimPais;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTerritorio', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTerritorio;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTiempo', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTiempo;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimMoneda', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimMoneda;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTerritorio (&#xA;    IdTerritorio INT PRIMARY KEY,&#xA;    TerritorioNombre NVARCHAR(50) NOT NULL,&#xA;    GrupoTerritorio NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimPais (&#xA;    IDPais NVARCHAR(3) PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEstado (&#xA;    IDEstado INT PRIMARY KEY,&#xA;    EstadoCode NCHAR(3) NOT NULL,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimCiudad (&#xA;    IDCiudad INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(100) NOT NULL,&#xA;    CodigoPostal NVARCHAR(15) NOT NULL,&#xA;    EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEmpleados (&#xA;    IDVendedor INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    Apellido NVARCHAR(50) NOT NULL,&#xA;    CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),&#xA;    EsAsalariado BIT NOT NULL,&#xA;    Puesto NVARCHAR(50) NOT NULL,&#xA;    TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,          -- YYYYMMDD&#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                       -- 1 o 2&#xA;    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.&#xA;    NumeroMes INT,                      -- 1 a 12&#xA;    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.&#xA;    Día INT                            -- Día del mes&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimMoneda (&#xA;&#x9;IdMoneda INT PRIMARY KEY,&#xA;&#x9;Moneda NVARCHAR(50) NOT NULL,&#xA;&#x9;TasaPromedio MONEY &#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimOrdenes (&#xA;    IDOrder INT PRIMARY KEY,&#xA;    TotalPagado MONEY NOT NULL,&#xA;    IDVendedor INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA;    ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),&#xA;    MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda),&#xA;    Estado TINYINT NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimProductos (&#xA;    IDProducto INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    CompradoFlag BIT NOT NULL,&#xA;    PrecioLista MONEY NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (&#xA;    IDVenta INT PRIMARY KEY,&#xA;    PrecioLista MONEY NOT NULL,&#xA;    PrecioUnitario MONEY NOT NULL,&#xA;    DiferenciaPrecios MONEY NOT NULL,&#xA;    TotalVentaMoneda MONEY NOT NULL,&#xA;    Cantidad SMALLINT NOT NULL,&#xA;    ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),&#xA;    OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID('HEFESTO.dbo.FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.FactOrdenesDetails;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimOrdenes;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimProductos;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEmpleados', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEmpleados;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimCiudad;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEstado;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimPais;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTerritorio', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTerritorio;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTiempo', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTiempo;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimMoneda', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimMoneda;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTerritorio (&#xA;    IdTerritorio INT PRIMARY KEY,&#xA;    TerritorioNombre NVARCHAR(50) NOT NULL,&#xA;    GrupoTerritorio NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimPais (&#xA;    IDPais NVARCHAR(3) PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEstado (&#xA;    IDEstado INT PRIMARY KEY,&#xA;    EstadoCode NCHAR(3) NOT NULL,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimCiudad (&#xA;    IDCiudad INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(100) NOT NULL,&#xA;    CodigoPostal NVARCHAR(15) NOT NULL,&#xA;    EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEmpleados (&#xA;    IDVendedor INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    Apellido NVARCHAR(50) NOT NULL,&#xA;    CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),&#xA;    EsAsalariado BIT NOT NULL,&#xA;    Puesto NVARCHAR(50) NOT NULL,&#xA;    TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,          -- YYYYMMDD&#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                       -- 1 o 2&#xA;    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.&#xA;    NumeroMes INT,                      -- 1 a 12&#xA;    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.&#xA;    Día INT                            -- Día del mes&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimMoneda (&#xA;&#x9;IdMoneda INT PRIMARY KEY,&#xA;&#x9;Moneda NVARCHAR(50) NOT NULL,&#xA;&#x9;TasaPromedio MONEY &#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimOrdenes (&#xA;&#x9;IDOrder INT PRIMARY KEY,&#xA;&#x9;TotalPagado MONEY NOT NULL,&#xA;&#x9;Estado TINYINT NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimProductos (&#xA;    IDProducto INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    CompradoFlag BIT NOT NULL,&#xA;    PrecioLista MONEY NOT NULL&#xA;);&#xA;CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (&#xA;&#x9;IDVenta INT PRIMARY KEY,&#xA;&#x9;PrecioLista MONEY NOT NULL,&#xA;&#x9;PrecioUnitario MONEY NOT NULL,&#xA;&#x9;DiferenciaPrecios MONEY NOT NULL,&#xA;&#x9;TotalVentaMoneda MONEY NOT NULL,&#xA;&#x9;Cantidad SMALLINT NOT NULL,&#xA;&#x9;VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA;&#x9;ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),&#xA;&#x9;OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder),&#xA;&#x9;ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),&#xA;&#x9;MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -4186,13 +4159,13 @@ WHERE pp.ProductID = sod.ProductID
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Poblar FactOrdenesDetail\OLE DB Source"
-          TopLeft="303,117" />
-        <NodeLayout
           Size="171.2,41.6"
           Id="Package\Poblar FactOrdenesDetail\OLE DB Destination"
           TopLeft="300,213" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Poblar FactOrdenesDetail\OLE DB Source"
+          TopLeft="303,117" />
         <EdgeLayout
           Id="Package\Poblar FactOrdenesDetail.Paths[OLE DB Source Output]"
           TopLeft="381.75,159">
