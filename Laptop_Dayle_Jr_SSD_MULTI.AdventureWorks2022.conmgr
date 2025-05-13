@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022"
+  DTS:DTSID="{96D289A0-963C-48C6-9AD9-1D24239B4336}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::InitialCatalogAdventure]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::SqlServerName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=Laptop_Dayle_Jr\SSD_MULTI;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-SSIS_HEFESTO-{96D289A0-963C-48C6-9AD9-1D24239B4336}Laptop_Dayle_Jr\SSD_MULTI.AdventureWorks2022;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

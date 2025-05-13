@@ -11,72 +11,10 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Pregunta1"
   DTS:PackageType="5"
-  DTS:VersionBuild="64"
-  DTS:VersionGUID="{2018AE74-235C-4A80-92EA-95A1214F72BA}">
+  DTS:VersionBuild="75"
+  DTS:VersionGUID="{0E2ECEC8-28E3-46BD-87D6-C4C069FA1F08}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{8E80A00E-736D-4A62-90E9-114C0FA0B661}"
-      DTS:ObjectName="Laptop_Dayle_Jr\SSD_MULTI">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=Laptop_Dayle_Jr\SSD_MULTI;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Pregunta1-{8E80A00E-736D-4A62-90E9-114C0FA0B661}Laptop_Dayle_Jr\SSD_MULTI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{9FB6FEF8-8FDA-4B0F-8B92-A865ADB080F8}"
-      DTS:ObjectName="Laptop_Dayle_Jr\SSD_MULTI.Hefesto">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=Laptop_Dayle_Jr\SSD_MULTI;Initial Catalog=HEFESTO;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Pregunta1-{9FB6FEF8-8FDA-4B0F-8B92-A865ADB080F8}Laptop_Dayle_Jr\SSD_MULTI.Hefesto;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost.AdventureWorks2022]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{215AC24F-06A2-4D2D-99FD-0CE64E090B68}"
-      DTS:ObjectName="LocalHost.AdventureWorks2022">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Pregunta1-{215AC24F-06A2-4D2D-99FD-0CE64E090B68}LocalHost.AdventureWorks2022;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost.Cubo_HEFESTO_1]"
-      DTS:CreationName="MSOLAP100"
-      DTS:DTSID="{C52819CE-10B9-4E4A-ACB4-DD8D25E4AE7A}"
-      DTS:ObjectName="localhost.Cubo_HEFESTO_1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="0"
-          DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Cubo_HEFESTO_1;Provider=MSOLAP.8;Impersonation Level=Impersonate;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost.HEFESTO]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{667B7E52-C526-4018-AB55-54B22F58B1E0}"
-      DTS:ObjectName="LocalHost.HEFESTO">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.;Initial Catalog=HEFESTO;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Pregunta1-{667B7E52-C526-4018-AB55-54B22F58B1E0}LocalHost.HEFESTO;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -152,8 +90,8 @@
               <connections>
                 <connection
                   refId="Package\Poblar DimMoneda\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -287,8 +225,8 @@ LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
               <connections>
                 <connection
                   refId="Package\Poblar DimMoneda\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -486,8 +424,8 @@ LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
               <connections>
                 <connection
                   refId="Package\Poblar DimOrdenes\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -649,8 +587,8 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
               <connections>
                 <connection
                   refId="Package\Poblar DimOrdenes\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -878,8 +816,8 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
               <connections>
                 <connection
                   refId="Package\Poblar DimTerritorio\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1011,8 +949,8 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
               <connections>
                 <connection
                   refId="Package\Poblar DimTerritorio\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1132,7 +1070,7 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{9FB6FEF8-8FDA-4B0F-8B92-A865ADB080F8}"
+          SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
           SQLTask:SqlStatementSource="DECLARE @f DATE = '2011-01-01';&#xA;DECLARE @idfecha INT;&#xA;DECLARE @anio INT;&#xA;DECLARE @trimestre NVARCHAR(10);&#xA;DECLARE @mes NVARCHAR(20);&#xA;DECLARE @semestre INT;&#xA;DECLARE @dia INT;&#xA;DECLARE @nummes INT;&#xA;&#xA;SET DATEFORMAT ymd;&#xA;&#xA;WHILE (@f &lt;= '2014-12-31')&#xA;BEGIN&#xA;    SET @idfecha = YEAR(@f) * 10000 + MONTH(@f) * 100 + DAY(@f);&#xA;    SET @anio = YEAR(@f);&#xA;    SET @nummes = MONTH(@f);&#xA;    SET @dia = DAY(@f);&#xA;&#xA;    SET @mes = CASE @nummes&#xA;                    WHEN 1 THEN 'Enero'&#xA;                    WHEN 2 THEN 'Febrero'&#xA;                    WHEN 3 THEN 'Marzo'&#xA;                    WHEN 4 THEN 'Abril'&#xA;                    WHEN 5 THEN 'Mayo'&#xA;                    WHEN 6 THEN 'Junio'&#xA;                    WHEN 7 THEN 'Julio'&#xA;                    WHEN 8 THEN 'Agosto'&#xA;                    WHEN 9 THEN 'Septiembre'&#xA;                    WHEN 10 THEN 'Octubre'&#xA;                    WHEN 11 THEN 'Noviembre'&#xA;                    WHEN 12 THEN 'Diciembre'&#xA;               END;&#xA;&#xA;    SET @trimestre = CASE DATEPART(QUARTER, @f)&#xA;                        WHEN 1 THEN '1ro'&#xA;                        WHEN 2 THEN '2do'&#xA;                        WHEN 3 THEN '3ro'&#xA;                        WHEN 4 THEN '4to'&#xA;                     END;&#xA;&#xA;    SET @semestre = CASE &#xA;                      WHEN @nummes BETWEEN 1 AND 6 THEN 1&#xA;                      ELSE 2&#xA;                    END;&#xA;&#xA;    INSERT INTO DimTiempo (&#xA;        ClaveFecha, FechaCompleta, Año, Semestre,&#xA;        Trimestre, NumeroMes, NombreMes, Día&#xA;    )&#xA;    VALUES (&#xA;        @idfecha, @f, @anio, @semestre,&#xA;        @trimestre, @nummes, @mes, @dia&#xA;    );&#xA;&#xA;    SET @f = DATEADD(DAY, 1, @f);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -1209,8 +1147,8 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
               <connections>
                 <connection
                   refId="Package\Poblar FactOrdenesDetail\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1415,8 +1353,8 @@ WHERE sod.SalesOrderID = do.IDOrder AND
               <connections>
                 <connection
                   refId="Package\Poblar FactOrdenesDetail\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1638,7 +1576,7 @@ WHERE sod.SalesOrderID = do.IDOrder AND
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{9FB6FEF8-8FDA-4B0F-8B92-A865ADB080F8}"
+          SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
           SQLTask:SqlStatementSource="DELETE FROM HEFESTO.dbo.FactOrdenesDetails;&#xA;DELETE FROM HEFESTO.dbo.DimOrdenes;&#xA;DELETE FROM HEFESTO.dbo.DimProductos;&#xA;DELETE FROM HEFESTO.dbo.DimEmpleados;&#xA;DELETE FROM HEFESTO.dbo.DimCiudad;&#xA;DELETE FROM HEFESTO.dbo.DimEstado;&#xA;DELETE FROM HEFESTO.dbo.DimPais;&#xA;DELETE FROM HEFESTO.dbo.DimTerritorio;&#xA;DELETE FROM HEFESTO.dbo.DimTiempo;&#xA;DELETE FROM HEFESTO.dbo.DimMoneda;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -1655,7 +1593,7 @@ WHERE sod.SalesOrderID = do.IDOrder AND
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{9FB6FEF8-8FDA-4B0F-8B92-A865ADB080F8}"
+          SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
           SQLTask:SqlStatementSource="IF OBJECT_ID('HEFESTO.dbo.FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.FactOrdenesDetails;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimOrdenes;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimProductos;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEmpleados', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEmpleados;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimCiudad;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEstado;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimPais;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTerritorio', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTerritorio;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTiempo', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTiempo;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimMoneda', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimMoneda;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTerritorio (&#xA;    IdTerritorio INT PRIMARY KEY,&#xA;    TerritorioNombre NVARCHAR(50) NOT NULL,&#xA;    GrupoTerritorio NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimPais (&#xA;    IDPais NVARCHAR(3) PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEstado (&#xA;    IDEstado INT PRIMARY KEY,&#xA;    EstadoCode NCHAR(3) NOT NULL,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimCiudad (&#xA;    IDCiudad INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(100) NOT NULL,&#xA;    CodigoPostal NVARCHAR(15) NOT NULL,&#xA;    EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEmpleados (&#xA;    IDVendedor INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    Apellido NVARCHAR(50) NOT NULL,&#xA;    CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),&#xA;    EsAsalariado BIT NOT NULL,&#xA;    Puesto NVARCHAR(50) NOT NULL,&#xA;    TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,          -- YYYYMMDD&#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                       -- 1 o 2&#xA;    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.&#xA;    NumeroMes INT,                      -- 1 a 12&#xA;    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.&#xA;    Día INT                            -- Día del mes&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimMoneda (&#xA;&#x9;IdMoneda INT PRIMARY KEY,&#xA;&#x9;Moneda NVARCHAR(50) NOT NULL,&#xA;&#x9;TasaPromedio MONEY &#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimOrdenes (&#xA;    IDOrder INT PRIMARY KEY,&#xA;    TotalPagado MONEY NOT NULL,&#xA;    IDVendedor INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA;    ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),&#xA;    MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda),&#xA;    Estado TINYINT NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimProductos (&#xA;    IDProducto INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    CompradoFlag BIT NOT NULL,&#xA;    PrecioLista MONEY NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (&#xA;    IDVenta INT PRIMARY KEY,&#xA;    PrecioLista MONEY NOT NULL,&#xA;    PrecioUnitario MONEY NOT NULL,&#xA;    DiferenciaPrecios MONEY NOT NULL,&#xA;    TotalVentaMoneda MONEY NOT NULL,&#xA;    Cantidad SMALLINT NOT NULL,&#xA;    VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA;    ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),&#xA;    OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -1732,8 +1670,8 @@ WHERE sod.SalesOrderID = do.IDOrder AND
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1781,7 +1719,7 @@ WHERE sod.SalesOrderID = do.IDOrder AND
                     <externalMetadataColumn
                       refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
                       dataType="wstr"
-                      length="30"
+                      length="100"
                       name="Nombre" />
                     <externalMetadataColumn
                       refId="Package\Tarea Poblar DimCiudad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodigoPostal]"
@@ -1883,8 +1821,8 @@ WHERE pa.AddressID = pbea.AddressID AND
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimCiudad\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2082,8 +2020,8 @@ WHERE pa.AddressID = pbea.AddressID AND
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimEmpleados\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2272,8 +2210,8 @@ WHERE
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimEmpleados\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2528,8 +2466,8 @@ WHERE
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimEstado\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2675,8 +2613,8 @@ FROM AdventureWorks2022.Person.StateProvince
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimEstado\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2877,8 +2815,8 @@ FROM AdventureWorks2022.Person.StateProvince
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimPais\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2999,8 +2937,8 @@ FROM AdventureWorks2022.Person.CountryRegion;</property>
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimPais\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3162,8 +3100,8 @@ FROM AdventureWorks2022.Person.CountryRegion;</property>
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimProductos\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3307,8 +3245,8 @@ WHERE pp.ProductID = sod.ProductID
               <connections>
                 <connection
                   refId="Package\Tarea Poblar DimProductos\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
-                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI]"
+                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4090,15 +4028,11 @@ WHERE pp.ProductID = sod.ProductID
       </GraphLayout>
     </LayoutInfo>
   </Package>
-  <ConnectionManager
-    design-time-name="Package.ConnectionManagers[localhost.Cubo_HEFESTO_1]">
-    <ProjectReferenceName></ProjectReferenceName>
-  </ConnectionManager>
   <TaskHost
     design-time-name="Package\Poblar DimMoneda">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Poblar DimMoneda\OLE DB Source"
@@ -4126,9 +4060,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4159,7 +4091,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar DimOrdenes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Poblar DimOrdenes\OLE DB Source"
@@ -4187,9 +4119,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4220,7 +4150,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar DimTerritorio">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Poblar DimTerritorio\OLE DB Source"
@@ -4248,9 +4178,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4281,7 +4209,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar FactOrdenesDetail">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Poblar FactOrdenesDetail\OLE DB Source"
@@ -4309,9 +4237,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4342,7 +4268,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimCiudad">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimCiudad\OLE DB Source"
@@ -4370,9 +4296,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4403,7 +4327,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimEmpleados">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimEmpleados\OLE DB Source"
@@ -4431,9 +4355,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4464,7 +4386,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimEstado">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimEstado\OLE DB Source"
@@ -4492,9 +4414,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4525,7 +4445,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimPais">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimPais\OLE DB Source"
@@ -4553,9 +4473,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4586,7 +4504,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Tarea Poblar DimProductos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Tarea Poblar DimProductos\OLE DB Source"
@@ -4614,9 +4532,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Laptop_Dayle_Jr_SSD_MULTI.Hefesto"
+  DTS:DTSID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::InitialCatalog]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::SqlServerName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=Laptop_Dayle_Jr\SSD_MULTI;Initial Catalog=HEFESTO;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-SSIS_HEFESTO-{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}Laptop_Dayle_Jr\SSD_MULTI.Hefesto;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
