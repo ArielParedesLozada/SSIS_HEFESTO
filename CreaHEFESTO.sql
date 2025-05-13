@@ -50,7 +50,7 @@ CREATE TABLE HEFESTO.dbo.DimTiempo (
 CREATE TABLE HEFESTO.dbo.DimMoneda (
 	IdMoneda INT PRIMARY KEY,
 	Moneda NVARCHAR(50) NOT NULL,
-	TasaPromedio MONEY NOT NULL
+	TasaPromedio MONEY 
 );
 
 CREATE TABLE HEFESTO.dbo.DimOrdenes (
@@ -88,6 +88,9 @@ DELETE FROM HEFESTO.dbo.DimEmpleados;
 DELETE FROM HEFESTO.dbo.DimCiudad;
 DELETE FROM HEFESTO.dbo.DimEstado;
 DELETE FROM HEFESTO.dbo.DimPais;
+DELETE FROM HEFESTO.dbo.DimTerritorio;
+DELETE FROM HEFESTO.dbo.DimTiempo;
+DELETE FROM HEFESTO.dbo.DimMoneda;
 
 --DimProductos
 SELECT 
@@ -149,28 +152,26 @@ SELECT
 FROM AdventureWorks2022.Sales.SalesTerritory;
 
 --DimEmpleado -DimVendedor
-SELECT 
-	DISTINCT hre.BusinessEntityID AS IDVendedor,
-	pp.FirstName AS Nombre,
-	pp.LastName AS Apellido,
-	pbea.AddressID AS CiudadID,
-	hre.SalariedFlag AS EsAsalariado,
-	hre.JobTitle AS Puesto,
-	sst.TerritoryID AS TerritorioVenta	
-FROM 
-	AdventureWorks2022.HumanResources.Employee hre,
-	AdventureWorks2022.Person.BusinessEntityAddress pbea,
-	AdventureWorks2022.Person.Person pp,
-	AdventureWorks2022.Sales.SalesTerritory sst,
-	AdventureWorks2022.Sales.SalesPerson ssp,
-	AdventureWorks2022.Sales.SalesOrderHeader soh
-WHERE hre.BusinessEntityID = pbea.BusinessEntityID
-	AND hre.BusinessEntityID = pp.BusinessEntityID
-	AND hre.BusinessEntityID = ssp.BusinessEntityID
-	AND hre.BusinessEntityID = soh.SalesPersonID
-	AND sst.TerritoryID = ssp.TerritoryID
-	AND ssp.BusinessEntityID = hre.BusinessEntityID
-;
+SELECT DISTINCT
+    hre.BusinessEntityID AS IDVendedor,
+    pp.FirstName AS Nombre,
+    pp.LastName AS Apellido,
+    pbea.AddressID AS CiudadID, 
+    hre.SalariedFlag AS EsAsalariado,
+    hre.JobTitle AS Puesto,
+    sst.TerritoryID AS TerritorioVenta 
+FROM
+    AdventureWorks2022.HumanResources.Employee hre
+INNER JOIN
+    AdventureWorks2022.Person.Person pp ON hre.BusinessEntityID = pp.BusinessEntityID
+LEFT JOIN
+    AdventureWorks2022.Person.BusinessEntityAddress pbea ON hre.BusinessEntityID = pbea.BusinessEntityID
+LEFT JOIN
+    AdventureWorks2022.Sales.SalesPerson ssp ON hre.BusinessEntityID = ssp.BusinessEntityID
+LEFT JOIN
+    AdventureWorks2022.Sales.SalesTerritory sst ON ssp.TerritoryID = sst.TerritoryID
+WHERE
+    hre.BusinessEntityID IN (SELECT DISTINCT SalesPersonID FROM AdventureWorks2022.Sales.SalesOrderHeader WHERE SalesPersonID IS NOT NULL);
 
 --DimOrdenes (Sales.SalesOrderHeader)
 SELECT
@@ -206,3 +207,4 @@ WHERE sod.SalesOrderID = do.IDOrder AND
 	sod.SalesOrderID = soh.SalesOrderID AND
 	soh.CurrencyRateID = scr.CurrencyRateID
 ;
+

@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="30"
-  DTS:VersionGUID="{461A4F3A-721D-4F4B-B1EF-ADB45A22AC8D}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{9C6F9B5C-ABA6-42C2-9CDF-23CEF96A586B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -86,7 +86,397 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{262B8D92-4F29-4324-8338-1064CD62C662}"
-          SQLTask:SqlStatementSource="DROP TABLE IF EXISTS FactÓrdenes;&#xA;DROP TABLE IF EXISTS DimTiempo;&#xA;DROP TABLE IF EXISTS DimEmpleados;&#xA;&#xA;CREATE TABLE DimEmpleados (&#xA;    IDEmpleado INT PRIMARY KEY,            &#xA;    Puesto NVARCHAR(50),                   &#xA;    EsAsalariado BIT                       &#xA;);&#xA;CREATE TABLE DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,        &#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                      &#xA;    Trimestre NVARCHAR(10),            &#xA;    NumeroMes INT,                      &#xA;    NombreMes NVARCHAR(20),            &#xA;    Día INT                             &#xA;);&#xA;&#xA;CREATE TABLE FactÓrdenes (&#xA;    IDOrdenVenta INT PRIMARY KEY,                                    &#xA;    TotalPagado MONEY,                     &#xA;    IDEmpleado INT,                        &#xA;    ClaveFechaEnvío INT,                   &#xA;    CantidadOrdenesCanceladasRechazadas INT,  &#xA;    SumaTotalCanceladasRechazadas MONEY,   &#xA;    PorcentajeCanceladasRechazadas FLOAT,  &#xA;    CONSTRAINT FK_FechaEnvio FOREIGN KEY (ClaveFechaEnvío) REFERENCES DimTiempo(ClaveFecha),&#xA;    CONSTRAINT FK_Empleado FOREIGN KEY (IDEmpleado) REFERENCES DimEmpleados(IDEmpleado)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DROP TABLE IF EXISTS FactÓrdenes;&#xA;DROP TABLE IF EXISTS DimTiempo;&#xA;DROP TABLE IF EXISTS DimEmpleados;&#xA;&#xA;CREATE TABLE DimEmpleados (&#xA;    IDEmpleado INT PRIMARY KEY,            &#xA;    Puesto NVARCHAR(50),                   &#xA;    EsAsalariado BIT                       &#xA;);&#xA;CREATE TABLE DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,        &#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                      &#xA;    Trimestre NVARCHAR(10),            &#xA;    NumeroMes INT,                      &#xA;    NombreMes NVARCHAR(20),            &#xA;    Día INT                             &#xA;);&#xA;&#xA;CREATE TABLE FactÓrdenes (&#xA;    IDOrdenVenta INT PRIMARY KEY,&#xA;    TotalPagado MONEY,&#xA;    IDEmpleado INT,&#xA;    ClaveFechaEnvío INT,&#xA;    Estado VARCHAR(50),&#xA;&#xA;    CONSTRAINT FK_FechaEnvio FOREIGN KEY (ClaveFechaEnvío) REFERENCES DimTiempo(ClaveFecha),&#xA;    CONSTRAINT FK_Empleado FOREIGN KEY (IDEmpleado) REFERENCES DimEmpleados(IDEmpleado)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7AAFDC0D-D072-45AD-AE3B-090780330130}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactÓrdenes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.Hefesto]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_Orden_Venta]"
+                      cachedDataType="i4"
+                      cachedName="ID_Orden_Venta"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDOrdenVenta]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_Orden_Venta]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Total_Pagado]"
+                      cachedDataType="cy"
+                      cachedName="Total_Pagado"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalPagado]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Total_Pagado]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_Empleado]"
+                      cachedDataType="i4"
+                      cachedName="ID_Empleado"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDEmpleado]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_Empleado]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Clave_Fecha_Envio]"
+                      cachedDataType="i4"
+                      cachedName="Clave_Fecha_Envio"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvío]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Clave_Fecha_Envio]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Estado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="24"
+                      cachedName="Estado"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDOrdenVenta]"
+                      dataType="i4"
+                      name="IDOrdenVenta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalPagado]"
+                      dataType="cy"
+                      name="TotalPagado" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDEmpleado]"
+                      dataType="i4"
+                      name="IDEmpleado" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClaveFechaEnvío]"
+                      dataType="i4"
+                      name="ClaveFechaEnvío" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Estado" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    SOH.SalesOrderID AS ID_Orden_Venta,
+    SOH.TotalDue AS Total_Pagado,
+    SOH.SalesPersonID AS ID_Empleado,
+    CONVERT(INT, FORMAT(SOH.ShipDate, 'yyyyMMdd')) AS Clave_Fecha_Envio,
+    CASE SOH.Status
+        WHEN 1 THEN 'En proceso'
+        WHEN 2 THEN 'Aprobada'
+        WHEN 3 THEN 'Pendiente por inventario'
+        WHEN 4 THEN 'Rechazada'
+        WHEN 5 THEN 'Enviada'
+        WHEN 6 THEN 'Cancelada'
+        ELSE 'Desconocido'
+    END AS Estado
+FROM AdventureWorks2022.Sales.SalesOrderHeader AS SOH
+WHERE SOH.ShipDate IS NOT NULL
+  AND SOH.SalesPersonID IS NOT NULL
+  AND EXISTS (
+      SELECT 1 FROM Hefesto.dbo.DimEmpleados e
+      WHERE e.IDEmpleado = SOH.SalesPersonID
+  )
+  AND EXISTS (
+      SELECT 1 FROM Hefesto.dbo.DimTiempo t
+      WHERE t.ClaveFecha = CONVERT(INT, FORMAT(SOH.ShipDate, 'yyyyMMdd'))
+  );</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[Laptop_Dayle_Jr\SSD_MULTI.AdventureWorks2022]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_Orden_Venta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_Orden_Venta]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_Orden_Venta]"
+                      name="ID_Orden_Venta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Total_Pagado]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Total_Pagado]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Total_Pagado]"
+                      name="Total_Pagado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_Empleado]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_Empleado]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_Empleado]"
+                      name="ID_Empleado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Clave_Fecha_Envio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Clave_Fecha_Envio]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Clave_Fecha_Envio]"
+                      name="Clave_Fecha_Envio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
+                      length="24"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]"
+                      name="Estado"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_Orden_Venta]"
+                      dataType="i4"
+                      name="ID_Orden_Venta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Total_Pagado]"
+                      dataType="cy"
+                      name="Total_Pagado" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_Empleado]"
+                      dataType="i4"
+                      name="ID_Empleado" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Clave_Fecha_Envio]"
+                      dataType="i4"
+                      name="Clave_Fecha_Envio" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="24"
+                      name="Estado" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_Orden_Venta]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_Orden_Venta]"
+                      name="ID_Orden_Venta" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Total_Pagado]"
+                      dataType="cy"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Total_Pagado]"
+                      name="Total_Pagado" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_Empleado]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_Empleado]"
+                      name="ID_Empleado" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Clave_Fecha_Envio]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Clave_Fecha_Envio]"
+                      name="Clave_Fecha_Envio" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="24"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Estado]"
+                      name="Estado" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -415,23 +805,6 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
           SQLTask:SqlStatementSource="DECLARE @f DATE = '2011-01-01';&#xA;DECLARE @idfecha INT;&#xA;DECLARE @anio INT;&#xA;DECLARE @trimestre NVARCHAR(10);&#xA;DECLARE @mes NVARCHAR(20);&#xA;DECLARE @semestre INT;&#xA;DECLARE @dia INT;&#xA;DECLARE @nummes INT;&#xA;&#xA;SET DATEFORMAT ymd;&#xA;&#xA;WHILE (@f &lt;= '2014-12-31')&#xA;BEGIN&#xA;    SET @idfecha = YEAR(@f) * 10000 + MONTH(@f) * 100 + DAY(@f);&#xA;    SET @anio = YEAR(@f);&#xA;    SET @nummes = MONTH(@f);&#xA;    SET @dia = DAY(@f);&#xA;&#xA;    SET @mes = CASE @nummes&#xA;                    WHEN 1 THEN 'Enero'&#xA;                    WHEN 2 THEN 'Febrero'&#xA;                    WHEN 3 THEN 'Marzo'&#xA;                    WHEN 4 THEN 'Abril'&#xA;                    WHEN 5 THEN 'Mayo'&#xA;                    WHEN 6 THEN 'Junio'&#xA;                    WHEN 7 THEN 'Julio'&#xA;                    WHEN 8 THEN 'Agosto'&#xA;                    WHEN 9 THEN 'Septiembre'&#xA;                    WHEN 10 THEN 'Octubre'&#xA;                    WHEN 11 THEN 'Noviembre'&#xA;                    WHEN 12 THEN 'Diciembre'&#xA;               END;&#xA;&#xA;    SET @trimestre = CASE DATEPART(QUARTER, @f)&#xA;                        WHEN 1 THEN '1ro'&#xA;                        WHEN 2 THEN '2do'&#xA;                        WHEN 3 THEN '3ro'&#xA;                        WHEN 4 THEN '4to'&#xA;                     END;&#xA;&#xA;    SET @semestre = CASE &#xA;                      WHEN @nummes BETWEEN 1 AND 6 THEN 1&#xA;                      ELSE 2&#xA;                    END;&#xA;&#xA;    INSERT INTO DimTiempo (&#xA;        ClaveFecha, FechaCompleta, Año, Semestre,&#xA;        Trimestre, NumeroMes, NombreMes, Día&#xA;    )&#xA;    VALUES (&#xA;        @idfecha, @f, @anio, @semestre,&#xA;        @trimestre, @nummes, @mes, @dia&#xA;    );&#xA;&#xA;    SET @f = DATEADD(DAY, 1, @f);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Poblar FactOrdenes"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{0D565C79-D31B-420B-BAED-27CDAFE22B8A}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Poblar FactOrdenes"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{4B305757-D582-4CC6-B119-1A7DF84706D3}"
-          SQLTask:SqlStatementSource="-- Paso 1: calcular valores agregados globales&#xA;DECLARE @TotalCanceladasRechazadas INT;&#xA;DECLARE @SumaCanceladasRechazadas MONEY;&#xA;DECLARE @TotalEnviadas INT;&#xA;&#xA;SELECT &#xA;    @TotalCanceladasRechazadas = COUNT(*)&#xA;FROM AdventureWorks2022.Sales.SalesOrderHeader&#xA;WHERE Status IN (4, 6);  -- Rechazadas y canceladas&#xA;&#xA;SELECT &#xA;    @SumaCanceladasRechazadas = SUM(TotalDue)&#xA;FROM AdventureWorks2022.Sales.SalesOrderHeader&#xA;WHERE Status IN (4, 6);&#xA;&#xA;SELECT &#xA;    @TotalEnviadas = COUNT(*)&#xA;FROM AdventureWorks2022.Sales.SalesOrderHeader&#xA;WHERE Status = 5;&#xA;&#xA;-- Paso 2: insertar en FactÓrdenes&#xA;INSERT INTO Hefesto.dbo.FactÓrdenes (&#xA;    IDOrdenVenta,&#xA;    TotalPagado,&#xA;    IDEmpleado,&#xA;    ClaveFechaEnvío,&#xA;    CantidadOrdenesCanceladasRechazadas,&#xA;    SumaTotalCanceladasRechazadas,&#xA;    PorcentajeCanceladasRechazadas&#xA;)&#xA;SELECT&#xA;    SOH.SalesOrderID,&#xA;    SOH.TotalDue,&#xA;    SOH.SalesPersonID,&#xA;    CONVERT(INT, FORMAT(SOH.ShipDate, 'yyyyMMdd')),&#xA;    @TotalCanceladasRechazadas,&#xA;    @SumaCanceladasRechazadas,&#xA;    CAST(@TotalCanceladasRechazadas AS FLOAT) / NULLIF(@TotalEnviadas, 0)&#xA;FROM AdventureWorks2022.Sales.SalesOrderHeader AS SOH&#xA;WHERE SOH.Status = 5&#xA;  AND SOH.ShipDate IS NOT NULL&#xA;  AND SOH.SalesPersonID IS NOT NULL&#xA;  AND EXISTS (&#xA;      SELECT 1 FROM Hefesto.dbo.DimEmpleados e&#xA;      WHERE e.IDEmpleado = SOH.SalesPersonID&#xA;  )&#xA;  AND EXISTS (&#xA;      SELECT 1 FROM Hefesto.dbo.DimTiempo t&#xA;      WHERE t.ClaveFecha = CONVERT(INT, FORMAT(SOH.ShipDate, 'yyyyMMdd'))&#xA;  );&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -453,19 +826,19 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{BC2460FD-F7E9-42D3-AF61-C5E975C2BF35}"
-      DTS:From="Package\Poblar dimTiempo"
+      DTS:DTSID="{28E14FD9-2B7F-46EE-9ACD-783F2A54DAFA}"
+      DTS:From="Package\Poblar dimEmpleados"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Poblar FactOrdenes" />
+      DTS:To="Package\Data Flow Task" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
-      DTS:DTSID="{141D3F6F-C078-4A87-8DA9-82E738E3CF8D}"
-      DTS:From="Package\Poblar dimEmpleados"
+      DTS:DTSID="{54BD3DEC-CD56-4348-989B-34C7D9F49597}"
+      DTS:From="Package\Poblar dimTiempo"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
-      DTS:To="Package\Poblar FactOrdenes" />
+      DTS:To="Package\Data Flow Task" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
       DTS:CreationName=""
@@ -496,6 +869,10 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
           Id="Package\Crear Tablas"
           TopLeft="343.571429302801,42.0588234925456" />
         <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="350.000000745058,318.882352661664" />
+        <NodeLayout
           Size="179.2,41.6"
           Id="Package\Poblar dimEmpleados"
           TopLeft="210.714286162841,227.917646859746" />
@@ -503,10 +880,6 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
           Size="163.2,41.6"
           Id="Package\Poblar dimTiempo"
           TopLeft="458.571429547607,224.094117451333" />
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Poblar FactOrdenes"
-          TopLeft="335.000000713127,320.447058543346" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="387.104762625491,173.164705767733">
@@ -577,30 +950,30 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="540.171429547607,265.694117451333">
+          TopLeft="300.314286162841,269.517646859746">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-92.9047621678132,54.7529410920135"
+              EndConnector="101.152381248884,49.364705801918"
               Start="0,0"
-              End="-92.9047621678132,47.2529410920135">
+              End="101.152381248884,41.864705801918">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.546166844462" />
+                    End="0,25.3070463918756" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.546166844462"
-                    Point2="0,32.546166844462"
-                    Point3="-4,32.546166844462" />
+                    Point1="0,25.3070463918756"
+                    Point2="0,29.3070463918756"
+                    Point3="4,29.3070463918756" />
                   <mssgle:LineSegment
-                    End="-88.9047621678132,32.546166844462" />
+                    End="97.1523812488837,29.3070463918756" />
                   <mssgle:CubicBezierSegment
-                    Point1="-88.9047621678132,32.546166844462"
-                    Point2="-92.9047621678132,32.546166844462"
-                    Point3="-92.9047621678132,36.546166844462" />
+                    Point1="97.1523812488837,29.3070463918756"
+                    Point2="101.152381248884,29.3070463918756"
+                    Point3="101.152381248884,33.3070463918756" />
                   <mssgle:LineSegment
-                    End="-92.9047621678132,47.2529410920135" />
+                    End="101.152381248884,41.864705801918" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -611,30 +984,30 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="300.314286162841,269.517646859746">
+          TopLeft="540.171429547607,265.694117451333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="92.8190478836192,50.9294116836003"
+              EndConnector="-91.2380954692156,53.188235210331"
               Start="0,0"
-              End="92.8190478836192,43.4294116836003">
+              End="-91.2380954692156,45.688235210331">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.2733898286703" />
+                    End="0,27.5770154301334" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26.2733898286703"
-                    Point2="0,30.2733898286703"
-                    Point3="4,30.2733898286703" />
+                    Point1="0,27.5770154301334"
+                    Point2="0,31.5770154301334"
+                    Point3="-4,31.5770154301334" />
                   <mssgle:LineSegment
-                    End="88.8190478836192,30.2733898286703" />
+                    End="-87.2380954692156,31.5770154301334" />
                   <mssgle:CubicBezierSegment
-                    Point1="88.8190478836192,30.2733898286703"
-                    Point2="92.8190478836192,30.2733898286703"
-                    Point3="92.8190478836192,34.2733898286703" />
+                    Point1="-87.2380954692156,31.5770154301334"
+                    Point2="-91.2380954692156,31.5770154301334"
+                    Point3="-91.2380954692156,35.5770154301334" />
                   <mssgle:LineSegment
-                    End="92.8190478836192,43.4294116836003" />
+                    End="-91.2380954692156,45.688235210331" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -669,10 +1042,81 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Poblar dimEmpleados">
+    design-time-name="Package\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="177.142857519948,180.470588077105" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Data Flow Task\OLE DB Source"
+          TopLeft="172.85714322511,58.1176470078811" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="247.65714322511,99.7176470078811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.6857142948375,80.7529410692235"
+              Start="0,0"
+              End="14.6857142948375,73.2529410692235">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.3764705346118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.3764705346118"
+                    Point2="0,40.3764705346118"
+                    Point3="4,40.3764705346118" />
+                  <mssgle:LineSegment
+                    End="10.6857142948375,40.3764705346118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.6857142948375,40.3764705346118"
+                    Point2="14.6857142948375,40.3764705346118"
+                    Point3="14.6857142948375,44.3764705346118" />
+                  <mssgle:LineSegment
+                    End="14.6857142948375,73.2529410692235" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar dimEmpleados">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="268.8,41.6"
           Id="Package\Poblar dimEmpleados\Traer datos HumanResources_Employee"
@@ -700,7 +1144,9 @@ FROM [AdventureWorks2022].[HumanResources].[Employee];</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
