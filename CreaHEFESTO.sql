@@ -56,7 +56,6 @@ CREATE TABLE HEFESTO.dbo.DimMoneda (
 CREATE TABLE HEFESTO.dbo.DimOrdenes (
 	IDOrder INT PRIMARY KEY,
 	TotalPagado MONEY NOT NULL,
-	IDVendedor INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),
 	ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),
 	MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda),
 	Estado TINYINT NOT NULL
@@ -177,7 +176,6 @@ WHERE
 SELECT
 	soh.SalesOrderID AS IDOrder,
 	soh.TotalDue AS TotalPagado,
-	soh.SalesPersonID AS IDVendedor,
 	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
 	soh.CurrencyRateID AS MonedaID,
 	soh.Status AS Estado
