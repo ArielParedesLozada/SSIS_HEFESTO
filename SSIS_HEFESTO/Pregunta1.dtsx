@@ -11,24 +11,10 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Pregunta1"
   DTS:PackageType="5"
-  DTS:VersionBuild="91"
-  DTS:VersionGUID="{C78F41C8-7D25-4DD2-BE2C-8C1207450566}">
+  DTS:VersionBuild="95"
+  DTS:VersionGUID="{7B8BEEEF-647D-4689-957D-33E6AA1CF32A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost]"
-      DTS:CreationName="MSOLAP100"
-      DTS:DTSID="{07D5E7CD-DDEE-4CEF-B54C-B9D3F64D6D40}"
-      DTS:ObjectName="localhost">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="0"
-          DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Data Source=localhost;PROVIDER=MSOLAP;Impersonation Level=Impersonate;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -4557,9 +4543,5 @@ WHERE pp.ProductID = sod.ProductID
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <ConnectionManager
-    design-time-name="Package.ConnectionManagers[localhost]">
-    <ProjectReferenceName></ProjectReferenceName>
-  </ConnectionManager>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
