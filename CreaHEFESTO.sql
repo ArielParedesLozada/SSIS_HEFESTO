@@ -56,7 +56,9 @@ CREATE TABLE HEFESTO.dbo.DimMoneda (
 CREATE TABLE HEFESTO.dbo.DimOrdenes (
 	IDOrder INT PRIMARY KEY,
 	TotalPagado MONEY NOT NULL,
-	Estado TINYINT NOT NULL
+	Estado TINYINT NOT NULL,
+	Impuesto MONEY NOT NULL,
+	ImpuestoEnvio MONEY NOT NULL
 );
 
 CREATE TABLE HEFESTO.dbo.DimProductos (
@@ -75,8 +77,6 @@ CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (
 	Cantidad SMALLINT NOT NULL,
 	TotalLinea MONEY NOT NULL,
 	Descuento MONEY NOT NULL,
-	Impuesto MONEY NOT NULL,
-	ImpuestoEnvio MONEY NOT NULL,
 	VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),
 	ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),
 	OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder),
@@ -215,7 +215,9 @@ INSERT INTO HEFESTO.dbo.DimEmpleados VALUES (
 SELECT
 	soh.SalesOrderID AS IDOrder,
 	soh.TotalDue AS TotalPagado,
-	soh.Status AS Estado
+	soh.Status AS Estado,
+	soh.TaxAmt AS Impuesto,
+	soh.Freight AS ImpuestoEnvio
 FROM AdventureWorks2022.Sales.SalesOrderHeader soh
 ;
 
@@ -234,8 +236,6 @@ SELECT
 	(sod.UnitPrice * (1.0 - sod.UnitPriceDiscount)) * sod.OrderQty AS TotalLinea,
 	sod.UnitPriceDiscount AS Descuento,
 	soh.CurrencyRateID AS MonedaID,
-	soh.TaxAmt AS Impuesto,
-	soh.Freight AS ImpuestoEnvio,
 	sod.OrderQty AS Cantidad
 FROM AdventureWorks2022.Sales.SalesOrderDetail sod
 JOIN AdventureWorks2022.Sales.SalesOrderHeader soh
