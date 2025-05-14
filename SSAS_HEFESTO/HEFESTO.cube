@@ -552,6 +552,17 @@
             </Source>
           </Source>
         </Measure>
+        <Measure dwd:design-time-name="e6d92f3b-6a7d-44a7-bb69-f6b208558783">
+          <ID>Total Pagado</ID>
+          <Name>Total Pagado</Name>
+          <Source dwd:design-time-name="71cce500-c991-4a3c-8b20-859b29a389e0">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="6a24dc69-e968-4119-9d8c-5f2f5be417fb">
+              <TableID>dbo_DimOrdenes</TableID>
+              <ColumnID>TotalPagado</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
       <ProcessingMode>Regular</ProcessingMode>
@@ -847,13 +858,141 @@ El comando CALCULATE controla la agregación de celdas hoja en el cubo.
 Si se elimina o modifica el comando CALCULATE, se ven afectados los datos del cubo.
 Solo debe editar este comando si especifica manualmente cómo se agrega el cubo.
 */
-CALCULATE;      
+CALCULATE;          
 CREATE MEMBER CURRENTCUBE.[Measures].[TotalOrden]
  AS [Measures].[Total Linea]
 + [Measures].[Máximo Impuesto]
 + [Measures].[Máximo Impuesto Envio], 
 FORMAT_STRING = "Standard", 
-VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details'  ; </Text>
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details';    
+
+---GRUPO DE MEDIDA --CUIDADO
+
+-- Recuento de órdenes Canceladas
+CREATE MEMBER CURRENTCUBE.[Measures].[Recuento de Ordenes Canceladas]
+ AS COUNT(
+  FILTER(
+    [Dim Ordenes].[ID Order].[ID Order].MEMBERS,
+    ([Dim Ordenes].[Estado Desc].CURRENTMEMBER.Name = "Cancelled")
+  )
+), 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details';   
+CREATE MEMBER CURRENTCUBE.[Measures].[Borrame Monto Total de Ordenes Rejected]
+ AS 
+CoalesceEmpty(
+  SUM(
+    FILTER(
+      [Dim Ordenes].[ID Order].MEMBERS,
+      [Dim Ordenes].[Estado Desc].CURRENTMEMBER.NAME = "Rejected"
+    ),
+    [Measures].[TotalOrden]
+  ),
+  0
+),
+FORMAT_STRING = "Standard", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details';   
+
+-- Recuento de órdenes Rechazadas
+CREATE MEMBER CURRENTCUBE.[Measures].[Recuento de Ordenes Rechazadas]
+AS 
+COUNT(
+  FILTER(
+    [Dim Ordenes].[ID Order].[ID Order].MEMBERS,
+    ([Dim Ordenes].[Estado Desc].CURRENTMEMBER.Name = "Rejected")
+  )
+),
+VISIBLE = 1, 
+ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details';   
+
+-- Recuento de órdenes Enviadas
+CREATE MEMBER CURRENTCUBE.[Measures].[Recuento de Ordenes Enviadas]
+AS 
+COUNT(
+  FILTER(
+    [Dim Ordenes].[ID Order].[ID Order].MEMBERS,
+    ([Dim Ordenes].[Estado Desc].CURRENTMEMBER.Name = "Shipped")
+  )
+),
+VISIBLE = 1, 
+ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details';   
+
+-- Recuento combinado de Canceladas o Rechazadas
+CREATE MEMBER CURRENTCUBE.[Measures].[Recuento de Ordenes Canceladas o Rechazadas]
+AS 
+[Measures].[Recuento de Ordenes Canceladas] + [Measures].[Recuento de Ordenes Rechazadas],
+VISIBLE = 1, 
+ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details';   
+
+-- Porcentaje de Canceladas o Rechazadas sobre Enviadas
+CREATE MEMBER CURRENTCUBE.[Measures].[% Ordenes Canceladas o Rechazadas sobre Enviadas]
+AS 
+IIF(
+  [Measures].[Recuento de Ordenes Enviadas] = 0,
+  NULL,
+  [Measures].[Recuento de Ordenes Canceladas o Rechazadas] * 1.0 / [Measures].[Recuento de Ordenes Enviadas]
+),
+FORMAT_STRING = "Percent", 
+VISIBLE = 1, 
+ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details';   
+
+-- Porcentaje de Rechazadas sobre Enviadas
+CREATE MEMBER CURRENTCUBE.[Measures].[% Ordenes Rechazadas sobre Enviadas]
+AS 
+IIF(
+  [Measures].[Recuento de Ordenes Enviadas] = 0,
+  NULL,
+  [Measures].[Recuento de Ordenes Rechazadas] * 1.0 / [Measures].[Recuento de Ordenes Enviadas]
+),
+FORMAT_STRING = "Percent", 
+VISIBLE = 1, 
+ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details';   
+
+-- Porcentaje de Canceladas sobre Enviadas
+CREATE MEMBER CURRENTCUBE.[Measures].[% Ordenes Canceladas sobre Enviadas]
+AS 
+IIF(
+  [Measures].[Recuento de Ordenes Enviadas] = 0,
+  NULL,
+  [Measures].[Recuento de Ordenes Canceladas] * 1.0 / [Measures].[Recuento de Ordenes Enviadas]
+),
+FORMAT_STRING = "Percent", 
+VISIBLE = 1, 
+ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details';   
+
+-- Monto total de órdenes rechazadas (basado en TotalOrden)
+CREATE MEMBER CURRENTCUBE.[Measures].[Monto Total de Ordenes Rechazadas]
+ AS CoalesceEmpty(
+  SUM(
+    FILTER(
+      [Dim Ordenes].[ID Order].MEMBERS,
+      [Dim Ordenes].[Estado Desc].CURRENTMEMBER.NAME = "Rejected"
+    ),
+    [Measures].[TotalOrden]
+  ),
+  0
+), 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details'  ;   
+
+-- Monto total de órdenes canceladas (basado en TotalOrden)
+CREATE MEMBER CURRENTCUBE.[Measures].[Monto Total de Ordenes Canceladas]
+ AS CoalesceEmpty(
+  SUM(
+    FILTER(
+      [Dim Ordenes].[ID Order].MEMBERS,
+      [Dim Ordenes].[Estado Desc].CURRENTMEMBER.NAME = "Cancelled"
+    ),
+    [Measures].[TotalOrden]
+  ),
+  0
+), 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details'  ;   
+
+-- Monto total de órdenes canceladas o rechazadas
+CREATE MEMBER CURRENTCUBE.[Measures].[Monto Total de Ordenes Rechazadas o Canceladas]
+AS 
+[Measures].[Monto Total de Ordenes Canceladas] + [Measures].[Monto Total de Ordenes Rechazadas],
+VISIBLE = 1, 
+ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details'; </Text>
         </Command>
       </Commands>
     </MdxScript>
