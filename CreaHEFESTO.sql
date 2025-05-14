@@ -223,29 +223,32 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
 
 --Tabla de hechos
 SELECT
-	sod.SalesOrderDetailID AS IDVenta,
-	sod.UnitPrice AS PrecioUnitario,
-	plph.ListPrice AS PrecioLista,
-	plph.ListPrice - sod.UnitPrice AS DiferenciaPrecios,
-	sod.UnitPrice * sod.OrderQty * scr.AverageRate AS TotalVentaMoneda,
-	sod.ProductID AS ProductoID,
-	soh.SalesOrderID AS OrdenID,
-	ISNULL(soh.SalesPersonID, -1) AS VendedorID,
-	ISNULL(soh.TerritoryID, -1) AS TerritorioID,
-	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
-	(sod.UnitPrice * (1.0 - sod.UnitPriceDiscount)) * sod.OrderQty AS TotalLinea,
-	sod.UnitPriceDiscount AS Descuento,
-	soh.CurrencyRateID AS MonedaID,
-	sod.OrderQty AS Cantidad
+    sod.SalesOrderDetailID AS IDVenta,
+    sod.UnitPrice AS PrecioUnitario,
+    ISNULL(plph.ListPrice, p.ListPrice) AS PrecioLista,
+    ISNULL(plph.ListPrice, p.ListPrice) - sod.UnitPrice AS DiferenciaPrecios,
+    sod.UnitPrice * sod.OrderQty * scr.AverageRate AS TotalVentaMoneda,
+    sod.ProductID AS ProductoID,
+    soh.SalesOrderID AS OrdenID,
+    ISNULL(soh.SalesPersonID, -1) AS VendedorID,
+    ISNULL(soh.TerritoryID, -1) AS TerritorioID,
+    CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
+    (sod.UnitPrice * (1.0 - sod.UnitPriceDiscount)) * sod.OrderQty AS TotalLinea,
+    sod.UnitPriceDiscount AS Descuento,
+    soh.CurrencyRateID AS MonedaID,
+    sod.OrderQty AS Cantidad
 FROM AdventureWorks2022.Sales.SalesOrderDetail sod
 JOIN AdventureWorks2022.Sales.SalesOrderHeader soh
-	ON sod.SalesOrderID = soh.SalesOrderID
+    ON sod.SalesOrderID = soh.SalesOrderID
 JOIN AdventureWorks2022.Sales.CurrencyRate scr
-	ON soh.CurrencyRateID = scr.CurrencyRateID
-JOIN AdventureWorks2022.Production.ProductListPriceHistory plph
-	ON plph.ProductID = sod.ProductID
-	AND soh.OrderDate >= plph.StartDate
-	AND (plph.EndDate IS NULL OR soh.OrderDate < plph.EndDate)
+    ON soh.CurrencyRateID = scr.CurrencyRateID
+JOIN AdventureWorks2022.Production.Product p
+    ON p.ProductID = sod.ProductID
+LEFT JOIN AdventureWorks2022.Production.ProductListPriceHistory plph
+    ON plph.ProductID = sod.ProductID
+    AND soh.OrderDate >= plph.StartDate
+    AND (plph.EndDate IS NULL OR soh.OrderDate < plph.EndDate)
 LEFT JOIN HEFESTO.dbo.DimEmpleados de
-	ON de.IDVendedor = soh.SalesPersonID
+    ON de.IDVendedor = soh.SalesPersonID
 ;
+
