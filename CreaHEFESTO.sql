@@ -73,10 +73,15 @@ CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (
 	DiferenciaPrecios MONEY NOT NULL,
 	TotalVentaMoneda MONEY NOT NULL,
 	Cantidad SMALLINT NOT NULL,
+	TotalLinea MONEY NOT NULL,
+	Descuento MONEY NOT NULL,
+	Impuesto MONEY NOT NULL,
+	ImpuestoEnvio MONEY NOT NULL,
 	VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),
 	ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),
 	OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder),
 	ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),
+	TerritorioID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio,
 	MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda)
 );
 
@@ -108,6 +113,11 @@ SELECT
 	Name AS Nombre
 FROM AdventureWorks2022.Person.CountryRegion;
 
+INSERT INTO HEFESTO.dbo.DimPais VALUES (
+	-1,
+	'Unknown'
+);
+
 --DimEstado
 SELECT
 	StateProvinceID AS IDEstado,
@@ -116,6 +126,12 @@ SELECT
 	CountryRegionCode AS PaisID
 FROM AdventureWorks2022.Person.StateProvince
 ;
+INSERT INTO HEFESTO.dbo.DimEstado VALUES (
+	-1,
+	'WWW',
+	'Unknown',
+	-1
+);
 
 --DimMoneda
 SELECT
@@ -143,12 +159,25 @@ WHERE pa.AddressID = pbea.AddressID AND
 	pbe.BusinessEntityID = hre.BusinessEntityID
 ;
 
+INSERT INTO HEFESTO.dbo.DimCiudad VALUES (
+	-1,
+	'Unknown',
+	'Unknown',
+	-1
+);
+
 --DimTerritorio
 SELECT
     TerritoryID AS IdTerritorio,
     [Name] AS TerritorioNombre,
     [Group] AS GrupoTerritorio
 FROM AdventureWorks2022.Sales.SalesTerritory;
+
+INSERT INTO HEFESTO.dbo.DimTerritorio VALUES (
+	-1,
+	'Unknown',
+	'Unknown'
+);
 
 --DimEmpleado -DimVendedor
 SELECT DISTINCT
@@ -158,7 +187,7 @@ SELECT DISTINCT
     pbea.AddressID AS CiudadID, 
     hre.SalariedFlag AS EsAsalariado,
     hre.JobTitle AS Puesto,
-    sst.TerritoryID AS TerritorioVenta 
+    ISNULL(sst.TerritoryID, -1) AS TerritorioVenta 
 FROM
     AdventureWorks2022.HumanResources.Employee hre
 INNER JOIN
@@ -172,6 +201,16 @@ LEFT JOIN
 WHERE
     hre.BusinessEntityID IN (SELECT DISTINCT SalesPersonID FROM AdventureWorks2022.Sales.SalesOrderHeader WHERE SalesPersonID IS NOT NULL);
 
+INSERT INTO HEFESTO.dbo.DimEmpleados VALUES (
+	-1,
+	'Unknown',
+	' ',
+	-1,
+	-1,
+	' ',
+	-1
+);
+
 --DimOrdenes (Sales.SalesOrderHeader)
 SELECT
 	soh.SalesOrderID AS IDOrder,
@@ -184,25 +223,29 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh
 SELECT
 	sod.SalesOrderDetailID AS IDVenta,
 	sod.UnitPrice AS PrecioUnitario,
-	dp.PrecioLista AS PrecioLista,
-	dp.PrecioLista - sod.UnitPrice AS DiferenciaPrecios,
+	plph.ListPrice AS PrecioLista,
+	plph.ListPrice - sod.UnitPrice AS DiferenciaPrecios,
 	sod.UnitPrice * sod.OrderQty * scr.AverageRate AS TotalVentaMoneda,
-	dp.IDProducto AS ProductoID,
-	do.IDOrder AS OrdenID,
-	dv.IDVendedor AS VendedorID,
+	sod.ProductID AS ProductoID,
+	soh.SalesOrderID AS OrdenID,
+	ISNULL(soh.SalesPersonID, -1) AS VendedorID,
+	ISNULL(soh.TerritoryID, -1) AS TerritorioID,
 	CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
+	(sod.UnitPrice * (1.0 - sod.UnitPriceDiscount)) * sod.OrderQty AS TotalLinea,
+	sod.UnitPriceDiscount AS Descuento,
 	soh.CurrencyRateID AS MonedaID,
+	soh.TaxAmt AS Impuesto,
+	soh.Freight AS ImpuestoEnvio,
 	sod.OrderQty AS Cantidad
-FROM AdventureWorks2022.Sales.SalesOrderDetail sod,
-	AdventureWorks2022.Sales.SalesOrderHeader soh,
-	AdventureWorks2022.Sales.CurrencyRate scr,
-	HEFESTO.dbo.DimProductos dp,
-	HEFESTO.dbo.DimEmpleados dv,
-	HEFESTO.dbo.DimOrdenes do
-WHERE sod.SalesOrderID = do.IDOrder AND
-	soh.SalesPersonID = dv.IDVendedor AND 
-	sod.ProductID = dp.IDProducto AND
-	sod.SalesOrderID = soh.SalesOrderID AND
-	soh.CurrencyRateID = scr.CurrencyRateID
+FROM AdventureWorks2022.Sales.SalesOrderDetail sod
+JOIN AdventureWorks2022.Sales.SalesOrderHeader soh
+	ON sod.SalesOrderID = soh.SalesOrderID
+JOIN AdventureWorks2022.Sales.CurrencyRate scr
+	ON soh.CurrencyRateID = scr.CurrencyRateID
+JOIN AdventureWorks2022.Production.ProductListPriceHistory plph
+	ON plph.ProductID = sod.ProductID
+	AND soh.OrderDate >= plph.StartDate
+	AND (plph.EndDate IS NULL OR soh.OrderDate < plph.EndDate)
+LEFT JOIN HEFESTO.dbo.DimEmpleados de
+	ON de.IDVendedor = soh.SalesPersonID
 ;
-
