@@ -49,9 +49,9 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimEmpleados" left="1670" top="14632" logicalid="22" controlid="2" masterid="0" hint1="0" hint2="0" width="3366" height="3387" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimEmpleados" left="1670" top="14632" logicalid="22" controlid="2" masterid="0" hint1="0" hint2="0" width="3366" height="3782" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
-                    <ddsxmlobjectstreaminitwrapper binary="000e0000260d00003b0d0000" />
+                    <ddsxmlobjectstreaminitwrapper binary="000e0000260d0000c60e0000" />
                   </control>
                   <layoutobject>
                     <ddsxmlobj>
@@ -126,7 +126,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="4736" top="14925" logicalid="29" controlid="9" masterid="0" hint1="0" hint2="0" width="3847" height="911" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="4736" top="15037" logicalid="29" controlid="9" masterid="0" hint1="0" hint2="0" width="3847" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobj>
                       <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
@@ -139,14 +139,14 @@
                       <property name="VisibleAP" value="0" vartype="3" />
                     </ddsxmlobj>
                   </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="2" sourceattachpoint="10" destattachpoint="11" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="2" sourceattachpoint="10" destattachpoint="13" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
                     <point x="8283" y="15436" />
                     <point x="6660" y="15436" />
-                    <point x="6660" y="15225" />
-                    <point x="5036" y="15225" />
+                    <point x="6660" y="15423" />
+                    <point x="5036" y="15423" />
                   </connector>
                 </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="4153" top="17719" logicalid="30" controlid="10" masterid="0" hint1="0" hint2="0" width="3147" height="2861" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="4153" top="18114" logicalid="30" controlid="10" masterid="0" hint1="0" hint2="0" width="3147" height="2466" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobj>
                       <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
@@ -163,7 +163,7 @@
                     <point x="6900" y="20080" />
                     <point x="6900" y="18880" />
                     <point x="4453" y="18880" />
-                    <point x="4453" y="18019" />
+                    <point x="4453" y="18414" />
                   </connector>
                 </ddscontrol>
                 <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="2700" top="20834" logicalid="31" controlid="11" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
@@ -431,7 +431,7 @@
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="TerritorioVentaID" msprop:FriendlyName="TerritorioVentaID" msprop:DbColumnName="TerritorioVentaID" msprop:design-time-name="68acefa8-36d8-4384-aeba-c21f0b5fda56" type="xs:int" minOccurs="0" />
-                  <xs:element name="Asalariado_Desc" msdata:ReadOnly="true" msprop:DbColumnName="Asalariado_Desc" msprop:IsLogical="True" msprop:ComputedColumnExpression="CASE&#xA;&#x9;WHEN EsAsalariado = 0 THEN 'Empleado Por Hora'&#xA;&#x9;WHEN EsAsalariado = 1 THEN 'Asalariado'&#xA;&#x9;ELSE 'Unknown'&#xA;END" msprop:design-time-name="af192258-5943-4596-bcb8-06d0dc1c7f5a" msprop:Description="">
+                  <xs:element name="Asalariado_Desc" msdata:ReadOnly="true" msprop:DbColumnName="Asalariado_Desc" msprop:IsLogical="True" msprop:ComputedColumnExpression="CASE&#xA;&#x9;WHEN EsAsalariado = 0 THEN 'Empleado Por Hora'&#xA;&#x9;ELSE  'Asalariado'&#x9;END" msprop:design-time-name="af192258-5943-4596-bcb8-06d0dc1c7f5a" msprop:Description="">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="17" />
