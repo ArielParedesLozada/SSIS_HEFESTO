@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Pregunta1"
   DTS:PackageType="5"
-  DTS:VersionBuild="123"
-  DTS:VersionGUID="{5A37015C-FB1C-41AF-B6D7-1C830553AF74}">
+  DTS:VersionBuild="127"
+  DTS:VersionGUID="{EC21920A-5BA0-453A-98BD-8B93E7E2E461}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -350,12 +350,12 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Territorio ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
-              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimTerritorio VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Unknown',&#xA;&#x9;'Unknown'&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimTerritorio VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Territorio desconocido',&#xA;&#x9;'Grupo de Territorio desconocido'&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -394,7 +394,7 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
-              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimCiudad VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Unknown',&#xA;&#x9;'Unknown',&#xA;&#x9;-1&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimCiudad VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Ciudad desconocida',&#xA;&#x9;'0000000000',&#xA;&#x9;-1&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -783,7 +783,7 @@ WHERE pa.AddressID = pbea.AddressID AND
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
-              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimEmpleados VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Unknown',&#xA;&#x9;' ',&#xA;&#x9;-1,&#xA;&#x9;-1,&#xA;&#x9;' ',&#xA;&#x9;-1&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimEmpleados VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Empleado desconocido',&#xA;&#x9;'Empleado desconocido',&#xA;&#x9;-1,&#xA;&#x9;-1,&#xA;&#x9;'Desconocido',&#xA;&#x9;-1&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1011,7 +1011,7 @@ WHERE pa.AddressID = pbea.AddressID AND
     pbea.AddressID AS CiudadID, 
     hre.SalariedFlag AS EsAsalariado,
     hre.JobTitle AS Puesto,
-    sst.TerritoryID AS TerritorioVenta 
+    ISNULL(sst.TerritoryID, -1) AS TerritorioVenta 
 FROM
     AdventureWorks2022.HumanResources.Employee hre
 INNER JOIN
@@ -1268,7 +1268,7 @@ WHERE
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
-              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimEstado VALUES (&#xA;&#x9;-1,&#xA;&#x9;'WWW',&#xA;&#x9;'Unknown',&#xA;&#x9;-1&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimEstado VALUES (&#xA;&#x9;-1,&#xA;&#x9;'WWW',&#xA;&#x9;'Estado desconocido',&#xA;&#x9;-1&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -2352,7 +2352,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh</property>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
-              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimPais VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Unknown'&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimPais VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Pais desconocido'&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -2661,7 +2661,7 @@ FROM AdventureWorks2022.Person.CountryRegion;</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Poblar dimTiempo"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3314,7 +3314,6 @@ LEFT JOIN HEFESTO.dbo.DimEmpleados de
       DTS:refId="Package\Procesar Cubo"
       DTS:CreationName="Microsoft.DTSProcessingTask"
       DTS:Description="Tarea de procesamiento de Analysis Services"
-      DTS:Disabled="True"
       DTS:DTSID="{D9DC111F-8EC3-4B87-AC95-E4D6CA212ADC}"
       DTS:ExecutableType="Microsoft.DTSProcessingTask"
       DTS:LocaleID="-1"
@@ -3845,7 +3844,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="203.2,41.6"
           Id="Package\Poblar Dim Terr\Tarea Poblar DimTerritorio"
@@ -3885,9 +3884,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
@@ -3936,16 +3933,14 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="227.2,175.2"
-          Size="227.2,43.2"
+          Size="185.6,43.2"
           Id="Package\Poblar DimCiudad"
           TopLeft="306.942857658316,309.858823458361" />
         <NodeLayout
@@ -3987,9 +3982,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
@@ -4032,16 +4025,14 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="229.6,166.4"
-          Size="229.6,43.2"
+          Size="185.6,43.2"
           Id="Package\Poblar DimEstado"
           TopLeft="309.085714805734,241.541176347924" />
         <NodeLayout
@@ -4091,16 +4082,14 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="False"
           PanelSize="220.8,124"
-          Size="220.8,43.2"
+          Size="172.8,43.2"
           Id="Package\Poblar DimPais"
           TopLeft="315.51428624799,166.105882286582" />
         <NodeLayout
@@ -4393,9 +4382,9 @@ WHERE pp.ProductID = sod.ProductID
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="106.533333312046,41.882352946539"
+              EndConnector="82.5333333120454,41.8823529465389"
               Start="0,0"
-              End="106.533333312046,34.382352946539">
+              End="82.5333333120454,34.3823529465389">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -4406,13 +4395,13 @@ WHERE pp.ProductID = sod.ProductID
                     Point2="0,16.9845486603476"
                     Point3="4,16.9845486603476" />
                   <mssgle:LineSegment
-                    End="102.533333312046,16.9845486603476" />
+                    End="78.5333333120454,16.9845486603476" />
                   <mssgle:CubicBezierSegment
-                    Point1="102.533333312046,16.9845486603476"
-                    Point2="106.533333312046,16.9845486603476"
-                    Point3="106.533333312046,20.9845486603476" />
+                    Point1="78.5333333120454,16.9845486603476"
+                    Point2="82.5333333120454,16.9845486603476"
+                    Point3="82.5333333120454,20.9845486603476" />
                   <mssgle:LineSegment
-                    End="106.533333312046,34.382352946539" />
+                    End="82.5333333120454,34.3823529465389" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4423,18 +4412,18 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 3]"
-          TopLeft="424.900000526862,209.305882286582">
+          TopLeft="401.900000526862,209.305882286582">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32.2352940613422"
+              EndConnector="0,32.235294061342"
               Start="0,0"
-              End="0,24.7352940613422">
+              End="0,24.735294061342">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.7352940613422" />
+                    End="0,24.735294061342" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4445,18 +4434,18 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 4]"
-          TopLeft="422.214286232025,284.741176347924">
+          TopLeft="400.814286232025,284.741176347924">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,25.1176471104365"
+              EndConnector="0,25.117647110437"
               Start="0,0"
-              End="0,17.6176471104365">
+              End="0,17.617647110437">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.6176471104365" />
+                    End="0,17.617647110437" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4467,18 +4456,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 5]"
-          TopLeft="420.171429121859,353.058823458361">
+          TopLeft="399.742857658316,353.058823458361">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,30.317646996486"
+              EndConnector="20.0571429270872,30.3176469964861"
               Start="0,0"
-              End="0,22.817646996486">
+              End="20.0571429270872,22.8176469964861">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.817646996486" />
+                    End="0,11.1588234982431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.1588234982431"
+                    Point2="0,15.1588234982431"
+                    Point3="4,15.1588234982431" />
+                  <mssgle:LineSegment
+                    End="16.0571429270872,15.1588234982431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.0571429270872,15.1588234982431"
+                    Point2="20.0571429270872,15.1588234982431"
+                    Point3="20.0571429270872,19.1588234982431" />
+                  <mssgle:LineSegment
+                    End="20.0571429270872,22.8176469964861" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4493,26 +4494,26 @@ WHERE pp.ProductID = sod.ProductID
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="162.519999414597,87.4235295451534"
+              EndConnector="162.519999414597,87.4235295451529"
               Start="0,0"
-              End="162.519999414597,79.9235295451534">
+              End="162.519999414597,79.9235295451529">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.2080193645063" />
+                    End="0,57.208019364506" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,57.2080193645063"
-                    Point2="0,61.2080193645063"
-                    Point3="4,61.2080193645063" />
+                    Point1="0,57.208019364506"
+                    Point2="0,61.208019364506"
+                    Point3="4,61.208019364506" />
                   <mssgle:LineSegment
-                    End="158.519999414597,61.2080193645063" />
+                    End="158.519999414597,61.208019364506" />
                   <mssgle:CubicBezierSegment
-                    Point1="158.519999414597,61.2080193645063"
-                    Point2="162.519999414597,61.2080193645063"
-                    Point3="162.519999414597,65.2080193645063" />
+                    Point1="158.519999414597,61.208019364506"
+                    Point2="162.519999414597,61.208019364506"
+                    Point3="162.519999414597,65.208019364506" />
                   <mssgle:LineSegment
-                    End="162.519999414597,79.9235295451534" />
+                    End="162.519999414597,79.9235295451529" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4527,9 +4528,9 @@ WHERE pp.ProductID = sod.ProductID
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-31.5885718786475,299.741176564429"
+              EndConnector="-31.588571878647,299.741176564429"
               Start="0,0"
-              End="-31.5885718786475,292.241176564429">
+              End="-31.588571878647,292.241176564429">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -4540,13 +4541,13 @@ WHERE pp.ProductID = sod.ProductID
                     Point2="0,165.654664837484"
                     Point3="-4,165.654664837484" />
                   <mssgle:LineSegment
-                    End="-27.5885718786475,165.654664837484" />
+                    End="-27.588571878647,165.654664837484" />
                   <mssgle:CubicBezierSegment
-                    Point1="-27.5885718786475,165.654664837484"
-                    Point2="-31.5885718786475,165.654664837484"
-                    Point3="-31.5885718786475,169.654664837484" />
+                    Point1="-27.588571878647,165.654664837484"
+                    Point2="-31.588571878647,165.654664837484"
+                    Point3="-31.588571878647,169.654664837484" />
                   <mssgle:LineSegment
-                    End="-31.5885718786475,292.241176564429" />
+                    End="-31.588571878647,292.241176564429" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4561,26 +4562,26 @@ WHERE pp.ProductID = sod.ProductID
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="299.514285609369,46.8352940955275"
+              EndConnector="299.514285609369,46.8352940955279"
               Start="0,0"
-              End="299.514285609369,39.3352940955275">
+              End="299.514285609369,39.3352940955279">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.4176470477637" />
+                    End="0,19.4176470477639" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.4176470477637"
-                    Point2="0,23.4176470477637"
-                    Point3="4,23.4176470477637" />
+                    Point1="0,19.4176470477639"
+                    Point2="0,23.4176470477639"
+                    Point3="4,23.4176470477639" />
                   <mssgle:LineSegment
-                    End="295.514285609369,23.4176470477637" />
+                    End="295.514285609369,23.4176470477639" />
                   <mssgle:CubicBezierSegment
-                    Point1="295.514285609369,23.4176470477637"
-                    Point2="299.514285609369,23.4176470477637"
-                    Point3="299.514285609369,27.4176470477637" />
+                    Point1="295.514285609369,23.4176470477639"
+                    Point2="299.514285609369,23.4176470477639"
+                    Point3="299.514285609369,27.4176470477639" />
                   <mssgle:LineSegment
-                    End="299.514285609369,39.3352940955275" />
+                    End="299.514285609369,39.3352940955279" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4740,13 +4741,13 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar DimEmpleados\Tarea Poblar DimEmpleados">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
+          Size="150.4,41.6"
           Id="Package\Poblar DimEmpleados\Tarea Poblar DimEmpleados\OLE DB Source"
           TopLeft="394.499994203448,32.4999995976686" />
         <NodeLayout
-          Size="170,42"
+          Size="169.6,41.6"
           Id="Package\Poblar DimEmpleados\Tarea Poblar DimEmpleados\OLE DB Destination"
           TopLeft="389.999994188547,119.999998211861" />
         <EdgeLayout
@@ -4768,9 +4769,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4923,15 +4922,15 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar DimOrdenes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Poblar DimOrdenes\OLE DB Source"
-          TopLeft="330,106" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Poblar DimOrdenes\OLE DB Destination"
           TopLeft="323,212" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Poblar DimOrdenes\OLE DB Source"
+          TopLeft="330,106" />
         <EdgeLayout
           Id="Package\Poblar DimOrdenes.Paths[OLE DB Source Output]"
           TopLeft="406.75,148">
@@ -4951,7 +4950,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5043,7 +5044,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar FactOrdenesDetail">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150.4,41.6"
           Id="Package\Poblar FactOrdenesDetail\OLE DB Source"
@@ -5071,7 +5072,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

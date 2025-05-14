@@ -1,4 +1,4 @@
-﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="7885fa9b-7c37-4466-b707-9de668e11673" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="67b3935a-c9a9-4131-9581-e5c48708b0c9" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>HEFESTO</ID>
   <Name>HEFESTO</Name>
   <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
@@ -49,7 +49,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimEmpleados" left="2517" top="14293" logicalid="22" controlid="2" masterid="0" hint1="0" hint2="0" width="3366" height="3387" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimEmpleados" left="1670" top="14632" logicalid="22" controlid="2" masterid="0" hint1="0" hint2="0" width="3366" height="3387" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobjectstreaminitwrapper binary="000e0000260d00003b0d0000" />
                   </control>
@@ -126,7 +126,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="5583" top="15587" logicalid="29" controlid="9" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="4736" top="14925" logicalid="29" controlid="9" masterid="0" hint1="0" hint2="0" width="3847" height="911" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobj>
                       <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
@@ -139,12 +139,14 @@
                       <property name="VisibleAP" value="0" vartype="3" />
                     </ddsxmlobj>
                   </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="2" sourceattachpoint="12" destattachpoint="15" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="8283" y="15986" />
-                    <point x="5883" y="15986" />
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="2" sourceattachpoint="10" destattachpoint="11" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="8283" y="15436" />
+                    <point x="6660" y="15436" />
+                    <point x="6660" y="15225" />
+                    <point x="5036" y="15225" />
                   </connector>
                 </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="3900" top="17380" logicalid="30" controlid="10" masterid="0" hint1="0" hint2="0" width="3400" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="4153" top="17719" logicalid="30" controlid="10" masterid="0" hint1="0" hint2="0" width="3147" height="2861" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobj>
                       <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
@@ -157,11 +159,11 @@
                       <property name="VisibleAP" value="0" vartype="3" />
                     </ddsxmlobj>
                   </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="6" destid="2" sourceattachpoint="4" destattachpoint="5" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="6" destid="2" sourceattachpoint="4" destattachpoint="9" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
                     <point x="6900" y="20080" />
                     <point x="6900" y="18880" />
-                    <point x="4200" y="18880" />
-                    <point x="4200" y="17680" />
+                    <point x="4453" y="18880" />
+                    <point x="4453" y="18019" />
                   </connector>
                 </ddscontrol>
                 <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="2700" top="20834" logicalid="31" controlid="11" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
@@ -263,7 +265,7 @@
                     <point x="7828" y="6344" />
                   </connector>
                 </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="2701" top="9503" logicalid="37" controlid="17" masterid="0" hint1="0" hint2="0" width="4806" height="5290" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="1854" top="9503" logicalid="37" controlid="17" masterid="0" hint1="0" hint2="0" width="5653" height="5629" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobj>
                       <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
@@ -277,8 +279,8 @@
                     </ddsxmlobj>
                   </layoutobject>
                   <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="14" sourceattachpoint="0" destattachpoint="22" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="3100" y="14293" />
-                    <point x="3100" y="9803" />
+                    <point x="2253" y="14632" />
+                    <point x="2253" y="9803" />
                     <point x="7207" y="9803" />
                   </connector>
                 </ddscontrol>
@@ -593,7 +595,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_FactOrdenesDetails" msprop:design-time-name="33dd5708-ab84-4681-b3a8-b66e3e7e0bdb" msprop:FriendlyName="FactOrdenesDetails" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="FactOrdenesDetails">
+            <xs:element name="dbo_FactOrdenesDetails" msprop:DbSchemaName="dbo" msprop:design-time-name="33dd5708-ab84-4681-b3a8-b66e3e7e0bdb" msprop:FriendlyName="FactOrdenesDetails" msprop:TableType="Table" msprop:DbTableName="FactOrdenesDetails">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="IDVenta" msprop:FriendlyName="IDVenta" msprop:DbColumnName="IDVenta" msprop:design-time-name="4aa3254c-26de-4144-9177-736b1cc45c90" type="xs:int" />
@@ -655,29 +657,29 @@
           <xs:selector xpath=".//dbo_FactOrdenesDetails" />
           <xs:field xpath="IDVenta" />
         </xs:unique>
-        <xs:keyref name="FK__FactOrden__Moned__475C8B58" refer="dbo_DimMoneda_Constraint1">
+        <xs:keyref name="FK__FactOrden__Produ__438BFA74" refer="dbo_DimProductos_Constraint1">
           <xs:selector xpath=".//dbo_FactOrdenesDetails" />
-          <xs:field xpath="MonedaID" />
-        </xs:keyref>
-        <xs:keyref name="FK__FactOrden__Orden__44801EAD" refer="dbo_DimOrdenes_Constraint1">
-          <xs:selector xpath=".//dbo_FactOrdenesDetails" />
-          <xs:field xpath="OrdenID" />
-        </xs:keyref>
-        <xs:keyref name="FK__FactOrden__Vende__4297D63B" refer="dbo_DimEmpleados_Constraint1">
-          <xs:selector xpath=".//dbo_FactOrdenesDetails" />
-          <xs:field xpath="VendedorID" />
-        </xs:keyref>
-        <xs:keyref name="FK__FactOrden__Terri__4668671F" refer="dbo_DimTerritorio_Constraint1">
-          <xs:selector xpath=".//dbo_FactOrdenesDetails" />
-          <xs:field xpath="TerritorioID" />
+          <xs:field xpath="ProductoID" />
         </xs:keyref>
         <xs:keyref name="FK__FactOrden__Clave__457442E6" refer="Constraint1">
           <xs:selector xpath=".//dbo_FactOrdenesDetails" />
           <xs:field xpath="ClaveFechaEnvio" />
         </xs:keyref>
-        <xs:keyref name="FK__FactOrden__Produ__438BFA74" refer="dbo_DimProductos_Constraint1">
+        <xs:keyref name="FK__FactOrden__Terri__4668671F" refer="dbo_DimTerritorio_Constraint1">
           <xs:selector xpath=".//dbo_FactOrdenesDetails" />
-          <xs:field xpath="ProductoID" />
+          <xs:field xpath="TerritorioID" />
+        </xs:keyref>
+        <xs:keyref name="FK__FactOrden__Vende__4297D63B" refer="dbo_DimEmpleados_Constraint1">
+          <xs:selector xpath=".//dbo_FactOrdenesDetails" />
+          <xs:field xpath="VendedorID" />
+        </xs:keyref>
+        <xs:keyref name="FK__FactOrden__Orden__44801EAD" refer="dbo_DimOrdenes_Constraint1">
+          <xs:selector xpath=".//dbo_FactOrdenesDetails" />
+          <xs:field xpath="OrdenID" />
+        </xs:keyref>
+        <xs:keyref name="FK__FactOrden__Moned__475C8B58" refer="dbo_DimMoneda_Constraint1">
+          <xs:selector xpath=".//dbo_FactOrdenesDetails" />
+          <xs:field xpath="MonedaID" />
         </xs:keyref>
         <xs:keyref name="FK__DimEstado__PaisI__68F2894D" refer="dbo_DimPais_Constraint1">
           <xs:selector xpath=".//dbo_DimEstado" />
@@ -687,13 +689,13 @@
           <xs:selector xpath=".//dbo_DimCiudad" />
           <xs:field xpath="EstadoID" />
         </xs:keyref>
-        <xs:keyref name="FK__DimEmplea__Ciuda__6EAB62A3" refer="dbo_DimCiudad_Constraint1">
-          <xs:selector xpath=".//dbo_DimEmpleados" />
-          <xs:field xpath="CiudadID" />
-        </xs:keyref>
         <xs:keyref name="FK__DimEmplea__Terri__6F9F86DC" refer="dbo_DimTerritorio_Constraint1">
           <xs:selector xpath=".//dbo_DimEmpleados" />
           <xs:field xpath="TerritorioVentaID" />
+        </xs:keyref>
+        <xs:keyref name="FK__DimEmplea__Ciuda__6EAB62A3" refer="dbo_DimCiudad_Constraint1">
+          <xs:selector xpath=".//dbo_DimEmpleados" />
+          <xs:field xpath="CiudadID" />
         </xs:keyref>
       </xs:element>
     </xs:schema>

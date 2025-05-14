@@ -115,7 +115,7 @@ FROM AdventureWorks2022.Person.CountryRegion;
 
 INSERT INTO HEFESTO.dbo.DimPais VALUES (
 	-1,
-	'Unknown'
+	'Pais desconocido'
 );
 
 --DimEstado
@@ -129,7 +129,7 @@ FROM AdventureWorks2022.Person.StateProvince
 INSERT INTO HEFESTO.dbo.DimEstado VALUES (
 	-1,
 	'WWW',
-	'Unknown',
+	'Estado desconocido',
 	-1
 );
 
@@ -161,8 +161,8 @@ WHERE pa.AddressID = pbea.AddressID AND
 
 INSERT INTO HEFESTO.dbo.DimCiudad VALUES (
 	-1,
-	'Unknown',
-	'Unknown',
+	'Ciudad desconocida',
+	'0000000000',
 	-1
 );
 
@@ -175,8 +175,8 @@ FROM AdventureWorks2022.Sales.SalesTerritory;
 
 INSERT INTO HEFESTO.dbo.DimTerritorio VALUES (
 	-1,
-	'Unknown',
-	'Unknown'
+	'Territorio desconocido',
+	'Grupo de Territorio desconocido'
 );
 
 --DimEmpleado -DimVendedor
@@ -203,11 +203,11 @@ WHERE
 
 INSERT INTO HEFESTO.dbo.DimEmpleados VALUES (
 	-1,
-	'Unknown',
-	' ',
+	'Empleado desconocido',
+	'Empleado desconocido',
 	-1,
 	-1,
-	' ',
+	'Desconocido',
 	-1
 );
 
