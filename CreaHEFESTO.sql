@@ -135,13 +135,22 @@ INSERT INTO HEFESTO.dbo.DimEstado VALUES (
 
 --DimMoneda
 SELECT
-    ROW_NUMBER() OVER (ORDER BY c.CurrencyCode) AS IdMoneda,
+    cr.CurrencyRateID AS IdMoneda,
     c.Name AS Moneda,
-    c.CurrencyCode AS CodigoMoneda,
     cr.AverageRate AS TasaPromedio
 FROM AdventureWorks2022.Sales.Currency c
-LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
+JOIN AdventureWorks2022.Sales.CurrencyRate cr
     ON c.CurrencyCode = cr.ToCurrencyCode
+	AND cr.ToCurrencyCode IN (
+	SELECT 
+		ToCurrencyCode
+	FROM AdventureWorks2022.Sales.CurrencyRate scr
+)
+INSERT INTO HEFESTO.dbo.DimMoneda VALUES (
+	-1,
+	'US Dollar',
+	1
+)
 ;
 
 --DimCiudad
@@ -226,8 +235,8 @@ SELECT
     sod.SalesOrderDetailID AS IDVenta,
     sod.UnitPrice AS PrecioUnitario,
     ISNULL(plph.ListPrice, p.ListPrice) AS PrecioLista,
-    ISNULL(plph.ListPrice, p.ListPrice) - sod.UnitPrice AS DiferenciaPrecios,
-    sod.UnitPrice * sod.OrderQty * scr.AverageRate AS TotalVentaMoneda,
+    (ISNULL(plph.ListPrice, p.ListPrice)  - sod.UnitPrice )*sod.OrderQty AS DiferenciaPrecios,
+    sod.UnitPrice * sod.OrderQty * ISNULL(scr.AverageRate, 1) AS TotalVentaMoneda,
     sod.ProductID AS ProductoID,
     soh.SalesOrderID AS OrdenID,
     ISNULL(soh.SalesPersonID, -1) AS VendedorID,
@@ -235,12 +244,12 @@ SELECT
     CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
     (sod.UnitPrice * (1.0 - sod.UnitPriceDiscount)) * sod.OrderQty AS TotalLinea,
     sod.UnitPriceDiscount AS Descuento,
-    soh.CurrencyRateID AS MonedaID,
+    ISNULL(soh.CurrencyRateID, -1) AS MonedaID,
     sod.OrderQty AS Cantidad
 FROM AdventureWorks2022.Sales.SalesOrderDetail sod
 JOIN AdventureWorks2022.Sales.SalesOrderHeader soh
     ON sod.SalesOrderID = soh.SalesOrderID
-JOIN AdventureWorks2022.Sales.CurrencyRate scr
+LEFT JOIN AdventureWorks2022.Sales.CurrencyRate scr
     ON soh.CurrencyRateID = scr.CurrencyRateID
 JOIN AdventureWorks2022.Production.Product p
     ON p.ProductID = sod.ProductID

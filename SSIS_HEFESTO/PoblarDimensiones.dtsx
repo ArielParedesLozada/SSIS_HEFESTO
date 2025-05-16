@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-44482N5"
   DTS:CreatorName="DESKTOP-44482N5\Usuario"
-  DTS:DTSID="{D9A250F2-3276-4FF0-BD98-7DEE9B2C405E}"
+  DTS:DTSID="{390F3820-349F-48AA-85BA-465EC1A79DCB}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="12298"
-  DTS:ObjectName="Pregunta1"
+  DTS:ObjectName="PoblarDimensiones"
   DTS:PackageType="5"
-  DTS:VersionBuild="148"
-  DTS:VersionGUID="{79DCAAFD-7A63-427C-8B2A-6E0F78626DF3}">
+  DTS:VersionBuild="161"
+  DTS:VersionGUID="{2712AD3B-BBE4-43F0-BA18-7B296B4FAADB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -350,7 +350,7 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Territorio ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -389,7 +389,7 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Ciudad ficticia"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -778,7 +778,7 @@ WHERE pa.AddressID = pbea.AddressID AND
           DTS:LocaleID="-1"
           DTS:ObjectName="Empleado ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1263,7 +1263,7 @@ WHERE
           DTS:LocaleID="-1"
           DTS:ObjectName="Estado ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1634,337 +1634,358 @@ FROM AdventureWorks2022.Person.StateProvince
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Poblar DimMoneda"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{1F3F2C15-D8D6-4D7E-A998-35138A0CEC58}"
-      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contenedor de secuencias"
+      DTS:DTSID="{9752DE07-C54D-4A6E-9283-34E985C26ACC}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Poblar DimMoneda"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      DTS:ObjectName="Poblar DimMoneda">
       <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1">
-          <components>
-            <component
-              refId="Package\Poblar DimMoneda\OLE DB Destination"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE DB Destination"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[DimMoneda]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Poblar DimMoneda\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IdMoneda]"
-                      cachedDataType="i8"
-                      cachedName="IdMoneda"
-                      externalMetadataColumnId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdMoneda]"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdMoneda]" />
-                    <inputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Moneda]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Moneda"
-                      externalMetadataColumnId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Moneda]"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[Moneda]" />
-                    <inputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TasaPromedio]"
-                      cachedDataType="cy"
-                      cachedName="TasaPromedio"
-                      externalMetadataColumnId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TasaPromedio]"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[TasaPromedio]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdMoneda]"
-                      dataType="i4"
-                      name="IdMoneda" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Moneda]"
-                      dataType="wstr"
-                      length="50"
-                      name="Moneda" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TasaPromedio]"
-                      dataType="cy"
-                      name="TasaPromedio" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Poblar DimMoneda\OLE DB Source"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="OLE DB Source"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
-    ROW_NUMBER() OVER (ORDER BY c.CurrencyCode) AS IdMoneda,
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Poblar DimMoneda\Moneda Ficticia"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{A62CF670-38B3-4509-8517-C2D72B07B59B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Moneda Ficticia"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
+              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimMoneda VALUES (&#xA;&#x9;-1,&#xA;&#x9;'US Dollar',&#xA;&#x9;1&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{1F3F2C15-D8D6-4D7E-A998-35138A0CEC58}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Poblar DimMoneda"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DimMoneda]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.Hefesto]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IdMoneda]"
+                          cachedDataType="i8"
+                          cachedName="IdMoneda"
+                          externalMetadataColumnId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdMoneda]"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdMoneda]" />
+                        <inputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Moneda]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Moneda"
+                          externalMetadataColumnId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Moneda]"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[Moneda]" />
+                        <inputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TasaPromedio]"
+                          cachedDataType="cy"
+                          cachedName="TasaPromedio"
+                          externalMetadataColumnId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TasaPromedio]"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[TasaPromedio]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdMoneda]"
+                          dataType="i4"
+                          name="IdMoneda" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Moneda]"
+                          dataType="wstr"
+                          length="50"
+                          name="Moneda" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TasaPromedio]"
+                          dataType="cy"
+                          name="TasaPromedio" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    cr.CurrencyRateID AS IdMoneda,
     c.Name AS Moneda,
-    c.CurrencyCode AS CodigoMoneda,
     cr.AverageRate AS TasaPromedio
 FROM AdventureWorks2022.Sales.Currency c
-LEFT JOIN AdventureWorks2022.Sales.CurrencyRate cr
+JOIN AdventureWorks2022.Sales.CurrencyRate cr
     ON c.CurrencyCode = cr.ToCurrencyCode
-;</property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">2</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Poblar DimMoneda\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdMoneda]"
-                      dataType="i8"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdMoneda]"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdMoneda]"
-                      name="IdMoneda"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[Moneda]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Moneda]"
-                      length="50"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[Moneda]"
-                      name="Moneda"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoMoneda]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoMoneda]"
-                      length="3"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoMoneda]"
-                      name="CodigoMoneda"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[TasaPromedio]"
-                      dataType="cy"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TasaPromedio]"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[TasaPromedio]"
-                      name="TasaPromedio"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdMoneda]"
-                      dataType="i8"
-                      name="IdMoneda" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Moneda]"
-                      dataType="wstr"
-                      length="50"
-                      name="Moneda" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoMoneda]"
-                      dataType="wstr"
-                      length="3"
-                      name="CodigoMoneda" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TasaPromedio]"
-                      dataType="cy"
-                      name="TasaPromedio" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdMoneda]"
-                      dataType="i8"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdMoneda]"
-                      name="IdMoneda" />
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Moneda]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Moneda]"
-                      name="Moneda" />
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoMoneda]"
-                      dataType="wstr"
-                      length="3"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoMoneda]"
-                      name="CodigoMoneda" />
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TasaPromedio]"
-                      dataType="cy"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TasaPromedio]"
-                      name="TasaPromedio" />
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\Poblar DimMoneda.Paths[OLE DB Source Output]"
-              endId="Package\Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output]" />
-          </paths>
-        </pipeline>
-      </DTS:ObjectData>
+	AND cr.ToCurrencyCode IN (
+	SELECT 
+		ToCurrencyCode
+	FROM AdventureWorks2022.Sales.CurrencyRate scr
+)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="{96D289A0-963C-48C6-9AD9-1D24239B4336}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Laptop_Dayle_Jr_SSD_MULTI.AdventureWorks2022]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdMoneda]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdMoneda]"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdMoneda]"
+                          name="IdMoneda"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[Moneda]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Moneda]"
+                          length="50"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[Moneda]"
+                          name="Moneda"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[TasaPromedio]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TasaPromedio]"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].Columns[TasaPromedio]"
+                          name="TasaPromedio"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdMoneda]"
+                          dataType="i4"
+                          name="IdMoneda" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Moneda]"
+                          dataType="wstr"
+                          length="50"
+                          name="Moneda" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TasaPromedio]"
+                          dataType="cy"
+                          name="TasaPromedio" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdMoneda]"
+                          dataType="i4"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdMoneda]"
+                          name="IdMoneda" />
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Moneda]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Moneda]"
+                          name="Moneda" />
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TasaPromedio]"
+                          dataType="cy"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TasaPromedio]"
+                          name="TasaPromedio" />
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda.Paths[OLE DB Source Output]"
+                  endId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Poblar DimMoneda.PrecedenceConstraints[Restricción]"
+          DTS:CreationName=""
+          DTS:DTSID="{090EB92B-79B8-4AE0-9185-E201D740EE7C}"
+          DTS:From="Package\Poblar DimMoneda\Tarea Poblar DimMoneda"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción"
+          DTS:To="Package\Poblar DimMoneda\Moneda Ficticia" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Poblar DimOrdenes"
@@ -2347,7 +2368,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Poblar Pais ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2957,8 +2978,8 @@ FROM AdventureWorks2022.Person.CountryRegion;</property>
     sod.SalesOrderDetailID AS IDVenta,
     sod.UnitPrice AS PrecioUnitario,
     ISNULL(plph.ListPrice, p.ListPrice) AS PrecioLista,
-    ISNULL(plph.ListPrice, p.ListPrice) - sod.UnitPrice AS DiferenciaPrecios,
-    sod.UnitPrice * sod.OrderQty * scr.AverageRate AS TotalVentaMoneda,
+    (ISNULL(plph.ListPrice, p.ListPrice)  - sod.UnitPrice )*sod.OrderQty AS DiferenciaPrecios,
+    sod.UnitPrice * sod.OrderQty * ISNULL(scr.AverageRate, 1) AS TotalVentaMoneda,
     sod.ProductID AS ProductoID,
     soh.SalesOrderID AS OrdenID,
     ISNULL(soh.SalesPersonID, -1) AS VendedorID,
@@ -2966,12 +2987,12 @@ FROM AdventureWorks2022.Person.CountryRegion;</property>
     CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS ClaveFechaEnvio,
     (sod.UnitPrice * (1.0 - sod.UnitPriceDiscount)) * sod.OrderQty AS TotalLinea,
     sod.UnitPriceDiscount AS Descuento,
-    soh.CurrencyRateID AS MonedaID,
+    ISNULL(soh.CurrencyRateID, -1) AS MonedaID,
     sod.OrderQty AS Cantidad
 FROM AdventureWorks2022.Sales.SalesOrderDetail sod
 JOIN AdventureWorks2022.Sales.SalesOrderHeader soh
     ON sod.SalesOrderID = soh.SalesOrderID
-JOIN AdventureWorks2022.Sales.CurrencyRate scr
+LEFT JOIN AdventureWorks2022.Sales.CurrencyRate scr
     ON soh.CurrencyRateID = scr.CurrencyRateID
 JOIN AdventureWorks2022.Production.Product p
     ON p.ProductID = sod.ProductID
@@ -3346,13 +3367,13 @@ LEFT JOIN HEFESTO.dbo.DimEmpleados de
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Tarea Crear Tablas"
+      DTS:refId="Package\Tarea Crear Tablas (Borrame luego)"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Tarea Ejecutar SQL"
-      DTS:DTSID="{92D7A74A-383B-434E-BADD-FA40CA1B9403}"
+      DTS:DTSID="{68431cbf-1f40-4177-81b6-955788d78183}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Tarea Crear Tablas"
+      DTS:ObjectName="Tarea Crear Tablas (Borrame luego)"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -3360,7 +3381,7 @@ LEFT JOIN HEFESTO.dbo.DimEmpleados de
         <SQLTask:SqlTaskData
           SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('HEFESTO.dbo.FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.FactOrdenesDetails;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimOrdenes;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimProductos;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEmpleados', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEmpleados;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimCiudad;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEstado;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimPais;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTerritorio', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTerritorio;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTiempo', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTiempo;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimMoneda', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimMoneda;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTerritorio (&#xA;&#x9;IdTerritorio INT PRIMARY KEY,&#xA;&#x9;TerritorioNombre NVARCHAR(50) NOT NULL,&#xA;&#x9;GrupoTerritorio NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimPais (&#xA;&#x9;IDPais NVARCHAR(3) PRIMARY KEY,&#xA;&#x9;Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEstado (&#xA;&#x9;IDEstado INT PRIMARY KEY,&#xA;&#x9;EstadoCode NCHAR(3) NOT NULL,&#xA;&#x9;Nombre NVARCHAR(50) NOT NULL,&#xA;&#x9;PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimCiudad (&#xA;&#x9;IDCiudad INT PRIMARY KEY,&#xA;&#x9;Nombre NVARCHAR(30) NOT NULL,&#xA;&#x9;CodigoPostal NVARCHAR(15) NOT NULL,&#xA;&#x9;EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEmpleados (&#xA;&#x9;IDVendedor INT PRIMARY KEY,&#xA;&#x9;Nombre NVARCHAR(50) NOT NULL,&#xA;&#x9;Apellido NVARCHAR(50) NOT NULL,&#xA;&#x9;CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),&#xA;&#x9;EsAsalariado BIT NOT NULL,&#xA;&#x9;Puesto NVARCHAR(50) NOT NULL,&#xA;&#x9;TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,         -- YYYYMMDD&#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                       -- 1 o 2&#xA;    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.&#xA;    NumeroMes INT,                      -- 1 a 12&#xA;    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.&#xA;    Día INT                             -- Día del mes&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimMoneda (&#xA;&#x9;IdMoneda INT PRIMARY KEY,&#xA;&#x9;Moneda NVARCHAR(50) NOT NULL,&#xA;&#x9;TasaPromedio MONEY &#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimOrdenes (&#xA;&#x9;IDOrder INT PRIMARY KEY,&#xA;&#x9;TotalPagado MONEY NOT NULL,&#xA;&#x9;Estado TINYINT NOT NULL,&#xA;&#x9;Impuesto MONEY NOT NULL,&#xA;&#x9;ImpuestoEnvio MONEY NOT NULL,&#xA;);&#xA;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimProductos (&#xA;&#x9;IDProducto INT PRIMARY KEY,&#xA;&#x9;Nombre NVARCHAR(50) NOT NULL,&#xA;&#x9;CompradoFlag BIT NOT NULL,&#xA;&#x9;PrecioLista MONEY NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (&#xA;&#x9;IDVenta INT PRIMARY KEY,&#xA;&#x9;PrecioLista MONEY,&#xA;&#x9;PrecioUnitario MONEY NOT NULL,&#xA;&#x9;DiferenciaPrecios MONEY NOT NULL,&#xA;&#x9;TotalVentaMoneda MONEY NOT NULL,&#xA;&#x9;Cantidad SMALLINT NOT NULL,&#xA;&#x9;TotalLinea MONEY NOT NULL,&#xA;&#x9;Descuento MONEY NOT NULL,&#xA;&#x9;VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA;&#x9;ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),&#xA;&#x9;OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder),&#xA;&#x9;ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),&#xA;&#x9;TerritorioID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio,&#xA;&#x9;MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID('HEFESTO.dbo.FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.FactOrdenesDetails;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimOrdenes;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimProductos;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEmpleados', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEmpleados;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimCiudad;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEstado;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimPais;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTerritorio', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTerritorio;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTiempo', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTiempo;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimMoneda', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimMoneda;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTerritorio (&#xA; IdTerritorio INT PRIMARY KEY,&#xA; TerritorioNombre NVARCHAR(50) NOT NULL,&#xA; GrupoTerritorio NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimPais (&#xA; IDPais NVARCHAR(3) PRIMARY KEY,&#xA; Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEstado (&#xA; IDEstado INT PRIMARY KEY,&#xA; EstadoCode NCHAR(3) NOT NULL,&#xA; Nombre NVARCHAR(50) NOT NULL,&#xA; PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimCiudad (&#xA; IDCiudad INT PRIMARY KEY,&#xA; Nombre NVARCHAR(30) NOT NULL,&#xA; CodigoPostal NVARCHAR(15) NOT NULL,&#xA; EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEmpleados (&#xA; IDVendedor INT PRIMARY KEY,&#xA; Nombre NVARCHAR(50) NOT NULL,&#xA; Apellido NVARCHAR(50) NOT NULL,&#xA; CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),&#xA; EsAsalariado BIT NOT NULL,&#xA; Puesto NVARCHAR(50) NOT NULL,&#xA; TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,         -- YYYYMMDD&#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                       -- 1 o 2&#xA;    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.&#xA;    NumeroMes INT,                      -- 1 a 12&#xA;    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.&#xA;    Día INT                             -- Día del mes&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimMoneda (&#xA; IdMoneda INT PRIMARY KEY,&#xA; Moneda NVARCHAR(50) NOT NULL,&#xA; TasaPromedio MONEY &#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimOrdenes (&#xA; IDOrder INT PRIMARY KEY,&#xA; TotalPagado MONEY NOT NULL,&#xA; Estado TINYINT NOT NULL,&#xA; Impuesto MONEY NOT NULL,&#xA; ImpuestoEnvio MONEY NOT NULL,&#xA;);&#xA;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimProductos (&#xA; IDProducto INT PRIMARY KEY,&#xA; Nombre NVARCHAR(50) NOT NULL,&#xA; CompradoFlag BIT NOT NULL,&#xA; PrecioLista MONEY NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (&#xA; IDVenta INT PRIMARY KEY,&#xA; PrecioLista MONEY,&#xA; PrecioUnitario MONEY NOT NULL,&#xA; DiferenciaPrecios MONEY NOT NULL,&#xA; TotalVentaMoneda MONEY NOT NULL,&#xA; Cantidad SMALLINT NOT NULL,&#xA; TotalLinea MONEY NOT NULL,&#xA; Descuento MONEY NOT NULL,&#xA; VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA; ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),&#xA; OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder),&#xA; ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),&#xA; TerritorioID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio,&#xA; MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -3715,28 +3736,12 @@ WHERE pp.ProductID = sod.ProductID
       DTS:ObjectName="Constraint"
       DTS:To="Package\Poblar dimTiempo" />
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{4A54A404-1456-4D93-8300-C25A9D2BCD44}"
-      DTS:From="Package\Tarea Borrar Tablas"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Poblar DimMoneda" />
-    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
       DTS:CreationName=""
       DTS:DTSID="{60ACA823-E254-46EF-952E-DB02DD04A79D}"
       DTS:From="Package\Poblar dimTiempo"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
-      DTS:To="Package\Poblar DimOrdenes" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
-      DTS:CreationName=""
-      DTS:DTSID="{B7EFA34E-18EE-4DE5-9F17-EA37B8292808}"
-      DTS:From="Package\Poblar DimMoneda"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 6"
       DTS:To="Package\Poblar DimOrdenes" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
@@ -3770,6 +3775,22 @@ WHERE pp.ProductID = sod.ProductID
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción 1"
       DTS:To="Package\Tarea Poblar DimProductos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{7CA671A8-567A-440F-98A4-232867E6A81F}"
+      DTS:From="Package\Tarea Borrar Tablas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 10"
+      DTS:To="Package\Poblar DimMoneda" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{C43B5CFF-0B50-41AB-BC50-2D67D6B41B9B}"
+      DTS:From="Package\Poblar DimMoneda"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 11"
+      DTS:To="Package\Poblar DimOrdenes" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
       DTS:CreationName=""
@@ -3829,8 +3850,8 @@ WHERE pp.ProductID = sod.ProductID
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restricción 9]"
       DTS:CreationName=""
-      DTS:DTSID="{FB25B814-B2D9-42E9-9F1D-BE6E420C1933}"
-      DTS:From="Package\Tarea Crear Tablas"
+      DTS:DTSID="{56735DC4-7289-4B10-BF4B-74C02A043282}"
+      DTS:From="Package\Tarea Crear Tablas (Borrame luego)"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción 9"
       DTS:To="Package\Tarea Borrar Tablas" />
@@ -3892,12 +3913,12 @@ WHERE pp.ProductID = sod.ProductID
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
-          HeaderHeight="43"
+          HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="222.4,128.8"
           Size="176.8,43.2"
           Id="Package\Poblar Dim Terr"
-          TopLeft="557.828571878647,171.058823435571" />
+          TopLeft="527.309091294199,246.139037273504" />
         <NodeLayout
           Size="144,41.6"
           Id="Package\Poblar DimCiudad\Ciudad ficticia"
@@ -3948,7 +3969,7 @@ WHERE pp.ProductID = sod.ProductID
           PanelSize="227.2,175.2"
           Size="185.6,43.2"
           Id="Package\Poblar DimCiudad"
-          TopLeft="306.942857658316,309.858823458361" />
+          TopLeft="303.046753753918,400.233154929946" />
         <NodeLayout
           Size="157.6,41.6"
           Id="Package\Poblar DimEmpleados\Empleado ficticio"
@@ -3999,7 +4020,7 @@ WHERE pp.ProductID = sod.ProductID
           PanelSize="238.4,177.6"
           Size="238.4,43.2"
           Id="Package\Poblar DimEmpleados"
-          TopLeft="300.600000585403,383.376470454847" />
+          TopLeft="283.716883666346,481.397860743259" />
         <NodeLayout
           Size="143.2,41.6"
           Id="Package\Poblar DimEstado\Estado ficticio"
@@ -4044,15 +4065,11 @@ WHERE pp.ProductID = sod.ProductID
           PanelSize="229.6,166.4"
           Size="185.6,43.2"
           Id="Package\Poblar DimEstado"
-          TopLeft="309.085714805734,241.541176347924" />
+          TopLeft="305.838961552069,324.963636167849" />
         <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Poblar DimMoneda"
-          TopLeft="1006,189" />
-        <NodeLayout
-          Size="169.6,41.6"
+          Size="168.8,41.6"
           Id="Package\Poblar DimOrdenes"
-          TopLeft="546,514" />
+          TopLeft="546,573.78609620428" />
         <NodeLayout
           Size="163.2,41.6"
           Id="Package\Poblar DimPais\Poblar Pais ficticio"
@@ -4098,96 +4115,58 @@ WHERE pp.ProductID = sod.ProductID
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
-          HeaderHeight="43"
+          HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="220.8,124"
           Size="172.8,43.2"
           Id="Package\Poblar DimPais"
-          TopLeft="315.51428624799,166.105882286582" />
+          TopLeft="315.51428624799,245.357219115511" />
         <NodeLayout
           Size="164,41.6"
           Id="Package\Poblar dimTiempo"
-          TopLeft="803,192" />
+          TopLeft="780.92207787508,244.834224552619" />
         <NodeLayout
           Size="198.4,41.6"
           Id="Package\Poblar FactOrdenesDetail"
-          TopLeft="540,629" />
+          TopLeft="540,688.78609620428" />
         <NodeLayout
           Size="146.4,41.6"
           Id="Package\Procesar Cubo"
-          TopLeft="572.023810741498,720.735293485895" />
+          TopLeft="572.023810741498,780.521389690175" />
         <NodeLayout
           Size="172,41.6"
           Id="Package\Tarea Borrar Tablas"
-          TopLeft="260.714286269278,82.6235293400431" />
-        <NodeLayout
-          Size="168,41.6"
-          Id="Package\Tarea Crear Tablas"
-          TopLeft="260.000000553472,16.1294117519703" />
+          TopLeft="260.714286269278,142.409625544323" />
         <NodeLayout
           Size="206.4,41.6"
           Id="Package\Tarea Poblar DimProductos"
-          TopLeft="66.714286279922,186.917646893931" />
+          TopLeft="66.714286279922,248.789304593709" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="363.114286269278,124.223529340043">
+          TopLeft="374.047619602611,184.009625544323">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="521.885713730722,67.7764706599569"
+              EndConnector="488.874458272469,60.8245990082965"
               Start="0,0"
-              End="521.885713730722,60.2764706599569">
+              End="488.874458272469,53.3245990082965">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.3164675959705" />
+                    End="0,20.6661968328576" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26.3164675959705"
-                    Point2="0,30.3164675959705"
-                    Point3="4,30.3164675959705" />
+                    Point1="0,20.6661968328576"
+                    Point2="0,24.6661968328576"
+                    Point3="4,24.6661968328576" />
                   <mssgle:LineSegment
-                    End="517.885713730722,30.3164675959705" />
+                    End="484.874458272469,24.6661968328576" />
                   <mssgle:CubicBezierSegment
-                    Point1="517.885713730722,30.3164675959705"
-                    Point2="521.885713730722,30.3164675959705"
-                    Point3="521.885713730722,34.3164675959705" />
+                    Point1="484.874458272469,24.6661968328576"
+                    Point2="488.874458272469,24.6661968328576"
+                    Point3="488.874458272469,28.6661968328576" />
                   <mssgle:LineSegment
-                    End="521.885713730722,60.2764706599569" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="395.914286269278,124.223529340043">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="693.685713730722,64.7764706599569"
-              Start="0,0"
-              End="693.685713730722,57.2764706599569">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.4118413704105" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.4118413704105"
-                    Point2="0,19.4118413704105"
-                    Point3="4,19.4118413704105" />
-                  <mssgle:LineSegment
-                    End="689.685713730722,19.4118413704105" />
-                  <mssgle:CubicBezierSegment
-                    Point1="689.685713730722,19.4118413704105"
-                    Point2="693.685713730722,19.4118413704105"
-                    Point3="693.685713730722,23.4118413704105" />
-                  <mssgle:LineSegment
-                    End="693.685713730722,57.2764706599569" />
+                    End="488.874458272469,53.3245990082965" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4198,64 +4177,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="885,233.6">
+          TopLeft="862.92207787508,286.434224552619">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-254.2,280.4"
+              EndConnector="-216.44207787508,287.351871651661"
               Start="0,0"
-              End="-254.2,272.9">
+              End="-216.44207787508,279.851871651661">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,136.2" />
+                    End="0,154.803679723678" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,136.2"
-                    Point2="0,140.2"
-                    Point3="-4,140.2" />
+                    Point1="0,154.803679723678"
+                    Point2="0,158.803679723678"
+                    Point3="-4,158.803679723678" />
                   <mssgle:LineSegment
-                    End="-250.2,140.2" />
+                    End="-212.44207787508,158.803679723678" />
                   <mssgle:CubicBezierSegment
-                    Point1="-250.2,140.2"
-                    Point2="-254.2,140.2"
-                    Point3="-254.2,144.2" />
+                    Point1="-212.44207787508,158.803679723678"
+                    Point2="-216.44207787508,158.803679723678"
+                    Point3="-216.44207787508,162.803679723678" />
                   <mssgle:LineSegment
-                    End="-254.2,272.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="1089.5,231">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-382,283"
-              Start="0,0"
-              End="-382,275.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,181.752895752896" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,181.752895752896"
-                    Point2="0,185.752895752896"
-                    Point3="-4,185.752895752896" />
-                  <mssgle:LineSegment
-                    End="-378,185.752895752896" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-378,185.752895752896"
-                    Point2="-382,185.752895752896"
-                    Point3="-382,189.752895752896" />
-                  <mssgle:LineSegment
-                    End="-382,275.5" />
+                    End="-216.44207787508,279.851871651661" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4266,30 +4211,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="631,556">
+          TopLeft="630.4,615.38609620428">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="39.6666666666666,73"
+              EndConnector="40.5333333333334,73.4"
               Start="0,0"
-              End="39.6666666666666,65.5">
+              End="40.5333333333334,65.9">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,39.4488977955912" />
+                    End="0,39.68768" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,39.4488977955912"
-                    Point2="0,43.4488977955912"
-                    Point3="4,43.4488977955912" />
+                    Point1="0,39.68768"
+                    Point2="0,43.68768"
+                    Point3="4,43.68768" />
                   <mssgle:LineSegment
-                    End="35.6666666666666,43.4488977955912" />
+                    End="36.5333333333334,43.68768" />
                   <mssgle:CubicBezierSegment
-                    Point1="35.6666666666666,43.4488977955912"
-                    Point2="39.6666666666666,43.4488977955912"
-                    Point3="39.6666666666666,47.4488977955912" />
+                    Point1="36.5333333333334,43.68768"
+                    Point2="40.5333333333334,43.68768"
+                    Point3="40.5333333333334,47.68768" />
                   <mssgle:LineSegment
-                    End="39.6666666666666,65.5" />
+                    End="40.5333333333334,65.9" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4300,30 +4245,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="83.2857146673668,228.917646893931">
+          TopLeft="169.914286279922,290.389304593709">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="524.047618665966,400.082353106069"
+              EndConnector="437.552380386745,398.396791610571"
               Start="0,0"
-              End="524.047618665966,392.582353106069">
+              End="437.552380386745,390.896791610571">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,370.125168081167" />
+                    End="0,361.040208757164" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,370.125168081167"
-                    Point2="0,374.125168081167"
-                    Point3="4,374.125168081167" />
+                    Point1="0,361.040208757164"
+                    Point2="0,365.040208757164"
+                    Point3="4,365.040208757164" />
                   <mssgle:LineSegment
-                    End="520.047618665966,374.125168081167" />
+                    End="433.552380386745,365.040208757164" />
                   <mssgle:CubicBezierSegment
-                    Point1="520.047618665966,374.125168081167"
-                    Point2="524.047618665966,374.125168081167"
-                    Point3="524.047618665966,378.125168081167" />
+                    Point1="433.552380386745,365.040208757164"
+                    Point2="437.552380386745,365.040208757164"
+                    Point3="437.552380386745,369.040208757164" />
                   <mssgle:LineSegment
-                    End="524.047618665966,392.582353106069" />
+                    End="437.552380386745,390.896791610571" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4334,7 +4279,7 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
-          TopLeft="642.211905370749,670.6">
+          TopLeft="642.211905370749,730.38609620428">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4356,30 +4301,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
-          TopLeft="297.514286269278,124.223529340043">
+          TopLeft="292.047619602611,184.009625544323">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-127.599999989356,62.6941175538879"
+              EndConnector="-122.133333322689,64.779679049386"
               Start="0,0"
-              End="-127.599999989356,55.1941175538879">
+              End="-122.133333322689,57.279679049386">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.7878137295039" />
+                    End="0,13.2991188370519" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.7878137295039"
-                    Point2="0,18.7878137295039"
-                    Point3="-4,18.7878137295039" />
+                    Point1="0,13.2991188370519"
+                    Point2="0,17.2991188370519"
+                    Point3="-4,17.2991188370519" />
                   <mssgle:LineSegment
-                    End="-123.599999989356,18.7878137295039" />
+                    End="-118.133333322689,17.2991188370519" />
                   <mssgle:CubicBezierSegment
-                    Point1="-123.599999989356,18.7878137295039"
-                    Point2="-127.599999989356,18.7878137295039"
-                    Point3="-127.599999989356,22.7878137295039" />
+                    Point1="-118.133333322689,17.2991188370519"
+                    Point2="-122.133333322689,17.2991188370519"
+                    Point3="-122.133333322689,21.2991188370519" />
                   <mssgle:LineSegment
-                    End="-127.599999989356,55.1941175538879" />
+                    End="-122.133333322689,57.279679049386" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4390,30 +4335,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 2]"
-          TopLeft="319.380952935945,124.223529340043">
+          TopLeft="319.380952935945,184.009625544323">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="82.5333333120454,41.8823529465389"
+              EndConnector="82.5333333120454,61.3475935711881"
               Start="0,0"
-              End="82.5333333120454,34.3823529465389">
+              End="82.5333333120454,53.8475935711881">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.9845486603476" />
+                    End="0,20.8782867938459" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12.9845486603476"
-                    Point2="0,16.9845486603476"
-                    Point3="4,16.9845486603476" />
+                    Point1="0,20.8782867938459"
+                    Point2="0,24.8782867938459"
+                    Point3="4,24.8782867938459" />
                   <mssgle:LineSegment
-                    End="78.5333333120454,16.9845486603476" />
+                    End="78.5333333120454,24.8782867938459" />
                   <mssgle:CubicBezierSegment
-                    Point1="78.5333333120454,16.9845486603476"
-                    Point2="82.5333333120454,16.9845486603476"
-                    Point3="82.5333333120454,20.9845486603476" />
+                    Point1="78.5333333120454,24.8782867938459"
+                    Point2="82.5333333120454,24.8782867938459"
+                    Point3="82.5333333120454,28.8782867938459" />
                   <mssgle:LineSegment
-                    End="82.5333333120454,34.3823529465389" />
+                    End="82.5333333120454,53.8475935711881" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4424,18 +4369,18 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 3]"
-          TopLeft="401.900000526862,209.305882286582">
+          TopLeft="400.27662390003,288.557219115511">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32.235294061342"
+              EndConnector="0,36.4064170523382"
               Start="0,0"
-              End="0,24.735294061342">
+              End="0,28.9064170523382">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.735294061342" />
+                    End="0,28.9064170523382" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4446,18 +4391,18 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 4]"
-          TopLeft="400.814286232025,284.741176347924">
+          TopLeft="397.242857652994,368.163636167849">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,25.117647110437"
+              EndConnector="0,32.0695187620974"
               Start="0,0"
-              End="0,17.617647110437">
+              End="0,24.5695187620974">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.617647110437" />
+                    End="0,24.5695187620974" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4468,30 +4413,18 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 5]"
-          TopLeft="399.742857658316,353.058823458361">
+          TopLeft="399.381818710132,443.433154929946">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="20.0571429270872,30.3176469964861"
+              EndConnector="0,37.9647058133125"
               Start="0,0"
-              End="20.0571429270872,22.8176469964861">
+              End="0,30.4647058133125">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.1588234982431" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.1588234982431"
-                    Point2="0,15.1588234982431"
-                    Point3="4,15.1588234982431" />
-                  <mssgle:LineSegment
-                    End="16.0571429270872,15.1588234982431" />
-                  <mssgle:CubicBezierSegment
-                    Point1="16.0571429270872,15.1588234982431"
-                    Point2="20.0571429270872,15.1588234982431"
-                    Point3="20.0571429270872,19.1588234982431" />
-                  <mssgle:LineSegment
-                    End="20.0571429270872,22.8176469964861" />
+                    End="0,30.4647058133125" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4502,30 +4435,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 6]"
-          TopLeft="419.800000585403,426.576470454847">
+          TopLeft="402.916883666346,524.597860743259">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="162.519999414597,87.4235295451529"
+              EndConnector="179.243116333654,49.1882354610208"
               Start="0,0"
-              End="162.519999414597,79.9235295451529">
+              End="179.243116333654,41.6882354610208">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.208019364506" />
+                    End="0,30.4350288064877" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,57.208019364506"
-                    Point2="0,61.208019364506"
-                    Point3="4,61.208019364506" />
+                    Point1="0,30.4350288064877"
+                    Point2="0,34.4350288064877"
+                    Point3="4,34.4350288064877" />
                   <mssgle:LineSegment
-                    End="158.519999414597,61.208019364506" />
+                    End="175.243116333654,34.4350288064877" />
                   <mssgle:CubicBezierSegment
-                    Point1="158.519999414597,61.208019364506"
-                    Point2="162.519999414597,61.208019364506"
-                    Point3="162.519999414597,65.208019364506" />
+                    Point1="175.243116333654,34.4350288064877"
+                    Point2="179.243116333654,34.4350288064877"
+                    Point3="179.243116333654,38.4350288064877" />
                   <mssgle:LineSegment
-                    End="162.519999414597,79.9235295451529" />
+                    End="179.243116333654,41.6882354610208" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4536,30 +4469,18 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 7]"
-          TopLeft="646.228571878647,214.258823435571">
+          TopLeft="615.014545647099,289.339037273504">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-31.588571878647,299.741176564429"
+              EndConnector="0,284.447058930776"
               Start="0,0"
-              End="-31.588571878647,292.241176564429">
+              End="0,276.947058930776">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,161.654664837484" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,161.654664837484"
-                    Point2="0,165.654664837484"
-                    Point3="-4,165.654664837484" />
-                  <mssgle:LineSegment
-                    End="-27.588571878647,165.654664837484" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-27.588571878647,165.654664837484"
-                    Point2="-31.588571878647,165.654664837484"
-                    Point3="-31.588571878647,169.654664837484" />
-                  <mssgle:LineSegment
-                    End="-31.588571878647,292.241176564429" />
+                    End="0,276.947058930776" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4570,30 +4491,113 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 8]"
-          TopLeft="346.714286269278,124.223529340043">
+          TopLeft="346.714286269278,184.009625544323">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="299.514285609369,46.8352940955279"
+              EndConnector="268.994805024921,62.1294117291809"
               Start="0,0"
-              End="299.514285609369,39.3352940955279">
+              End="268.994805024921,54.6294117291809">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.4176470477639" />
+                    End="0,27.0647058645905" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.4176470477639"
-                    Point2="0,23.4176470477639"
-                    Point3="4,23.4176470477639" />
+                    Point1="0,27.0647058645905"
+                    Point2="0,31.0647058645905"
+                    Point3="4,31.0647058645905" />
                   <mssgle:LineSegment
-                    End="295.514285609369,23.4176470477639" />
+                    End="264.994805024921,31.0647058645905" />
                   <mssgle:CubicBezierSegment
-                    Point1="295.514285609369,23.4176470477639"
-                    Point2="299.514285609369,23.4176470477639"
-                    Point3="299.514285609369,27.4176470477639" />
+                    Point1="264.994805024921,31.0647058645905"
+                    Point2="268.994805024921,31.0647058645905"
+                    Point3="268.994805024921,35.0647058645905" />
                   <mssgle:LineSegment
-                    End="299.514285609369,39.3352940955279" />
+                    End="268.994805024921,54.6294117291809" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\Poblar DimMoneda\Tarea Poblar DimMoneda"
+          TopLeft="15.2402597609941,21.5754010030987" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Poblar DimMoneda\Moneda Ficticia"
+          TopLeft="12.7968275051198,87.1071894563136" />
+        <EdgeLayout
+          Id="Package\Poblar DimMoneda.PrecedenceConstraints[Restricción]"
+          TopLeft="113.640259760994,63.1754010030987">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25.6434322558743,23.9317884532149"
+              Start="0,0"
+              End="-25.6434322558743,16.4317884532149">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.96589422660743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.96589422660743"
+                    Point2="0,11.9658942266074"
+                    Point3="-4,11.9658942266074" />
+                  <mssgle:LineSegment
+                    End="-21.6434322558743,11.9658942266074" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.6434322558743,11.9658942266074"
+                    Point2="-25.6434322558743,11.9658942266074"
+                    Point3="-25.6434322558743,15.9658942266074" />
+                  <mssgle:LineSegment
+                    End="-25.6434322558743,16.4317884532149" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.2"
+          IsExpanded="False"
+          PanelSize="216.8,156.8"
+          Size="191.2,43.2"
+          Id="Package\Poblar DimMoneda"
+          TopLeft="995.610390759079,242.256684382904" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 10]"
+          TopLeft="401.380952935945,184.009625544323">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="689.829437823135,58.2470588385807"
+              Start="0,0"
+              End="689.829437823135,50.7470588385807">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5546123034846" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5546123034846"
+                    Point2="0,15.5546123034846"
+                    Point3="4,15.5546123034846" />
+                  <mssgle:LineSegment
+                    End="685.829437823135,15.5546123034846" />
+                  <mssgle:CubicBezierSegment
+                    Point1="685.829437823135,15.5546123034846"
+                    Point2="689.829437823135,15.5546123034846"
+                    Point3="689.829437823135,19.5546123034846" />
+                  <mssgle:LineSegment
+                    End="689.829437823135,50.7470588385807" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4603,19 +4607,69 @@ WHERE pp.ProductID = sod.ProductID
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 9]"
-          TopLeft="345.357143411375,57.7294117519703">
+          Id="Package.PrecedenceConstraints[Restricción 11]"
+          TopLeft="1091.21039075908,285.456684382904">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,24.8941175880728"
+              EndConnector="-412.570390759079,288.329411821376"
               Start="0,0"
-              End="0,17.3941175880728">
+              End="-412.570390759079,280.829411821376">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.3941175880728" />
+                    End="0,197.849720949935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,197.849720949935"
+                    Point2="0,201.849720949935"
+                    Point3="-4,201.849720949935" />
+                  <mssgle:LineSegment
+                    End="-408.570390759079,201.849720949935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-408.570390759079,201.849720949935"
+                    Point2="-412.570390759079,201.849720949935"
+                    Point3="-412.570390759079,205.849720949935" />
+                  <mssgle:LineSegment
+                    End="-412.570390759079,280.829411821376" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="248,41.6"
+          Id="Package\Tarea Crear Tablas (Borrame luego)"
+          TopLeft="262.500000558794,58.3088234783018" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 9]"
+          TopLeft="386.500000558794,99.9088234783018">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-39.7857142895156,42.500802066021"
+              Start="0,0"
+              End="-39.7857142895156,35.000802066021">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2504010330105" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.2504010330105"
+                    Point2="0,21.2504010330105"
+                    Point3="-4,21.2504010330105" />
+                  <mssgle:LineSegment
+                    End="-35.7857142895156,21.2504010330105" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-35.7857142895156,21.2504010330105"
+                    Point2="-39.7857142895156,21.2504010330105"
+                    Point3="-39.7857142895156,25.2504010330105" />
+                  <mssgle:LineSegment
+                    End="-39.7857142895156,35.000802066021" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4872,20 +4926,20 @@ WHERE pp.ProductID = sod.ProductID
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\Poblar DimMoneda">
+    design-time-name="Package\Poblar DimMoneda\Tarea Poblar DimMoneda">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
-          Id="Package\Poblar DimMoneda\OLE DB Source"
+          Size="150.4,41.6"
+          Id="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source"
           TopLeft="331,136" />
         <NodeLayout
-          Size="171,42"
-          Id="Package\Poblar DimMoneda\OLE DB Destination"
+          Size="171.2,41.6"
+          Id="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination"
           TopLeft="318,237" />
         <EdgeLayout
-          Id="Package\Poblar DimMoneda.Paths[OLE DB Source Output]"
+          Id="Package\Poblar DimMoneda\Tarea Poblar DimMoneda.Paths[OLE DB Source Output]"
           TopLeft="404.75,178">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -4903,16 +4957,14 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Poblar DimMoneda\OLE DB Destination">
+    design-time-name="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4925,7 +4977,7 @@ WHERE pp.ProductID = sod.ProductID
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Poblar DimMoneda\OLE DB Source">
+    design-time-name="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
