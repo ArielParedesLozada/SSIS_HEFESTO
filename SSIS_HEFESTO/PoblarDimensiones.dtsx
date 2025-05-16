@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="PoblarDimensiones"
   DTS:PackageType="5"
-  DTS:VersionBuild="161"
-  DTS:VersionGUID="{2712AD3B-BBE4-43F0-BA18-7B296B4FAADB}">
+  DTS:VersionBuild="163"
+  DTS:VersionGUID="{0B3F4754-99AF-42C2-B35C-E005CC01C0A4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -389,7 +389,7 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Ciudad ficticia"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -778,7 +778,7 @@ WHERE pa.AddressID = pbea.AddressID AND
           DTS:LocaleID="-1"
           DTS:ObjectName="Empleado ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1263,7 +1263,7 @@ WHERE
           DTS:LocaleID="-1"
           DTS:ObjectName="Estado ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1651,7 +1651,7 @@ FROM AdventureWorks2022.Person.StateProvince
           DTS:LocaleID="-1"
           DTS:ObjectName="Moneda Ficticia"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2368,7 +2368,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Poblar Pais ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2682,7 +2682,7 @@ FROM AdventureWorks2022.Person.CountryRegion;</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Poblar dimTiempo"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3857,12 +3857,12 @@ WHERE pp.ProductID = sod.ProductID
       DTS:To="Package\Tarea Borrar Tablas" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
-<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
-<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
   Version="8">
-  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
@@ -3916,7 +3916,7 @@ WHERE pp.ProductID = sod.ProductID
           HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="222.4,128.8"
-          Size="176.8,43.2"
+          Size="177,43"
           Id="Package\Poblar Dim Terr"
           TopLeft="527.309091294199,246.139037273504" />
         <NodeLayout
@@ -3967,7 +3967,7 @@ WHERE pp.ProductID = sod.ProductID
           HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="227.2,175.2"
-          Size="185.6,43.2"
+          Size="186,43"
           Id="Package\Poblar DimCiudad"
           TopLeft="303.046753753918,400.233154929946" />
         <NodeLayout
@@ -4018,7 +4018,7 @@ WHERE pp.ProductID = sod.ProductID
           HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="238.4,177.6"
-          Size="238.4,43.2"
+          Size="238,43"
           Id="Package\Poblar DimEmpleados"
           TopLeft="283.716883666346,481.397860743259" />
         <NodeLayout
@@ -4063,11 +4063,62 @@ WHERE pp.ProductID = sod.ProductID
           HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="229.6,166.4"
-          Size="185.6,43.2"
+          Size="186,43"
           Id="Package\Poblar DimEstado"
           TopLeft="305.838961552069,324.963636167849" />
         <NodeLayout
-          Size="168.8,41.6"
+          Size="150.4,41.6"
+          Id="Package\Poblar DimMoneda\Moneda Ficticia"
+          TopLeft="12.7968275051198,87.1071894563136" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\Poblar DimMoneda\Tarea Poblar DimMoneda"
+          TopLeft="15.2402597609941,21.5754010030987" />
+        <EdgeLayout
+          Id="Package\Poblar DimMoneda.PrecedenceConstraints[Restricción]"
+          TopLeft="113.640259760994,63.1754010030987">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25.6434322558743,23.9317884532149"
+              Start="0,0"
+              End="-25.6434322558743,16.4317884532149">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.96589422660743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.96589422660743"
+                    Point2="0,11.9658942266074"
+                    Point3="-4,11.9658942266074" />
+                  <mssgle:LineSegment
+                    End="-21.6434322558743,11.9658942266074" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.6434322558743,11.9658942266074"
+                    Point2="-25.6434322558743,11.9658942266074"
+                    Point3="-25.6434322558743,15.9658942266074" />
+                  <mssgle:LineSegment
+                    End="-25.6434322558743,16.4317884532149" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.2"
+          IsExpanded="False"
+          PanelSize="216.8,156.8"
+          Size="191,43"
+          Id="Package\Poblar DimMoneda"
+          TopLeft="995.610390759079,242.256684382904" />
+        <NodeLayout
+          Size="169,42"
           Id="Package\Poblar DimOrdenes"
           TopLeft="546,573.78609620428" />
         <NodeLayout
@@ -4118,27 +4169,27 @@ WHERE pp.ProductID = sod.ProductID
           HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="220.8,124"
-          Size="172.8,43.2"
+          Size="173,43"
           Id="Package\Poblar DimPais"
           TopLeft="315.51428624799,245.357219115511" />
         <NodeLayout
-          Size="164,41.6"
+          Size="164,42"
           Id="Package\Poblar dimTiempo"
           TopLeft="780.92207787508,244.834224552619" />
         <NodeLayout
-          Size="198.4,41.6"
+          Size="198,42"
           Id="Package\Poblar FactOrdenesDetail"
           TopLeft="540,688.78609620428" />
         <NodeLayout
-          Size="146.4,41.6"
+          Size="146,42"
           Id="Package\Procesar Cubo"
           TopLeft="572.023810741498,780.521389690175" />
         <NodeLayout
-          Size="172,41.6"
+          Size="172,42"
           Id="Package\Tarea Borrar Tablas"
           TopLeft="260.714286269278,142.409625544323" />
         <NodeLayout
-          Size="206.4,41.6"
+          Size="206,42"
           Id="Package\Tarea Poblar DimProductos"
           TopLeft="66.714286279922,248.789304593709" />
         <EdgeLayout
@@ -4325,6 +4376,74 @@ WHERE pp.ProductID = sod.ProductID
                     Point3="-122.133333322689,21.2991188370519" />
                   <mssgle:LineSegment
                     End="-122.133333322689,57.279679049386" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 10]"
+          TopLeft="401.380952935945,184.009625544323">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="689.829437823135,58.2470588385807"
+              Start="0,0"
+              End="689.829437823135,50.7470588385807">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5546123034846" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5546123034846"
+                    Point2="0,15.5546123034846"
+                    Point3="4,15.5546123034846" />
+                  <mssgle:LineSegment
+                    End="685.829437823135,15.5546123034846" />
+                  <mssgle:CubicBezierSegment
+                    Point1="685.829437823135,15.5546123034846"
+                    Point2="689.829437823135,15.5546123034846"
+                    Point3="689.829437823135,19.5546123034846" />
+                  <mssgle:LineSegment
+                    End="689.829437823135,50.7470588385807" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 11]"
+          TopLeft="1091.21039075908,285.456684382904">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-412.570390759079,288.329411821376"
+              Start="0,0"
+              End="-412.570390759079,280.829411821376">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,197.849720949935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,197.849720949935"
+                    Point2="0,201.849720949935"
+                    Point3="-4,201.849720949935" />
+                  <mssgle:LineSegment
+                    End="-408.570390759079,201.849720949935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-408.570390759079,201.849720949935"
+                    Point2="-412.570390759079,201.849720949935"
+                    Point3="-412.570390759079,205.849720949935" />
+                  <mssgle:LineSegment
+                    End="-412.570390759079,280.829411821376" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4524,152 +4643,23 @@ WHERE pp.ProductID = sod.ProductID
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="196.8,41.6"
-          Id="Package\Poblar DimMoneda\Tarea Poblar DimMoneda"
-          TopLeft="15.2402597609941,21.5754010030987" />
-        <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Poblar DimMoneda\Moneda Ficticia"
-          TopLeft="12.7968275051198,87.1071894563136" />
-        <EdgeLayout
-          Id="Package\Poblar DimMoneda.PrecedenceConstraints[Restricción]"
-          TopLeft="113.640259760994,63.1754010030987">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-25.6434322558743,23.9317884532149"
-              Start="0,0"
-              End="-25.6434322558743,16.4317884532149">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,7.96589422660743" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,7.96589422660743"
-                    Point2="0,11.9658942266074"
-                    Point3="-4,11.9658942266074" />
-                  <mssgle:LineSegment
-                    End="-21.6434322558743,11.9658942266074" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-21.6434322558743,11.9658942266074"
-                    Point2="-25.6434322558743,11.9658942266074"
-                    Point3="-25.6434322558743,15.9658942266074" />
-                  <mssgle:LineSegment
-                    End="-25.6434322558743,16.4317884532149" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <ContainerLayout
-          HeaderHeight="43.2"
-          IsExpanded="False"
-          PanelSize="216.8,156.8"
-          Size="191.2,43.2"
-          Id="Package\Poblar DimMoneda"
-          TopLeft="995.610390759079,242.256684382904" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 10]"
-          TopLeft="401.380952935945,184.009625544323">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="689.829437823135,58.2470588385807"
-              Start="0,0"
-              End="689.829437823135,50.7470588385807">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.5546123034846" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.5546123034846"
-                    Point2="0,15.5546123034846"
-                    Point3="4,15.5546123034846" />
-                  <mssgle:LineSegment
-                    End="685.829437823135,15.5546123034846" />
-                  <mssgle:CubicBezierSegment
-                    Point1="685.829437823135,15.5546123034846"
-                    Point2="689.829437823135,15.5546123034846"
-                    Point3="689.829437823135,19.5546123034846" />
-                  <mssgle:LineSegment
-                    End="689.829437823135,50.7470588385807" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 11]"
-          TopLeft="1091.21039075908,285.456684382904">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-412.570390759079,288.329411821376"
-              Start="0,0"
-              End="-412.570390759079,280.829411821376">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,197.849720949935" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,197.849720949935"
-                    Point2="0,201.849720949935"
-                    Point3="-4,201.849720949935" />
-                  <mssgle:LineSegment
-                    End="-408.570390759079,201.849720949935" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-408.570390759079,201.849720949935"
-                    Point2="-412.570390759079,201.849720949935"
-                    Point3="-412.570390759079,205.849720949935" />
-                  <mssgle:LineSegment
-                    End="-412.570390759079,280.829411821376" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="248,41.6"
+          Size="248,42"
           Id="Package\Tarea Crear Tablas (Borrame luego)"
-          TopLeft="262.500000558794,58.3088234783018" />
+          TopLeft="223.500000558794,57.3088234783018" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 9]"
-          TopLeft="386.500000558794,99.9088234783018">
+          TopLeft="347.107143414036,99.3088234783018">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-39.7857142895156,42.500802066021"
+              EndConnector="0,43.1008020660212"
               Start="0,0"
-              End="-39.7857142895156,35.000802066021">
+              End="0,35.6008020660212">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.2504010330105" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17.2504010330105"
-                    Point2="0,21.2504010330105"
-                    Point3="-4,21.2504010330105" />
-                  <mssgle:LineSegment
-                    End="-35.7857142895156,21.2504010330105" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-35.7857142895156,21.2504010330105"
-                    Point2="-39.7857142895156,21.2504010330105"
-                    Point3="-39.7857142895156,25.2504010330105" />
-                  <mssgle:LineSegment
-                    End="-39.7857142895156,35.000802066021" />
+                    End="0,35.6008020660212" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4929,7 +4919,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar DimMoneda\Tarea Poblar DimMoneda">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150.4,41.6"
           Id="Package\Poblar DimMoneda\Tarea Poblar DimMoneda\OLE DB Source"
@@ -4957,7 +4947,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4988,7 +4980,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar DimOrdenes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Poblar DimOrdenes\OLE DB Destination"
@@ -5016,7 +5008,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5108,7 +5102,7 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar FactOrdenesDetail">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150.4,41.6"
           Id="Package\Poblar FactOrdenesDetail\OLE DB Source"
@@ -5136,7 +5130,9 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
