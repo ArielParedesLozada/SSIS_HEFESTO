@@ -26,11 +26,12 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-44482N5</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlULmPSa+dkajxUhQ7E5eMwAAAAACAAAAAAAQZgAAAAEAACAAAABLxkAYBvj8o8bk7vJtFhvfYAVSC9IOXwcyf66oA0qMiQAAAAAOgAAAAAIAACAAAABiGD6VuD/+BLd4ToLEgVhOLLCCehkErrV+U7cEXq7zh5AAAAD3DGnB0v8W9vovbNgkrSkoMo9boNIelJOzAOoTLTV9+S9qhCPgFel3U45rVQ9zjgGKzxjHHQO2xfFzVrTpjU8H2ICzsl+/72EtdMbT+tm4U5UJMm/EZwdSiw1x7klvdb9VTJ573Btr/i6toAAB/uRJ/0b9e86h3HjfTuB8cKo85sFxvesvykPCo0MtMR8pvvFAAAAADMFJuElVkxbgQevWhkxWZy3TdfNgl77nmTDSule/OV2dpBj66ihOOTh4qU6oNRZen995fTEgE2RsnfX2toHSag==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlULmPSa+dkajxUhQ7E5eMwAAAAACAAAAAAAQZgAAAAEAACAAAAAL9+SPTK4P/Z+fHStQNnrLlJ5HSrDNb5GH0UbIdqoeQQAAAAAOgAAAAAIAACAAAADC3lXKqSgvlw5ZuZvJSurOdctImI4HyYP/MtXiG5ELz5AAAAADdPWrJFxahiz/foHzLqSIZAtamBfH5U8iY2M11G5VsWEhVetIPmDeaUT+n3UH91nV7NuoNVKDiiP8tNEvtLsaU1FKU9DYHIWm96MYPxZo1j/2QjWIAi/rGanBpaa4jzQZPAClISp6DBwP9YIWtrlrgjthXJ5XepXyOIBihIxTKW9VyNlVluVbUJxDLkCzpZ1AAAAA2gkjdSBVDvUbAdsPgZxmeFmMhZq4DGVLKFRAvT41X8PcVko0q9896d8ODubLd3iR/5oWG/UUBp/CB+674XU7Yg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Pregunta1.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="PoblarDimensiones.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="CrearTablas.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="Laptop_Dayle_Jr_SSD_MULTI.Hefesto.conmgr" />
@@ -301,6 +302,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">SSAS_HEFESTO</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -364,16 +366,33 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Pregunta1.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="PoblarDimensiones.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{D9A250F2-3276-4FF0-BD98-7DEE9B2C405E}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Pregunta1</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{390F3820-349F-48AA-85BA-465EC1A79DCB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">PoblarDimensiones</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">102</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">158</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{7581D65E-EBA9-40A7-868B-754531FF02F1}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{CC61A01F-BF8A-49A2-94C3-B4878D073E08}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="CrearTablas.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{05C2749A-372A-4F7A-9F9A-40A5CF5A4296}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E8586D0D-599F-4D7B-BD3A-64D462109055}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
