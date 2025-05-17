@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="PoblarDimensiones"
   DTS:PackageType="5"
-  DTS:VersionBuild="163"
-  DTS:VersionGUID="{0B3F4754-99AF-42C2-B35C-E005CC01C0A4}">
+  DTS:VersionBuild="167"
+  DTS:VersionGUID="{88DE6BF0-2DC0-4FEF-949A-41EC6F00AD38}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -350,7 +350,7 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Territorio ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -389,7 +389,7 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Ciudad ficticia"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -778,7 +778,7 @@ WHERE pa.AddressID = pbea.AddressID AND
           DTS:LocaleID="-1"
           DTS:ObjectName="Empleado ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1263,7 +1263,7 @@ WHERE
           DTS:LocaleID="-1"
           DTS:ObjectName="Estado ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2103,6 +2103,12 @@ JOIN AdventureWorks2022.Sales.CurrencyRate cr
                       cachedName="ImpuestoEnvio"
                       externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ImpuestoEnvio]"
                       lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[ImpuestoEnvio]" />
+                    <inputColumn
+                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OrdenadoOnlineFlag]"
+                      cachedDataType="bool"
+                      cachedName="OrdenadoOnlineFlag"
+                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrdenadoOnlineFlag]"
+                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrdenadoOnlineFlag]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2126,6 +2132,10 @@ JOIN AdventureWorks2022.Sales.CurrencyRate cr
                       refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ImpuestoEnvio]"
                       dataType="cy"
                       name="ImpuestoEnvio" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar DimOrdenes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrdenadoOnlineFlag]"
+                      dataType="bool"
+                      name="OrdenadoOnlineFlag" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -2183,9 +2193,11 @@ JOIN AdventureWorks2022.Sales.CurrencyRate cr
 	soh.SalesOrderID AS IDOrder,
 	soh.TotalDue AS TotalPagado,
 	soh.Status AS Estado,
+	soh.OnlineOrderFlag as OrdenadoOnlineFlag,
 	soh.TaxAmt AS Impuesto,
 	soh.Freight AS ImpuestoEnvio
-FROM AdventureWorks2022.Sales.SalesOrderHeader soh</property>
+FROM AdventureWorks2022.Sales.SalesOrderHeader soh
+;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -2266,6 +2278,15 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh</property>
                       lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[ImpuestoEnvio]"
                       name="ImpuestoEnvio"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrdenadoOnlineFlag]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrdenadoOnlineFlag]"
+                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrdenadoOnlineFlag]"
+                      name="OrdenadoOnlineFlag"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2289,6 +2310,10 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh</property>
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ImpuestoEnvio]"
                       dataType="cy"
                       name="ImpuestoEnvio" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrdenadoOnlineFlag]"
+                      dataType="bool"
+                      name="OrdenadoOnlineFlag" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2311,6 +2336,11 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh</property>
                       dataType="ui1"
                       lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Estado]"
                       name="Estado" />
+                    <outputColumn
+                      refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrdenadoOnlineFlag]"
+                      dataType="bool"
+                      lineageId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrdenadoOnlineFlag]"
+                      name="OrdenadoOnlineFlag" />
                     <outputColumn
                       refId="Package\Poblar DimOrdenes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Impuesto]"
                       dataType="cy"
@@ -2368,7 +2398,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Poblar Pais ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2682,7 +2712,7 @@ FROM AdventureWorks2022.Person.CountryRegion;</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Poblar dimTiempo"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3381,7 +3411,7 @@ LEFT JOIN HEFESTO.dbo.DimEmpleados de
         <SQLTask:SqlTaskData
           SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('HEFESTO.dbo.FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.FactOrdenesDetails;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimOrdenes;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimProductos;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEmpleados', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEmpleados;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimCiudad;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEstado;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimPais;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTerritorio', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTerritorio;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTiempo', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTiempo;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimMoneda', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimMoneda;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTerritorio (&#xA; IdTerritorio INT PRIMARY KEY,&#xA; TerritorioNombre NVARCHAR(50) NOT NULL,&#xA; GrupoTerritorio NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimPais (&#xA; IDPais NVARCHAR(3) PRIMARY KEY,&#xA; Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEstado (&#xA; IDEstado INT PRIMARY KEY,&#xA; EstadoCode NCHAR(3) NOT NULL,&#xA; Nombre NVARCHAR(50) NOT NULL,&#xA; PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimCiudad (&#xA; IDCiudad INT PRIMARY KEY,&#xA; Nombre NVARCHAR(30) NOT NULL,&#xA; CodigoPostal NVARCHAR(15) NOT NULL,&#xA; EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEmpleados (&#xA; IDVendedor INT PRIMARY KEY,&#xA; Nombre NVARCHAR(50) NOT NULL,&#xA; Apellido NVARCHAR(50) NOT NULL,&#xA; CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),&#xA; EsAsalariado BIT NOT NULL,&#xA; Puesto NVARCHAR(50) NOT NULL,&#xA; TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,         -- YYYYMMDD&#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                       -- 1 o 2&#xA;    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.&#xA;    NumeroMes INT,                      -- 1 a 12&#xA;    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.&#xA;    Día INT                             -- Día del mes&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimMoneda (&#xA; IdMoneda INT PRIMARY KEY,&#xA; Moneda NVARCHAR(50) NOT NULL,&#xA; TasaPromedio MONEY &#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimOrdenes (&#xA; IDOrder INT PRIMARY KEY,&#xA; TotalPagado MONEY NOT NULL,&#xA; Estado TINYINT NOT NULL,&#xA; Impuesto MONEY NOT NULL,&#xA; ImpuestoEnvio MONEY NOT NULL,&#xA;);&#xA;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimProductos (&#xA; IDProducto INT PRIMARY KEY,&#xA; Nombre NVARCHAR(50) NOT NULL,&#xA; CompradoFlag BIT NOT NULL,&#xA; PrecioLista MONEY NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (&#xA; IDVenta INT PRIMARY KEY,&#xA; PrecioLista MONEY,&#xA; PrecioUnitario MONEY NOT NULL,&#xA; DiferenciaPrecios MONEY NOT NULL,&#xA; TotalVentaMoneda MONEY NOT NULL,&#xA; Cantidad SMALLINT NOT NULL,&#xA; TotalLinea MONEY NOT NULL,&#xA; Descuento MONEY NOT NULL,&#xA; VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA; ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),&#xA; OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder),&#xA; ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),&#xA; TerritorioID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio,&#xA; MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID('HEFESTO.dbo.FactOrdenesDetails', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.FactOrdenesDetails;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimOrdenes', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimOrdenes;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimProductos', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimProductos;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEmpleados', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEmpleados;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimCiudad', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimCiudad;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimEstado', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimEstado;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimPais', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimPais;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTerritorio', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTerritorio;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimTiempo', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimTiempo;&#xA;&#xA;IF OBJECT_ID('HEFESTO.dbo.DimMoneda', 'U') IS NOT NULL&#xA;    DROP TABLE HEFESTO.dbo.DimMoneda;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTerritorio (&#xA; IdTerritorio INT PRIMARY KEY,&#xA; TerritorioNombre NVARCHAR(50) NOT NULL,&#xA; GrupoTerritorio NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimPais (&#xA; IDPais NVARCHAR(3) PRIMARY KEY,&#xA; Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEstado (&#xA; IDEstado INT PRIMARY KEY,&#xA; EstadoCode NCHAR(3) NOT NULL,&#xA; Nombre NVARCHAR(50) NOT NULL,&#xA; PaisID NVARCHAR(3) FOREIGN KEY REFERENCES HEFESTO.dbo.DimPais(IDPais)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimCiudad (&#xA; IDCiudad INT PRIMARY KEY,&#xA; Nombre NVARCHAR(30) NOT NULL,&#xA; CodigoPostal NVARCHAR(15) NOT NULL,&#xA; EstadoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEstado(IDEstado)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimEmpleados (&#xA; IDVendedor INT PRIMARY KEY,&#xA; Nombre NVARCHAR(50) NOT NULL,&#xA; Apellido NVARCHAR(50) NOT NULL,&#xA; CiudadID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimCiudad(IDCiudad),&#xA; EsAsalariado BIT NOT NULL,&#xA; Puesto NVARCHAR(50) NOT NULL,&#xA; TerritorioVentaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio(IdTerritorio)&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimTiempo (&#xA;    ClaveFecha INT PRIMARY KEY,         -- YYYYMMDD&#xA;    FechaCompleta DATE,&#xA;    Año INT,&#xA;    Semestre INT,                       -- 1 o 2&#xA;    Trimestre NVARCHAR(10),             -- '1ro', '2do', etc.&#xA;    NumeroMes INT,                      -- 1 a 12&#xA;    NombreMes NVARCHAR(20),             -- 'Enero', 'Febrero', etc.&#xA;    Día INT                             -- Día del mes&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimMoneda (&#xA; IdMoneda INT PRIMARY KEY,&#xA; Moneda NVARCHAR(50) NOT NULL,&#xA; TasaPromedio MONEY &#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimOrdenes (&#xA;IDOrder INT PRIMARY KEY,&#xA;TotalPagado MONEY NOT NULL,&#xA;Estado TINYINT NOT NULL,&#xA;OrdenadoOnlineFlag BIT NOT NULL,&#xA;Impuesto MONEY NOT NULL,&#xA;ImpuestoEnvio MONEY NOT NULL&#xA;);&#xA;&#xA;&#xA;CREATE TABLE HEFESTO.dbo.DimProductos (&#xA; IDProducto INT PRIMARY KEY,&#xA; Nombre NVARCHAR(50) NOT NULL,&#xA; CompradoFlag BIT NOT NULL,&#xA; PrecioLista MONEY NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE HEFESTO.dbo.FactOrdenesDetails (&#xA; IDVenta INT PRIMARY KEY,&#xA; PrecioLista MONEY,&#xA; PrecioUnitario MONEY NOT NULL,&#xA; DiferenciaPrecios MONEY NOT NULL,&#xA; TotalVentaMoneda MONEY NOT NULL,&#xA; Cantidad SMALLINT NOT NULL,&#xA; TotalLinea MONEY NOT NULL,&#xA; Descuento MONEY NOT NULL,&#xA; VendedorID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimEmpleados(IDVendedor),&#xA; ProductoID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimProductos(IDProducto),&#xA; OrdenID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimOrdenes(IDOrder),&#xA; ClaveFechaEnvio INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTiempo(ClaveFecha),&#xA; TerritorioID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimTerritorio,&#xA; MonedaID INT FOREIGN KEY REFERENCES HEFESTO.dbo.DimMoneda(IdMoneda)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -4189,6 +4219,10 @@ WHERE pp.ProductID = sod.ProductID
           Id="Package\Tarea Borrar Tablas"
           TopLeft="260.714286269278,142.409625544323" />
         <NodeLayout
+          Size="248,42"
+          Id="Package\Tarea Crear Tablas (Borrame luego)"
+          TopLeft="223.500000558794,57.3088234783018" />
+        <NodeLayout
           Size="206,42"
           Id="Package\Tarea Poblar DimProductos"
           TopLeft="66.714286279922,248.789304593709" />
@@ -4642,10 +4676,6 @@ WHERE pp.ProductID = sod.ProductID
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="248,42"
-          Id="Package\Tarea Crear Tablas (Borrame luego)"
-          TopLeft="223.500000558794,57.3088234783018" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 9]"
           TopLeft="347.107143414036,99.3088234783018">
@@ -4980,13 +5010,13 @@ WHERE pp.ProductID = sod.ProductID
     design-time-name="Package\Poblar DimOrdenes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="171.2,41.6"
+          Size="171,42"
           Id="Package\Poblar DimOrdenes\OLE DB Destination"
           TopLeft="323,212" />
         <NodeLayout
-          Size="150.4,41.6"
+          Size="150,42"
           Id="Package\Poblar DimOrdenes\OLE DB Source"
           TopLeft="330,106" />
         <EdgeLayout
@@ -5008,9 +5038,7 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

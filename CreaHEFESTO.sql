@@ -57,6 +57,7 @@ CREATE TABLE HEFESTO.dbo.DimOrdenes (
 	IDOrder INT PRIMARY KEY,
 	TotalPagado MONEY NOT NULL,
 	Estado TINYINT NOT NULL,
+	OrdenadoOnlineFlag BIT NOT NULL,
 	Impuesto MONEY NOT NULL,
 	ImpuestoEnvio MONEY NOT NULL
 );
@@ -225,6 +226,7 @@ SELECT
 	soh.SalesOrderID AS IDOrder,
 	soh.TotalDue AS TotalPagado,
 	soh.Status AS Estado,
+	soh.OnlineOrderFlag as OrdenadoOnlineFlag,
 	soh.TaxAmt AS Impuesto,
 	soh.Freight AS ImpuestoEnvio
 FROM AdventureWorks2022.Sales.SalesOrderHeader soh

@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="540bf7f5-cad6-4a0d-95f9-7c859b659b48" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="edbd5707-9ca6-4697-82bf-2410b34ea1a0" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Dim Ordenes</ID>
   <Name>Dim Ordenes</Name>
   <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
@@ -8,9 +8,9 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-50" scrolltop="-50" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="110" x="19685" y="10499" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-50" scrolltop="-50" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="110" x="10636" y="15161" backcolor="1776411" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
-              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
             <mouseicon>
               <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
@@ -19,9 +19,9 @@
           <layoutmanager>
             <ddsxmlobj />
           </layoutmanager>
-          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimOrdenes" left="4215" top="1944" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3000" height="2848" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimOrdenes" left="2074" top="1728" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3000" height="3859" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
-              <ddsxmlobjectstreaminitwrapper binary="000e0000b80b0000200b0000" />
+              <ddsxmlobjectstreaminitwrapper binary="000e0000b80b0000130f0000" />
             </control>
             <layoutobject>
               <ddsxmlobj>
@@ -55,11 +55,11 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-      <Value>4215</Value>
+      <Value>2074</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
-      <Value>1944</Value>
+      <Value>1728</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
@@ -68,51 +68,128 @@
   </Annotations>
   <LastProcessed>0001-01-01T05:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="a89b75c8-5209-4f1e-99dc-faf7b544fe39">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="6af3e70a-176f-4244-9048-9c009cbb85fb">
     <DataSourceViewID>HEFESTO</DataSourceViewID>
   </Source>
   <UnknownMember>Visible</UnknownMember>
-  <ErrorConfiguration dwd:design-time-name="03049b57-d14d-4faf-a8da-1a73ecbb51ac">
+  <ErrorConfiguration dwd:design-time-name="0369e2e6-8f87-4d6a-870f-6c5e7d1c1dbd">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="53c3748c-e011-4723-9d1f-b88b5c5f3920">
+    <Attribute dwd:design-time-name="b0957c1b-08a7-45df-9af5-bbe58f79625c">
       <ID>ID Order</ID>
       <Name>ID Order</Name>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="c2a5096d-1705-4a15-9c35-fafb87de8ac8">
+        <KeyColumn dwd:design-time-name="ebb10943-90e7-49ae-9266-d1a6d11a1c3c">
           <DataType>Integer</DataType>
           <NullProcessing>UnknownMember</NullProcessing>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="3efd5252-978d-4cc0-8f78-8feb093a2914">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6451f6c1-957a-4fb4-87a3-296219d81a6c">
             <TableID>dbo_DimOrdenes</TableID>
             <ColumnID>IDOrder</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="22f2fef3-6243-492d-8ffb-decc70d1d39a">
+        <AttributeRelationship dwd:design-time-name="063a1452-b24a-42ca-ac6d-8dd2386aae5d">
           <AttributeID>Estado Desc</AttributeID>
           <Name>Estado Desc</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b16d0076-8fc8-4806-814d-f8c71180161f">
+          <AttributeID>Impuesto</AttributeID>
+          <Name>Impuesto</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="72a9b14a-bdca-46cc-a54a-9d460e3236e4">
+          <AttributeID>Impuesto Envio</AttributeID>
+          <Name>Impuesto Envio</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f1d72631-6025-4cb5-9117-4e778f2ee70f">
+          <AttributeID>Ordenado Online Flag</AttributeID>
+          <Name>Ordenado Online Flag</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="882f30e5-7aee-489f-83f2-c4e2acbc89b1">
+          <AttributeID>Ordenado Online Desc</AttributeID>
+          <Name>Ordenado Online Desc</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="3ad89566-d218-46eb-a248-61f0c5fe4fe1">
+    <Attribute dwd:design-time-name="fc722f86-6685-4bf1-84a6-38f3243204b3">
       <ID>Estado Desc</ID>
       <Name>Estado Desc</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="a68dc2d4-4ed3-4377-8010-5548f29349d2">
+        <KeyColumn dwd:design-time-name="8cce7008-ff59-456e-96ea-1d2e1d106202">
           <DataType>WChar</DataType>
           <DataSize>11</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="481864e2-c3d1-44ad-b213-0ace09275f4e">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="29336f68-2199-4294-8af0-edf0ea38a942">
             <TableID>dbo_DimOrdenes</TableID>
             <ColumnID>Estado_Desc</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="79f60e1d-816b-436c-a259-66d3a9f8439b">
+      <ID>Impuesto</ID>
+      <Name>Impuesto</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="785f2790-8320-4766-aa24-0a214a64431b">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="64230335-db04-4ed2-99d5-7f1463f4c9b3">
+            <TableID>dbo_DimOrdenes</TableID>
+            <ColumnID>Impuesto</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ffd065f2-6692-4a72-8cef-07a0b2a6b6ac">
+      <ID>Impuesto Envio</ID>
+      <Name>Impuesto Envio</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="324b62a9-44f1-49d1-8b88-4817860eaa9c">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f2e94137-ae8d-4937-a8b9-0105fe5eda35">
+            <TableID>dbo_DimOrdenes</TableID>
+            <ColumnID>ImpuestoEnvio</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7b75f331-ac7c-4ce1-8ebe-ddb3d4662338">
+      <ID>Ordenado Online Flag</ID>
+      <Name>Ordenado Online Flag</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d804e7e4-5afd-48fc-a76a-84bfa637aaa0">
+          <DataType>Boolean</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="af767570-2034-4ec2-9e76-75dd2e6fceaf">
+            <TableID>dbo_DimOrdenes</TableID>
+            <ColumnID>OrdenadoOnlineFlag</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9f5acb70-4c31-4255-a314-96d0a7539a2a">
+      <ID>Ordenado Online Desc</ID>
+      <Name>Ordenado Online Desc</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4f6b56ca-b74f-4ffd-a1d4-ec21d183943b">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8a156d7f-57e2-4f59-9c1f-9395fe3bab0a">
+            <TableID>dbo_DimOrdenes</TableID>
+            <ColumnID>OrdenadoOnline_Desc</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
