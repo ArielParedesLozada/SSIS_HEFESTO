@@ -43,6 +43,26 @@
       <Name>Dim Ordenes.dim</Name>
       <FullPath>Dim Ordenes.dim</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Estado Orden.dim</Name>
+      <FullPath>Dim Estado Orden.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Asalariado Flag.dim</Name>
+      <FullPath>Dim Asalariado Flag.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Pais.dim</Name>
+      <FullPath>Dim Pais.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Estado.dim</Name>
+      <FullPath>Dim Estado.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Ciudad.dim</Name>
+      <FullPath>Dim Ciudad.dim</FullPath>
+    </ProjectItem>
   </Dimensions>
   <DataSources>
     <ProjectItem>

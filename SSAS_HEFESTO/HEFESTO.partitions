@@ -1,17 +1,17 @@
-﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="e2c177b8-9f41-41fa-a801-2b9f3ab57822" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="3c8defe1-c587-4931-bef6-b939c3e089c8" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>HEFESTO</ID>
   <MeasureGroups>
     <MeasureGroup>
       <ID>Fact Ordenes Details</ID>
       <Partitions>
-        <Partition dwd:design-time-name="35ec26e6-401a-4570-97ab-17a1efc49ae7">
+        <Partition dwd:design-time-name="9281958d-3d16-4e55-a586-9e00510cf2f0">
           <ID>Fact Ordenes Details</ID>
           <Name>Fact Ordenes Details</Name>
           <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T05:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T05:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="2936e77e-9348-4898-89eb-e3ba8db5f3fa">
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="390e5a8d-c580-4b6f-b30a-13726d21bb7e">
             <DataSourceViewID>HEFESTO</DataSourceViewID>
             <TableID>dbo_FactOrdenesDetails</TableID>
           </Source>
@@ -24,14 +24,14 @@
     <MeasureGroup>
       <ID>Dim Ordenes</ID>
       <Partitions>
-        <Partition dwd:design-time-name="225ac835-c48f-4e51-a373-649e9de436ff">
+        <Partition dwd:design-time-name="76b8dc31-c7c9-4319-9f0f-702cce2368cb">
           <ID>Dim Ordenes</ID>
           <Name>Dim Ordenes</Name>
           <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T05:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T05:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="8bc59a13-f63f-4c34-a820-d14408239499">
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="b1ba4117-f4f7-4c17-8955-f95c68071ade">
             <DataSourceViewID>HEFESTO</DataSourceViewID>
             <TableID>dbo_DimOrdenes</TableID>
           </Source>
@@ -44,14 +44,14 @@
     <MeasureGroup>
       <ID>Fact Ordenes Details 1</ID>
       <Partitions>
-        <Partition dwd:design-time-name="3e133ada-575a-4ab7-b4ce-edc05003be16">
+        <Partition dwd:design-time-name="3c6fc580-def9-45b4-8cf6-8f25c031055a">
           <ID>Fact Ordenes Details</ID>
           <Name>Fact Ordenes Details</Name>
           <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T05:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T05:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="fc32538f-33e9-4b8e-83ab-3662fae22174">
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="607de6bc-2f49-40d8-9c70-a41b73fcc588">
             <DataSourceViewID>HEFESTO</DataSourceViewID>
             <TableID>dbo_FactOrdenesDetails</TableID>
           </Source>
@@ -64,16 +64,36 @@
     <MeasureGroup>
       <ID>Dim Productos</ID>
       <Partitions>
-        <Partition dwd:design-time-name="1f531b51-a9f0-4c36-913e-3c767c85d353">
+        <Partition dwd:design-time-name="7aa01b83-2e13-4e6f-ab58-69dcd68fd217">
           <ID>Dim Productos</ID>
           <Name>Dim Productos</Name>
+          <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T05:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T05:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="4d563ac9-7e29-4110-b039-900dea729732">
+            <DataSourceViewID>HEFESTO</DataSourceViewID>
+            <TableID>dbo_DimProductos</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
+      <ID>Dim Empleados</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="2befb003-cecc-45a7-8506-5b47b06aa727">
+          <ID>Dim Empleados</ID>
+          <Name>Dim Empleados</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="8161e8dd-4679-455f-a706-d815c9df15b3">
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="2a278636-a31f-4917-9683-bc608973dd7c">
             <DataSourceViewID>HEFESTO</DataSourceViewID>
-            <TableID>dbo_DimProductos</TableID>
+            <TableID>dbo_DimEmpleados</TableID>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>

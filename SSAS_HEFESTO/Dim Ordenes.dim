@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="edbd5707-9ca6-4697-82bf-2410b34ea1a0" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="ea7f3cee-c6d0-400a-a98c-d143707b0125" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Dim Ordenes</ID>
   <Name>Dim Ordenes</Name>
   <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
@@ -68,65 +68,69 @@
   </Annotations>
   <LastProcessed>0001-01-01T05:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="6af3e70a-176f-4244-9048-9c009cbb85fb">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="532de7f1-2e2e-483b-9aef-f7d7d8db2dac">
     <DataSourceViewID>HEFESTO</DataSourceViewID>
   </Source>
   <UnknownMember>Visible</UnknownMember>
-  <ErrorConfiguration dwd:design-time-name="0369e2e6-8f87-4d6a-870f-6c5e7d1c1dbd">
+  <ErrorConfiguration dwd:design-time-name="f3bded49-99c9-45db-b027-9d791bb057f6">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="b0957c1b-08a7-45df-9af5-bbe58f79625c">
+    <Attribute dwd:design-time-name="49cf7a0c-5964-4b73-b0cb-c3ce944c3b09">
       <ID>ID Order</ID>
       <Name>ID Order</Name>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="ebb10943-90e7-49ae-9266-d1a6d11a1c3c">
+        <KeyColumn dwd:design-time-name="80b60590-9f8c-4b57-b97a-07f7478c8bf5">
           <DataType>Integer</DataType>
           <NullProcessing>UnknownMember</NullProcessing>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="6451f6c1-957a-4fb4-87a3-296219d81a6c">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="31d7ccc9-f8fc-43ff-8957-423787d27bba">
             <TableID>dbo_DimOrdenes</TableID>
             <ColumnID>IDOrder</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="063a1452-b24a-42ca-ac6d-8dd2386aae5d">
+        <AttributeRelationship dwd:design-time-name="dda15d87-17e1-4a40-ad8c-8e09ceeebd5e">
           <AttributeID>Estado Desc</AttributeID>
           <Name>Estado Desc</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="b16d0076-8fc8-4806-814d-f8c71180161f">
+        <AttributeRelationship dwd:design-time-name="e4d3ce81-de78-4f0d-8ae6-f98d23a1a5eb">
           <AttributeID>Impuesto</AttributeID>
           <Name>Impuesto</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="72a9b14a-bdca-46cc-a54a-9d460e3236e4">
+        <AttributeRelationship dwd:design-time-name="389cf378-c8c7-439e-90eb-e34d2eb4062f">
           <AttributeID>Impuesto Envio</AttributeID>
           <Name>Impuesto Envio</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="f1d72631-6025-4cb5-9117-4e778f2ee70f">
+        <AttributeRelationship dwd:design-time-name="330c7fa6-7a88-4e47-9e6b-4a52eae5aa59">
           <AttributeID>Ordenado Online Flag</AttributeID>
           <Name>Ordenado Online Flag</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="882f30e5-7aee-489f-83f2-c4e2acbc89b1">
+        <AttributeRelationship dwd:design-time-name="e484839a-baa8-44e3-9ae6-0f5b3db75589">
           <AttributeID>Ordenado Online Desc</AttributeID>
           <Name>Ordenado Online Desc</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5ae9b32e-d981-42c5-b56a-92c702d7bea0">
+          <AttributeID>Estado</AttributeID>
+          <Name>Estado</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="fc722f86-6685-4bf1-84a6-38f3243204b3">
+    <Attribute dwd:design-time-name="c3a27c23-b76d-4d72-abee-bf312f574183">
       <ID>Estado Desc</ID>
       <Name>Estado Desc</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="8cce7008-ff59-456e-96ea-1d2e1d106202">
+        <KeyColumn dwd:design-time-name="ce1f4a03-d227-4cfc-83e5-7d2fb94d931c">
           <DataType>WChar</DataType>
           <DataSize>11</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="29336f68-2199-4294-8af0-edf0ea38a942">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="113cabdb-85c8-42ac-8f6d-72e31a42fa32">
             <TableID>dbo_DimOrdenes</TableID>
             <ColumnID>Estado_Desc</ColumnID>
           </Source>
@@ -135,13 +139,13 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="79f60e1d-816b-436c-a259-66d3a9f8439b">
+    <Attribute dwd:design-time-name="0fe1bb5a-54e2-4189-b8a6-f49fbf1ceba0">
       <ID>Impuesto</ID>
       <Name>Impuesto</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="785f2790-8320-4766-aa24-0a214a64431b">
+        <KeyColumn dwd:design-time-name="c62c65d9-539f-4bc5-b5c1-0a5262a81365">
           <DataType>Double</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="64230335-db04-4ed2-99d5-7f1463f4c9b3">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5e320373-f1b4-46e2-ad0d-65562e09204b">
             <TableID>dbo_DimOrdenes</TableID>
             <ColumnID>Impuesto</ColumnID>
           </Source>
@@ -150,13 +154,13 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="ffd065f2-6692-4a72-8cef-07a0b2a6b6ac">
+    <Attribute dwd:design-time-name="08767db5-899f-457a-9eda-92fbfa462a03">
       <ID>Impuesto Envio</ID>
       <Name>Impuesto Envio</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="324b62a9-44f1-49d1-8b88-4817860eaa9c">
+        <KeyColumn dwd:design-time-name="01c44d61-f7db-488f-b55c-9baf27b6ac07">
           <DataType>Double</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="f2e94137-ae8d-4937-a8b9-0105fe5eda35">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="461fe07f-c6bf-4dfa-acad-5b325657e9dd">
             <TableID>dbo_DimOrdenes</TableID>
             <ColumnID>ImpuestoEnvio</ColumnID>
           </Source>
@@ -165,13 +169,13 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="7b75f331-ac7c-4ce1-8ebe-ddb3d4662338">
+    <Attribute dwd:design-time-name="4424aad6-1295-4415-8a83-89fd5fe4ef82">
       <ID>Ordenado Online Flag</ID>
       <Name>Ordenado Online Flag</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="d804e7e4-5afd-48fc-a76a-84bfa637aaa0">
+        <KeyColumn dwd:design-time-name="acb6495d-fdc4-4e85-98ee-99825656f139">
           <DataType>Boolean</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="af767570-2034-4ec2-9e76-75dd2e6fceaf">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5c046723-4772-4d0f-b71f-90adc814544f">
             <TableID>dbo_DimOrdenes</TableID>
             <ColumnID>OrdenadoOnlineFlag</ColumnID>
           </Source>
@@ -180,16 +184,31 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="9f5acb70-4c31-4255-a314-96d0a7539a2a">
+    <Attribute dwd:design-time-name="be45ba62-4107-486b-b5cf-0d6daee8367d">
       <ID>Ordenado Online Desc</ID>
       <Name>Ordenado Online Desc</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="4f6b56ca-b74f-4ffd-a1d4-ec21d183943b">
+        <KeyColumn dwd:design-time-name="71af7bcd-311e-4c84-8563-d2ffab97ff4a">
           <DataType>WChar</DataType>
           <DataSize>10</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="8a156d7f-57e2-4f59-9c1f-9395fe3bab0a">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="728e5696-747e-41a5-be2f-27a5aee26fbf">
             <TableID>dbo_DimOrdenes</TableID>
             <ColumnID>OrdenadoOnline_Desc</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="970b75b6-5431-4bf7-8700-db3e44d2691c">
+      <ID>Estado</ID>
+      <Name>Estado</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="010a196b-54da-449c-abd5-75554146692f">
+          <DataType>UnsignedTinyInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="82454ed8-929b-467d-a5a1-d8095a0d963b">
+            <TableID>dbo_DimOrdenes</TableID>
+            <ColumnID>Estado</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
