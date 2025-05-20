@@ -213,13 +213,14 @@ WHERE
 
 INSERT INTO HEFESTO.dbo.DimEmpleados VALUES (
 	-1,
-	'Empleado desconocido',
-	'Empleado desconocido',
+	'Empleado',
+	'desconocido',
 	-1,
 	-1,
 	'Desconocido',
 	-1
 );
+
 
 --DimOrdenes (Sales.SalesOrderHeader)
 SELECT

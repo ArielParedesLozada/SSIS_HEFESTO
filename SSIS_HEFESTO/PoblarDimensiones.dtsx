@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="PoblarDimensiones"
   DTS:PackageType="5"
-  DTS:VersionBuild="167"
-  DTS:VersionGUID="{88DE6BF0-2DC0-4FEF-949A-41EC6F00AD38}">
+  DTS:VersionBuild="168"
+  DTS:VersionGUID="{26A164A6-8B98-45DB-A00D-B1F8EBA115C1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -350,7 +350,7 @@ FROM AdventureWorks2022.Sales.SalesTerritory;</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Territorio ficticio"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -783,7 +783,7 @@ WHERE pa.AddressID = pbea.AddressID AND
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{98CFE6DB-7990-4206-9CCC-61DD9D3FF411}"
-              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimEmpleados VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Empleado desconocido',&#xA;&#x9;'Empleado desconocido',&#xA;&#x9;-1,&#xA;&#x9;-1,&#xA;&#x9;'Desconocido',&#xA;&#x9;-1&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="INSERT INTO HEFESTO.dbo.DimEmpleados VALUES (&#xA;&#x9;-1,&#xA;&#x9;'Empleado',&#xA;&#x9;'desconocido',&#xA;&#x9;-1,&#xA;&#x9;-1,&#xA;&#x9;'Desconocido',&#xA;&#x9;-1&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1651,7 +1651,7 @@ FROM AdventureWorks2022.Person.StateProvince
           DTS:LocaleID="-1"
           DTS:ObjectName="Moneda Ficticia"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2712,7 +2712,7 @@ FROM AdventureWorks2022.Person.CountryRegion;</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Poblar dimTiempo"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -4001,11 +4001,11 @@ WHERE pp.ProductID = sod.ProductID
           Id="Package\Poblar DimCiudad"
           TopLeft="303.046753753918,400.233154929946" />
         <NodeLayout
-          Size="157.6,41.6"
+          Size="158,42"
           Id="Package\Poblar DimEmpleados\Empleado ficticio"
           TopLeft="22.8571430335239,81.3411763137393" />
         <NodeLayout
-          Size="212,41.6"
+          Size="212,42"
           Id="Package\Poblar DimEmpleados\Tarea Poblar DimEmpleados"
           TopLeft="14.2857147631593,13.1470588168264" />
         <EdgeLayout
@@ -4039,18 +4039,16 @@ WHERE pp.ProductID = sod.ProductID
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
-          HeaderHeight="43.2"
+          HeaderHeight="43"
           IsExpanded="False"
-          PanelSize="238.4,177.6"
-          Size="238,43"
+          PanelSize="238,178"
+          Size="204,43"
           Id="Package\Poblar DimEmpleados"
-          TopLeft="283.716883666346,481.397860743259" />
+          TopLeft="294.716883666346,479.397860743259" />
         <NodeLayout
           Size="143.2,41.6"
           Id="Package\Poblar DimEstado\Estado ficticio"
@@ -4566,18 +4564,18 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 5]"
-          TopLeft="399.381818710132,443.433154929946">
+          TopLeft="396.381818710132,443.233154929946">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,37.9647058133125"
+              EndConnector="0,36.164705813313"
               Start="0,0"
-              End="0,30.4647058133125">
+              End="0,28.664705813313">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.4647058133125" />
+                    End="0,28.664705813313" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4588,30 +4586,30 @@ WHERE pp.ProductID = sod.ProductID
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 6]"
-          TopLeft="402.916883666346,524.597860743259">
+          TopLeft="396.716883666346,522.397860743259">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="179.243116333654,49.1882354610208"
+              EndConnector="185.483116333654,51.3882354610211"
               Start="0,0"
-              End="179.243116333654,41.6882354610208">
+              End="185.483116333654,43.8882354610211">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.4350288064877" />
+                    End="0,31.9760223401514" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,30.4350288064877"
-                    Point2="0,34.4350288064877"
-                    Point3="4,34.4350288064877" />
+                    Point1="0,31.9760223401514"
+                    Point2="0,35.9760223401514"
+                    Point3="4,35.9760223401514" />
                   <mssgle:LineSegment
-                    End="175.243116333654,34.4350288064877" />
+                    End="181.483116333654,35.9760223401514" />
                   <mssgle:CubicBezierSegment
-                    Point1="175.243116333654,34.4350288064877"
-                    Point2="179.243116333654,34.4350288064877"
-                    Point3="179.243116333654,38.4350288064877" />
+                    Point1="181.483116333654,35.9760223401514"
+                    Point2="185.483116333654,35.9760223401514"
+                    Point3="185.483116333654,39.9760223401514" />
                   <mssgle:LineSegment
-                    End="179.243116333654,41.6882354610208" />
+                    End="185.483116333654,43.8882354610211" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

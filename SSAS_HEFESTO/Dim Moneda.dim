@@ -1,16 +1,16 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="97fab988-0b69-445d-94a3-3b02db4819c8" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="0f90a25c-9bc1-486d-9297-8c3559d2e263" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Dim Moneda</ID>
   <Name>Dim Moneda</Name>
-  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T05:00:00Z</LastSchemaUpdate>
   <Annotations>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2256" scrolltop="-4107" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7578" y="10160" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2256" scrolltop="-4107" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="11456" y="16722" backcolor="1776411" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
-              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
             <mouseicon>
               <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
@@ -19,9 +19,9 @@
           <layoutmanager>
             <ddsxmlobj />
           </layoutmanager>
-          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimMoneda" left="20" top="0" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3027" height="1947" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimMoneda" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3027" height="4355" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
-              <ddsxmlobjectstreaminitwrapper binary="000e0000d30b00009b070000" />
+              <ddsxmlobjectstreaminitwrapper binary="000e0000d30b000003110000" />
             </control>
             <layoutobject>
               <ddsxmlobj>
@@ -66,55 +66,59 @@
       <Value>100</Value>
     </Annotation>
   </Annotations>
-  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <LastProcessed>0001-01-01T05:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="fa75fc1d-7998-4172-a497-1e10e6d85b7b">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="a6298301-8e7c-45f2-9bbc-d7c149d70e60">
     <DataSourceViewID>HEFESTO</DataSourceViewID>
   </Source>
   <UnknownMember>Visible</UnknownMember>
-  <ErrorConfiguration dwd:design-time-name="ded0f500-304e-4255-ba42-5b6d989ae438">
+  <ErrorConfiguration dwd:design-time-name="454fa52d-0bbf-4a59-b644-1266b117774a">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="38784672-d19d-4bc3-8864-868f6eabee6e">
+    <Attribute dwd:design-time-name="df65d97f-ba90-464e-a676-e2a33fa590d4">
       <ID>Id Moneda</ID>
       <Name>Id Moneda</Name>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="077dcecb-7a71-4710-9650-cefe2b3a9d76">
+        <KeyColumn dwd:design-time-name="340b7c89-4510-4d97-b7b4-6f896bd50fef">
           <DataType>Integer</DataType>
           <NullProcessing>UnknownMember</NullProcessing>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="f4f7d2f6-3a82-48b0-97c7-b2ad5a37bb0a">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c9b74edb-810e-415c-acad-0e53fe5b6ec9">
             <TableID>dbo_DimMoneda</TableID>
             <ColumnID>IdMoneda</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="cbd063ca-b5a4-434f-be12-6106a9600af0">
+        <AttributeRelationship dwd:design-time-name="c932c1c2-bccb-4a96-b236-47ff638c0b53">
           <AttributeID>Moneda</AttributeID>
           <Name>Moneda</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="28c8d442-0787-4d4a-b362-12248a8bae06">
+        <AttributeRelationship dwd:design-time-name="34ac487c-e274-4a89-ba0b-e5e7fdffd835">
           <AttributeID>Tasa Promedio</AttributeID>
           <Name>Tasa Promedio</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="59e0ac5b-5414-4728-8d2b-4e800d28b91c">
+          <AttributeID>Moneda Esp</AttributeID>
+          <Name>Moneda Esp</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="a8d7292a-20b8-467d-9ea6-3f7023b03b12">
+    <Attribute dwd:design-time-name="ba81d9bd-8765-4626-9a2b-063198dc85ab">
       <ID>Moneda</ID>
       <Name>Moneda</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="ca13694b-4e44-4392-9d57-771f42fda17a">
+        <KeyColumn dwd:design-time-name="3d55be1b-a7cd-41ec-bf0b-a6e8a9c5d9ad">
           <DataType>WChar</DataType>
           <DataSize>50</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="7aa6cc36-3de7-49b5-96ce-7040a6f63cfe">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="93ef0d1d-7404-4fd9-b4bb-2fa69ce6fa1e">
             <TableID>dbo_DimMoneda</TableID>
             <ColumnID>Moneda</ColumnID>
           </Source>
@@ -123,15 +127,31 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="d30adf5a-56c5-4fd9-beb3-0538f256b9f2">
+    <Attribute dwd:design-time-name="3a448571-7ded-4715-a1f4-0e889af9b174">
       <ID>Tasa Promedio</ID>
       <Name>Tasa Promedio</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="f8699ff3-85dc-46af-b205-8435d622312b">
+        <KeyColumn dwd:design-time-name="fd901ae5-04f5-4dc2-9ae7-0fc8f3330922">
           <DataType>Double</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="23f055ae-7f64-43b9-8ef8-5cd6680ef5cb">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bd48bf31-e26d-481b-9852-8e169036e13b">
             <TableID>dbo_DimMoneda</TableID>
             <ColumnID>TasaPromedio</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="8700a053-a59c-422c-a096-be4ea6223e37">
+      <ID>Moneda Esp</ID>
+      <Name>Moneda Esp</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="35ee7946-b267-43a1-af7a-5653b911fbf2">
+          <DataType>WChar</DataType>
+          <DataSize>21</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="cb9084e6-d64d-486a-be93-76290bdc5c71">
+            <TableID>dbo_DimMoneda</TableID>
+            <ColumnID>MonedaEsp</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
