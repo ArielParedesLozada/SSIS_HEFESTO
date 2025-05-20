@@ -1401,8 +1401,17 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Total dinamico P3]
     [Dim Ordenes].[Estado Desc].[All]),
 FORMAT_STRING = "Standard", 
 VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details ORD'; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Total dinamico Ordenes Enviadas]
+ AS ([Measures].[Recuento distinto Orden ID], 
+    [Dim Ordenes].[Estado Desc].&amp;[Enviado]), 
+FORMAT_STRING = "Standard", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details ORD'  ; 
 CREATE MEMBER CURRENTCUBE.[Measures].[Porcentaje sobre Total dinamico]
  AS [Measures].[Recuento distinto Orden ID] / [Measures].[Total dinamico P3], 
+FORMAT_STRING = "Percent", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details ORD'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Porcentaje sobre Total dinamico de Enviadas]
+ AS [Measures].[Recuento distinto Orden ID] / [Measures].[Total dinamico Ordenes Enviadas], 
 FORMAT_STRING = "Percent", 
 VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Ordenes Details ORD'  ; 
 CREATE MEMBER CURRENTCUBE.[Measures].[Porcentaje sobre Recuento de Ordenes Enviadas]
