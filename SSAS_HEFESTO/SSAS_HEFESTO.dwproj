@@ -44,14 +44,6 @@
       <FullPath>Dim Ordenes.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Dim Estado Orden.dim</Name>
-      <FullPath>Dim Estado Orden.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Dim Asalariado Flag.dim</Name>
-      <FullPath>Dim Asalariado Flag.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Dim Pais.dim</Name>
       <FullPath>Dim Pais.dim</FullPath>
     </ProjectItem>
@@ -84,7 +76,7 @@
           <ConfigurationSetting>
             <Id>HEFESTO</Id>
             <Name>HEFESTO</Name>
-            <Value xsi:type="xsd:string">Provider=MSOLEDBSQL.1;Data Source=Laptop_Dayle_Jr\SSD_MULTI;Integrated Security=SSPI;Initial Catalog=HEFESTO</Value>
+            <Value xsi:type="xsd:string">Provider=MSOLEDBSQL.1;Data Source=.;Integrated Security=SSPI;Initial Catalog=HEFESTO</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionSecurityMappings>
