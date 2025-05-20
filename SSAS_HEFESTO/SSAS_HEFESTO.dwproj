@@ -44,14 +44,6 @@
       <FullPath>Dim Ordenes.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Dim Estado Orden.dim</Name>
-      <FullPath>Dim Estado Orden.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Dim Asalariado Flag.dim</Name>
-      <FullPath>Dim Asalariado Flag.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Dim Pais.dim</Name>
       <FullPath>Dim Pais.dim</FullPath>
     </ProjectItem>
